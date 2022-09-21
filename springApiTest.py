@@ -20,7 +20,7 @@ def getfile_insensitive(path):
 
 def getlist():
     response = requests.get(
-        'http://192.81.219.24:8080/greeting?date=2022-09-11')
+        'http://192.81.219.24:8080/greeting?date=2022-10-16')
     answer = []
     y = json.loads(response.text)
 
