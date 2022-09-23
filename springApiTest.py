@@ -33,7 +33,6 @@ class Springapi:
                 return newpath
 
     def getlist(self):
-        print('date as passed', self.date)
         datearr = self.date.split(" ")
 
         datetime_object = datetime.datetime.strptime(datearr[2], "%b")

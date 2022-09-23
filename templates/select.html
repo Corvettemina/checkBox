@@ -12,12 +12,12 @@
   </head>
   <body>
     <div class="center">
-      <p class = "titles">Selected Date is: {{session['startdate']}}</p>
-      <p class = "titles">Selected Coptic Date is: {{spapi.copticDay}}</p>
-      <p class = "titles">Selected Coptic Sunday is: {{spapi.sunday}}</p>
-      <p class = "titles">Selected Coptic Season is: {{spapi.season}}</p>
-      <p class = "titles">Selected Coptic Occasion is: {{spapi.occasion}}</p>
-      <form>
+      <p class="titles">Selected Date is: {{session['startdate']}}</p>
+      <p class="titles">Selected Coptic Date is: {{spapi.copticDay}}</p>
+      <p class="titles">Selected Coptic Sunday is: {{spapi.sunday}}</p>
+      <p class="titles">Selected Coptic Season is: {{spapi.season}}</p>
+      <p class="titles">Selected Coptic Occasion is: {{spapi.occasion}}</p>
+      <form method="POST" action="/select">
         {% for item in listss %}
         <div class="zone">
           <input
