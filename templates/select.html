@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/templates.css') }}"
+  />
   <head>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/templates.css') }}"
-    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -12,7 +12,11 @@
   </head>
   <body>
     <div class="center">
-      <p>Start Date is: {{session['startdate']}}</p>
+      <p class = "titles">Selected Date is: {{session['startdate']}}</p>
+      <p class = "titles">Selected Coptic Date is: {{spapi.copticDay}}</p>
+      <p class = "titles">Selected Coptic Sunday is: {{spapi.sunday}}</p>
+      <p class = "titles">Selected Coptic Season is: {{spapi.season}}</p>
+      <p class = "titles">Selected Coptic Occasion is: {{spapi.occasion}}</p>
       <form>
         {% for item in listss %}
         <div class="zone">

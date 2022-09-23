@@ -1,11 +1,20 @@
 .center {
-    border: 50px solid #1100ff;
-    /*ext-align: center; */
+    border: 50px solid #635ae4;
     display: inline-block;
-    
-    }
+    width:800px; 
+    margin:0 auto;
+}
 .zone {
-        border: 5px solid #30b360;
-        /*ext-align: center; */
-    
-        }
+    border: 5px solid #ffffff;
+    /*ext-align: center; */
+}
+.heading3{
+    border: 5px solid #e9e646;  
+    display: inline-block;
+}
+.titles{
+    margin: auto;
+    font-size: 1.275em;
+    text-align: center;
+    padding: 10px;
+}
