@@ -6,7 +6,7 @@ import os
 import datetime
 
 today = datetime.date.today()
-d1 = today.strftime("%Y/%m/%d")
+d1 = today.strftime("%Y-%m-%d")
 
 copticDay = ""
 
