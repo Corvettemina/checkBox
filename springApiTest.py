@@ -17,7 +17,7 @@ class Springapi:
     occasion = ""
     sunday = ""
 
-    def __init__(self, date):
+    def __init__(self, date=d1):
         self.date = date
 
     def getfile_insensitive(self):
