@@ -33,15 +33,19 @@ class Springapi:
                 return newpath
 
     def getlist(self):
-        datearr = self.date.split(" ")
 
-        datetime_object = datetime.datetime.strptime(datearr[2], "%b")
-        month_number = datetime_object.month
-        if (month_number < 10):
-            month_number = "0" + str(month_number)
+        try:
+            datearr = self.date.split(" ")
 
-        newDate = str(datearr[3]) + '-' + \
-            str(month_number) + '-' + str(datearr[1])
+            datetime_object = datetime.datetime.strptime(datearr[2], "%b")
+            month_number = datetime_object.month
+            if (month_number < 10):
+                month_number = "0" + str(month_number)
+
+            newDate = str(datearr[3]) + '-' + \
+                str(month_number) + '-' + str(datearr[1])
+        except:
+            newDate = d1
         print(str(newDate))
 
         response = requests.get(
@@ -74,6 +78,9 @@ class Springapi:
 
 
 '''
+spring = Springapi()
+print(spring.getlist())
+
 print(platform.platform())
 for i in getlist():
     print(i)
