@@ -30,6 +30,10 @@ def select():
     spapi = Springapi(session['startdate'])
     listss = spapi.getlist()
     if request.method == 'POST':
-        print('heyyyyy' , request.form.getlist('mycheckbox'))
-        return request.form.getlist('mycheckbox')
+        #import mergepptxaspose
+        # mergepptxaspose()
+
+        print('heyyyyy', request.form.getlist('mycheckbox'))
+        return str(request.form.getlist('mycheckbox'))
+
     return render_template('select.html', listss=listss, spapi=spapi)

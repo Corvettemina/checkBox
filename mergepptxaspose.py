@@ -17,7 +17,7 @@ def getfile_insensitive(paths):
 
 platform.platform()
 if ("Windows" in platform.platform()):
-    path = "C:/Users/Mina Hanna/OneDrive/"
+    path = "C:/Users/Mina Hanna/DropBox/"
 if (("Linux" in platform.platform())):
     path = "/root/Dropbox/"
 
@@ -36,19 +36,20 @@ for i in SpringApiTest.getlist():
         with open(getfile_insensitive(path+i), "rb") as file_stream:
             files.append(file_stream.read())
 
-
 print("uploading....")
 
 slides_api.merge_and_save_online(
-    "MyPresentation.pptx", files, None, "internal")
+    "Matins.pptx", files, None, "internal")
 
 storage_name = "internal"
 file_path = "MyPresentation.pptx"
-result_path = path + "PowerPoints/result1.pptx"
+
 print("downloading....")
 
+result_path = path + "PowerPoints/result1.pptx"
 temp_path = slides_api.download_file("MyPresentation.pptx", "internal")
 shutil.copyfile(temp_path, result_path)
+
 print('complete')
 '''
 import springApiTest

@@ -22,7 +22,7 @@ class Springapi:
 
     def getfile_insensitive(self):
         if ("Windows" in platform.platform()):
-            path = "C:/Users/Mina Hanna/OneDrive/"
+            path = "C:/Users/Mina Hanna/DropBox/"
         if (("Linux" in platform.platform())):
             path = "/root/Dropbox/"
         directory, filename = os.path.split(path)
@@ -46,7 +46,6 @@ class Springapi:
                 str(month_number) + '-' + str(datearr[1])
         except:
             newDate = d1
-        print(str(newDate))
 
         response = requests.get(
             'http://192.81.219.24:8080/greeting?date=' + str(newDate))
@@ -76,7 +75,7 @@ class Springapi:
         print(answer)
         return answer
 
-
+print(Springapi().getlist()[18])
 '''
 spring = Springapi()
 print(spring.getlist())
