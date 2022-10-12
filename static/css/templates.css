@@ -6,7 +6,10 @@
 }
 .zone {
     border: 5px solid #ffffff;
-    /*ext-align: center; */
+}
+
+.container { 
+    border:2px solid #ccc; width:450px; height: 100px; overflow-y: scroll;
 }
 .heading3{
     border: 5px solid #e9e646;  
