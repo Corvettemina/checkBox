@@ -30,17 +30,19 @@ def select():
     spapi = Springapi(session['startdate'])
     #listss = spapi.getlist()["seasonVespersDoxologies"]
     if request.method == 'POST':
-        print("before", spapi.dictionary["seasonVespersDoxologies"])
 
         spapi.dictionary["seasonVespersDoxologies"] = request.form.getlist(
-            'mycheckbox')
+            'seasonalDoxo')
+        spapi.dictionary["optionalDoxogies"] = request.form.getlist(
+            'optionalDoxo')
 
-        print("adjust",  spapi.dictionary["seasonVespersDoxologies"])
+        print("Seasonal",  spapi.dictionary["seasonVespersDoxologies"])
+        print("optional", spapi.dictionary["optionalDoxogies"])
 
         #import mergepptxaspose
         # mergepptxaspose()
 
-        print('heyyyyy', request.form.getlist('mycheckbox'))
-        return str(request.form.getlist('mycheckbox'))
+        print('heyyyyy', request.form.getlist('seasonalDoxo'))
+        return str(request.form.getlist('seasonalDoxo'))
 
     return render_template('select.html', spapi=spapi)

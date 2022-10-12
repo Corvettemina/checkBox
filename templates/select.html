@@ -25,11 +25,23 @@
         <div class="zone">
           <input
             type="checkbox"
-            name="mycheckbox"
+            name="seasonalDoxo"
             value="{{item}}"
           />{{item}}<br />
         </div>
         {% endfor %}
+
+        <p class="titles">Optional Vespers Doxologies</p>
+        {% for item in spapi.dictionary["optionalDoxogies"] %}
+        <div class="zone">
+          <input
+            type="checkbox"
+            name="optionalDoxo"
+            value="{{item}}"
+          />{{item}}<br />
+        </div>
+        {% endfor %}
+
         <input type="submit" />
       </form>
     </div>
