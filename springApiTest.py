@@ -20,21 +20,6 @@ class Springapi:
 
     def __init__(self, date=d1):
         self.date = date
-
-    def getfile_insensitive(self):
-        if ("Windows" in platform.platform()):
-            path = "C:/Users/Mina Hanna/DropBox/"
-        if (("Linux" in platform.platform())):
-            path = "/root/Dropbox/"
-        directory, filename = os.path.split(path)
-        directory, filename = (directory or '.'), filename.lower()
-        for f in os.listdir(directory):
-            newpath = os.path.join(directory, f)
-            if os.path.isfile(newpath) and f.lower() == filename:
-                return newpath
-
-    def getlist(self):
-
         try:
             datearr = self.date.split(" ")
 
@@ -61,6 +46,21 @@ class Springapi:
         self.occasion = (y[1]['Ocassion'])
         self.dictionary = y[1]
 
+    def getfile_insensitive(self):
+        if ("Windows" in platform.platform()):
+            path = "C:/Users/Mina Hanna/DropBox/"
+        if (("Linux" in platform.platform())):
+            path = "/root/Dropbox/"
+        directory, filename = os.path.split(path)
+        directory, filename = (directory or '.'), filename.lower()
+        for f in os.listdir(directory):
+            newpath = os.path.join(directory, f)
+            if os.path.isfile(newpath) and f.lower() == filename:
+                return newpath
+
+    def getlist(self):
+        pass
+
         '''        for i in y[1]:
             if (i != "Ocassion" and i != "Season" and i != "Sunday"):
                 if (type(y[1][i]) is list):
@@ -75,9 +75,9 @@ class Springapi:
                     if (y[1][i] != ""):
                         answer.append(y[1][i])
         print(answer)'''
-        return y[1]
 
-#print(Springapi().getlist()["seasonVespersDoxologies"])
+
+# print(Springapi().getlist()["seasonVespersDoxologies"])
 '''
 spring = Springapi()
 print(spring.getlist())

@@ -28,18 +28,19 @@ def index():
 def select():
     print('session', session['startdate'])
     spapi = Springapi(session['startdate'])
-    listss = spapi.getlist()["seasonVespersDoxologies"]
+    #listss = spapi.getlist()["seasonVespersDoxologies"]
     if request.method == 'POST':
-        print("before" , spapi.dictionary)
-        
-        spapi.dictionary["seasonVespersDoxologies"] =  request.form.getlist('mycheckbox')
-        
-        print("adjust" ,  spapi.dictionary)
-        
+        print("before", spapi.dictionary["seasonVespersDoxologies"])
+
+        spapi.dictionary["seasonVespersDoxologies"] = request.form.getlist(
+            'mycheckbox')
+
+        print("adjust",  spapi.dictionary["seasonVespersDoxologies"])
+
         #import mergepptxaspose
         # mergepptxaspose()
 
         print('heyyyyy', request.form.getlist('mycheckbox'))
         return str(request.form.getlist('mycheckbox'))
 
-    return render_template('select.html', listss=listss, spapi=spapi)
+    return render_template('select.html', spapi=spapi)
