@@ -46,3 +46,6 @@ def select():
         return str(request.form.getlist('seasonalDoxo'))
 
     return render_template('select.html', spapi=spapi)
+    
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')
