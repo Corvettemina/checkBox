@@ -52,7 +52,7 @@ def select():
         temp = mergepptxaspose.makeIntoList(spapi.dictionary)
         mergepptxaspose.merge(temp)
 
-        return str(request.form.getlist('seasonalDoxo'))
+        #return str(request.form.getlist('seasonalDoxo'))
 
     return render_template('select.html', spapi=spapi)
 
