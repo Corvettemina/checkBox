@@ -30,6 +30,7 @@ def select():
     spapi = Springapi(session['startdate'])
     # listss = spapi.getlist()["seasonVespersDoxologies"]
     if request.method == 'POST':
+        
         if ((request.form['yes']) == 'yes'):
             spapi.dictionary["vespersPrayerofThanksgiving"] = "PowerPoints/BackBone/PrayerOfThanksgivingBishop.pptx"
 
@@ -37,6 +38,7 @@ def select():
             'seasonalDoxoVespers')
         spapi.dictionary["vespersoptionalDoxogies"] = request.form.getlist(
             'optionalDoxoVespers')
+
         if ((request.form['5short']) == 'no'):
             spapi.dictionary["vespers5ShortLitanies"] = ""
 

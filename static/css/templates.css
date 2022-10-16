@@ -17,8 +17,9 @@
     text-align: center;
 }
 .heading3{
-    border: 5px solid #e9e646;  
-    display: inline-block;
+    border: 1rem solid #e9e646;  
+    display: flex;
+    align-items: center;
 }
 .titles{
     margin: auto;
@@ -29,13 +30,49 @@
 .fields{
     text-align: center;
 }
+.fields1{
+    text-align: center;
+    
+}
+.datepicker{
+    font-size: 1.5rem;
+
+}
+.selectDate{
+    font-size: 1.5rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
 @media screen and (max-width: 920px) {
     
     .center {
-        border: 1.5rem solid #635ae4;
+        border: 0rem solid #635ae4;
         display: inline-block;
-        width: fit-content; 
+        width: 100%; 
         margin:0 auto;
+    }
+    .heading3{
+        border: 1rem solid #e9e646;  
+        display: inline-block;
+        width: 100%
+    }
+    .titles{
+        margin: auto;
+        font-size: .975em;
+        text-align: center;
+        padding: .25rem;
+    }
+    .fields{
+        text-align: center;
+        
+    }
+    .container { 
+        border:2px solid rgb(143, 15, 228); 
+        width:100%; 
+        height: 100px; 
+        overflow-y: scroll;
+        text-align: center;
     }
   /*
     .container{
