@@ -30,7 +30,6 @@ def select():
     spapi = Springapi(session['startdate'])
     # listss = spapi.getlist()["seasonVespersDoxologies"]
     if request.method == 'POST':
-        redirect('/')
         if ((request.form['yes']) == 'yes'):
             spapi.dictionary["vespersPrayerofThanksgiving"] = "PowerPoints/BackBone/PrayerOfThanksgivingBishop.pptx"
 
