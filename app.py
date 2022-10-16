@@ -34,16 +34,16 @@ def select():
             spapi.dictionary["vespersPrayerofThanksgiving"] = "PowerPoints/BackBone/PrayerOfThanksgivingBishop.pptx"
 
         spapi.dictionary["seasonVespersDoxologies"] = request.form.getlist(
-            'seasonalDoxo')
+            'seasonalDoxoVespers')
         spapi.dictionary["vespersoptionalDoxogies"] = request.form.getlist(
-            'optionalDoxo')
+            'optionalDoxoVespers')
         if ((request.form['5short']) == 'no'):
             spapi.dictionary["vespers5ShortLitanies"] = ""
 
         spapi.dictionary["seasonmatinsDoxologies"] = request.form.getlist(
-            'seasonalDoxo')
+            'seasonalDoxoMatins')
         spapi.dictionary["matinsoptionalDoxogies"] = request.form.getlist(
-            'optionalDoxo')
+            'optionalDoxoMatins')
 
         if ((request.form['5shortMatins']) == 'no'):
             spapi.dictionary["matins5ShortLitanies"] = ""
