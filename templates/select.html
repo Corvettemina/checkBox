@@ -17,13 +17,23 @@
       <p class="titles">Selected Coptic Sunday is: {{spapi.sunday}}</p>
       <p class="titles">Selected Coptic Season is: {{spapi.season}}</p>
       <p class="titles">Selected Coptic Occasion is: {{spapi.occasion}}</p>
+      <br></br>
+      <form method="POST" action="/select">
+
+      <p class="titles">VESPERS</p>
+      <p class="titles">Bishop Present?</p>
+      <div class = "fields">  
+      <p>
+          <input class = "fields" type="radio" name="yes" value = "yes">Yes</input>
+          <input class = "fields" type="radio" name="yes" value = "no" checked>No</input>
+        </p>
+      </div>
 
       <p class="titles">Seasonal Vespers Doxologies</p>
-
-      <form method="POST" action="/select">
         {% for item in spapi.dictionary["seasonVespersDoxologies"] %}
         <div class="zone">
           <input
+            class = "fields"
             type="checkbox"
             name="seasonalDoxo"
             value="{{item}}"
@@ -31,16 +41,61 @@
         </div>
         {% endfor %}
         <p class="titles">Optional Vespers Doxologies</p>
-        <div class = "container">
-        {% for item in spapi.dictionary["optionalDoxogies"] %}
+        <div class="zone">
+          <div class = "container">
+          {% for item in spapi.dictionary["vespersoptionalDoxogies"] %}
+          <div class="zone">
+            <input
+              class = "fields"
+              type="checkbox"
+              name="optionalDoxo"
+              value="{{item}}"
+            />{{item}}<br />
+        </div> 
+        {% endfor %}
+      </div>
+      </div>
+      <p class="titles">5 Short Litanies for Vespers</p>
+      <div class = "fields">  
+      <p>
+          <input class = "fields" type="radio" name="5short" value = "yes">Yes</input>
+          <input class = "fields" type="radio" name="5short" value = "no" checked>No</input>
+        </p>
+      </div>
+      <br></br>
+      <p class="titles">MATINS</p>
+      <p class="titles">Seasonal Matins Doxologies</p>
+        {% for item in spapi.dictionary["seasonmatinsDoxologies"] %}
         <div class="zone">
           <input
+            class = "fields"
             type="checkbox"
-            name="optionalDoxo"
+            name="seasonalDoxo"
             value="{{item}}"
           />{{item}}<br />
         </div>
         {% endfor %}
+        <p class="titles">Optional Matins Doxologies</p>
+        <div class="zone">
+          <div class = "container">
+          {% for item in spapi.dictionary["matinsoptionalDoxogies"] %}
+          <div class="zone">
+            <input
+              class = "fields"
+              type="checkbox"
+              name="optionalDoxo"
+              value="{{item}}"
+            />{{item}}<br />
+        </div> 
+        {% endfor %}
+      </div>
+      </div>
+      <p class="titles">5 Short Litanies for Matins</p>
+      <div class = "fields">  
+      <p>
+          <input class = "fields" type="radio" name="5shortMatins" value = "yes">Yes</input>
+          <input class = "fields" type="radio" name="5shortMatins" value = "no" checked>No</input>
+        </p>
       </div>
         <input type="submit" />
       </form>

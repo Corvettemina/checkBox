@@ -6,10 +6,15 @@
 }
 .zone {
     border: 5px solid #ffffff;
+    text-align: center;
 }
 
 .container { 
-    border:2px solid #ccc; width:450px; height: 100px; overflow-y: scroll;
+    border:2px solid #ccc; 
+    width:450px; 
+    height: 100px; 
+    overflow-y: scroll;
+    text-align: center;
 }
 .heading3{
     border: 5px solid #e9e646;  
@@ -20,4 +25,25 @@
     font-size: 1.275em;
     text-align: center;
     padding: 10px;
+}
+.fields{
+    text-align: center;
+}
+@media screen and (max-width: 920px) {
+    /*
+    .center {
+      background-color: white;
+      color: red;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .container{
+      background-color: red;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }*/
 }

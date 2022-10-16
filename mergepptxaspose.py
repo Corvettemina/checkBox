@@ -15,42 +15,73 @@ def getfile_insensitive(paths):
                 return (os.path.join(path, name))
 
 
-platform.platform()
-if ("Windows" in platform.platform()):
-    path = "C:/Users/Mina Hanna/DropBox/"
-if (("Linux" in platform.platform())):
-    path = "/root/Dropbox/"
+def makeIntoList(y):
+    answer = []
+    for i in y:
+        if (i != "Ocassion" and i != "Season" and i != "Sunday"):
+            if (type(y[i]) is list):
+                for l in y[i]:
+                    # print(l)
+                    #print(getfile_insensitive(path + l))
+                    l = l.replace('powerpoints', 'PowerPoints')
+                    answer.append(l)
+                    pass
+            else:
+                # print(y[1][i])
+                if (y[i] != ""):
+                    answer.append(y[i])
+    return (answer)
 
-slides_api = SlidesApi(
-    None, "2d3b1ec8-738b-4467-915f-af02913aa7fa", "1047551018f0feaacf4296fa054d7d97")
-files = []
-SpringApiTest = springApiTest.Springapi()
 
-for i in SpringApiTest.getlist():
-    print(path + i)
-    try:
-        with open(path + i, "rb") as file_stream:
-            files.append(file_stream.read())
-    except:
-        #print("here", getfile_insensitive(path+i))
-        with open(getfile_insensitive(path+i), "rb") as file_stream:
-            files.append(file_stream.read())
+def merge(finishedList):
 
-print("uploading....")
+    platform.platform()
+    if ("Windows" in platform.platform()):
+        path = "C:/Users/Mina Hanna/DropBox/"
+    if (("Linux" in platform.platform())):
+        path = "/root/Dropbox/"
 
-slides_api.merge_and_save_online(
-    "Matins.pptx", files, None, "internal")
+    presentaionsArray = []
 
-storage_name = "internal"
-file_path = "MyPresentation.pptx"
+    count = 0
+    for i in range(0, len(finishedList), 10):
+        files = []
+        for k in finishedList[i:i+10]:
+            print(path + k)
+            try:
+                with open(path + k, "rb") as file_stream:
+                    files.append(file_stream.read())
+            except:
+                #print("here", getfile_insensitive(path+i))
+                with open(getfile_insensitive(path + k), "rb") as file_stream:
+                    files.append(file_stream.read())
 
-print("downloading....")
+        print("uploading....")
 
-result_path = path + "PowerPoints/result1.pptx"
-temp_path = slides_api.download_file("MyPresentation.pptx", "internal")
-shutil.copyfile(temp_path, result_path)
+        slides_api = SlidesApi(
+            None, "2d3b1ec8-738b-4467-915f-af02913aa7fa", "1047551018f0feaacf4296fa054d7d97")
+        slides_api.merge_and_save_online(
+            str(count) + ".pptx", files, None, "internal")
 
-print('complete')
+        presentation = PresentationToMerge()
+        presentation.path = str(count) + ".pptx"
+        presentation.source = "Storage"
+
+        presentaionsArray.append(presentation)
+
+        count += 1
+
+    request = OrderedMergeRequest()
+    request.presentations = presentaionsArray
+    response = slides_api.merge_and_save_online("MyPresentation.pptx",None,  request, "internal")
+    
+    result_path = path + "PowerPoints/result1.pptx"
+    temp_path = slides_api.download_file("MyPresentation.pptx", "internal")
+    shutil.copyfile(temp_path, result_path)
+    
+    print('complete')
+
+
 '''
 import springApiTest
 

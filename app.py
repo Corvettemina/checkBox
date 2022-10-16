@@ -28,24 +28,34 @@ def index():
 def select():
     print('session', session['startdate'])
     spapi = Springapi(session['startdate'])
-    #listss = spapi.getlist()["seasonVespersDoxologies"]
+    # listss = spapi.getlist()["seasonVespersDoxologies"]
     if request.method == 'POST':
+        if ((request.form['yes']) == 'yes'):
+            spapi.dictionary["vespersPrayerofThanksgiving"] = "PowerPoints/BackBone/PrayerOfThanksgivingBishop.pptx"
 
         spapi.dictionary["seasonVespersDoxologies"] = request.form.getlist(
             'seasonalDoxo')
-        spapi.dictionary["optionalDoxogies"] = request.form.getlist(
+        spapi.dictionary["vespersoptionalDoxogies"] = request.form.getlist(
+            'optionalDoxo')
+        if ((request.form['5short']) == 'no'):
+            spapi.dictionary["vespers5ShortLitanies"] = ""
+
+        spapi.dictionary["seasonmatinsDoxologies"] = request.form.getlist(
+            'seasonalDoxo')
+        spapi.dictionary["matinsoptionalDoxogies"] = request.form.getlist(
             'optionalDoxo')
 
-        print("Seasonal",  spapi.dictionary["seasonVespersDoxologies"])
-        print("optional", spapi.dictionary["optionalDoxogies"])
+        if ((request.form['5shortMatins']) == 'no'):
+            spapi.dictionary["matins5ShortLitanies"] = ""
 
-        #import mergepptxaspose
-        # mergepptxaspose()
+        import mergepptxaspose
+        temp = mergepptxaspose.makeIntoList(spapi.dictionary)
+        mergepptxaspose.merge(temp)
 
-        print('heyyyyy', request.form.getlist('seasonalDoxo'))
         return str(request.form.getlist('seasonalDoxo'))
 
     return render_template('select.html', spapi=spapi)
-    
+
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
