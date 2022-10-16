@@ -1,7 +1,7 @@
 .center {
-    border: 50px solid #635ae4;
+    border: 3.5rem solid #635ae4;
     display: inline-block;
-    width:800px; 
+    width:50rem; 
     margin:0 auto;
 }
 .zone {
@@ -24,21 +24,20 @@
     margin: auto;
     font-size: 1.275em;
     text-align: center;
-    padding: 10px;
+    padding: .5rem;
 }
 .fields{
     text-align: center;
 }
 @media screen and (max-width: 920px) {
-    /*
+    
     .center {
-      background-color: white;
-      color: red;
-      display: flex;
-      flex-direction: column;
-      width: 100%;
+        border: 1.5rem solid #635ae4;
+        display: inline-block;
+        width: fit-content; 
+        margin:0 auto;
     }
-  
+  /*
     .container{
       background-color: red;
       color: white;
