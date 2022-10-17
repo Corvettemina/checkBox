@@ -1,104 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-  <link
-    rel="stylesheet"
-    href="{{ url_for('static', filename='css/templates.css') }}"
-  />
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="center">
-      <p class="titles">Selected Date is: {{session['startdate']}}</p>
-      <p class="titles">Selected Coptic Date is: {{spapi.copticDay}}</p>
-      <p class="titles">Selected Coptic Sunday is: {{spapi.sunday}}</p>
-      <p class="titles">Selected Coptic Season is: {{spapi.season}}</p>
-      <p class="titles">Selected Coptic Occasion is: {{spapi.occasion}}</p>
-      <br></br>
-      <form method="POST" action="/select">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/templates.css') }}" />
 
-      <p class="titles">VESPERS</p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="center">
+    <p class="titles">Selected Date is: {{session['startdate']}}</p>
+    <p class="titles">Selected Coptic Date is: {{spapi.copticDay}}</p>
+    <p class="titles">Selected Coptic Sunday is: {{spapi.sunday}}</p>
+    <p class="titles">Selected Coptic Season is: {{spapi.season}}</p>
+    <p class="titles">Selected Coptic Occasion is: {{spapi.occasion}}</p>
+    <br></br>
+    <form method="POST" action="/select">
+
+      <p class="titles2">VESPERS</p>
       <p class="titles">Bishop Present?</p>
-      <div class = "fields">  
-      <p>
-          <input class = "fields" type="radio" name="yes" value = "yes">Yes</input>
-          <input class = "fields" type="radio" name="yes" value = "no" checked>No</input>
+      <div class="fields">
+        <p>
+          <input class="fields" type="radio" name="yes" value="yes">Yes</input>
+          <input class="fields" type="radio" name="yes" value="no" checked>No</input>
         </p>
       </div>
+      <br></br>
 
       <p class="titles">Seasonal Vespers Doxologies</p>
-        {% for item in spapi.dictionary["seasonVespersDoxologies"] %}
-        <div class="zone">
-          <input
-            class = "fields"
-            type="checkbox"
-            name="seasonalDoxoVespers"
-            value="{{item}}"
-          />{{item}}<br />
-        </div>
-        {% endfor %}
-        <p class="titles">Optional Vespers Doxologies</p>
-        <div class="zone">
-          <div class = "container">
+      {% for item in spapi.dictionary["seasonVespersDoxologies"] %}
+      <div class="zone">
+        <input class="fields" type="checkbox" name="seasonalDoxoVespers" value="{{item}}" />{{item}}<br />
+      </div>
+      {% endfor %}
+      <br></br>
+      <p class="titles">Optional Vespers Doxologies</p>
+      <div class="zone">
+        <div class="container">
           {% for item in spapi.dictionary["vespersoptionalDoxogies"] %}
           <div class="zone">
-            <input
-              class = "fields"
-              type="checkbox"
-              name="optionalDoxoVespers"
-              value="{{item}}"
-            />{{item}}<br />
-        </div> 
-        {% endfor %}
+            <input class="fields" type="checkbox" name="optionalDoxoVespers" value="{{item}}" />{{item}}<br />
+          </div>
+          {% endfor %}
+        </div>
       </div>
-      </div>
+      <br></br>
       <p class="titles">5 Short Litanies for Vespers</p>
-      <div class = "fields">  
-      <p>
-          <input class = "fields" type="radio" name="5short" value = "yes">Yes</input>
-          <input class = "fields" type="radio" name="5short" value = "no" checked>No</input>
+      <div class="fields">
+        <p>
+          <input class="fields" type="radio" name="5short" value="yes">Yes</input>
+          <input class="fields" type="radio" name="5short" value="no" checked>No</input>
         </p>
       </div>
       <br></br>
-      <p class="titles">MATINS</p>
+      <p class="titles2">MATINS</p>
       <p class="titles">Seasonal Matins Doxologies</p>
-        {% for item in spapi.dictionary["seasonmatinsDoxologies"] %}
-        <div class="zone">
-          <input
-            class = "fields"
-            type="checkbox"
-            name="seasonalDoxoMatins"
-            value="{{item}}"
-          />{{item}}<br />
-        </div>
-        {% endfor %}
-        <p class="titles">Optional Matins Doxologies</p>
-        <div class="zone">
-          <div class = "container">
+      {% for item in spapi.dictionary["seasonmatinsDoxologies"] %}
+      <div class="zone">
+        <input class="fields" type="checkbox" name="seasonalDoxoMatins" value="{{item}}" />{{item}}<br />
+      </div>
+      {% endfor %}
+      <br></br>
+      <p class="titles">Optional Matins Doxologies</p>
+      <div class="zone">
+        <div class="container">
           {% for item in spapi.dictionary["matinsoptionalDoxogies"] %}
           <div class="zone">
-            <input
-              class = "fields"
-              type="checkbox"
-              name="optionalDoxoMatins"
-              value="{{item}}"
-            />{{item}}<br />
-        </div> 
-        {% endfor %}
+            <input class="fields" type="checkbox" name="optionalDoxoMatins" value="{{item}}" />{{item}}<br />
+          </div>
+          {% endfor %}
+        </div>
       </div>
-      </div>
+      <br></br>
       <p class="titles">5 Short Litanies for Matins</p>
-      <div class = "fields">  
-      <p>
-          <input class = "fields" type="radio" name="5shortMatins" value = "yes">Yes</input>
-          <input class = "fields" type="radio" name="5shortMatins" value = "no" checked>No</input>
+      <div class="fields">
+        <p>
+          <input class="fields" type="radio" name="5shortMatins" value="yes">Yes</input>
+          <input class="fields" type="radio" name="5shortMatins" value="no" checked>No</input>
         </p>
       </div>
+      <br></br>
+      <div class="buttonDiv">
         <input type="submit" />
-      </form>
-    </div>
-  </body>
+      </div>
+
+    </form>
+  </div>
+</body>
+
 </html>
