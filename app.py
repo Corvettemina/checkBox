@@ -40,6 +40,7 @@ def select():
         if ((request.form['bishopVespers']) == 'yes'):
             #spapi.dictionary["vespersoptionalDoxogies"].append("")
             spapi.dictionary["vespersPrayerofThanksgiving"] = "PowerPoints/BackBone/PrayerOfThanksgivingBishop.pptx"
+            spapi.dictionary["vespersConclusion"] = "PowerPoints/BackBone/bishopConcludingHymn.pptx"
 
         if ((request.form['5short']) == 'no'):
             spapi.dictionary["vespers5ShortLitanies"] = ""
