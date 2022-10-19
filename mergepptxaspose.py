@@ -3,7 +3,6 @@ import shutil
 from asposeslidescloud.apis.slides_api import SlidesApi
 from asposeslidescloud.models import *
 import platform
-import springApiTest
 import os
 
 
