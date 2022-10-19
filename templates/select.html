@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/templates.css') }}" />
-
+<script src="app.js"></script>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,6 +10,7 @@
 </head>
 
 <body>
+
   <div class="center">
     <p class="titles">Selected Date is: {{session['startdate']}}</p>
     <p class="titles">Selected Coptic Date is: {{spapi.copticDay}}</p>
@@ -41,11 +42,14 @@
         <div class="container">
           {% for item in spapi.dictionary["vespersoptionalDoxogies"] %}
           <div class="zone">
-            <input class="fields" type="checkbox" name="optionalDoxoVespers" value="{{item}}" />{{item}}<br />
+           
+             <input class="fields" type="checkbox" name="optionalDoxoVespers" value="{{item}}" />{{item}}<br />
+            
           </div>
           {% endfor %}
         </div>
       </div>
+
       <br></br>
       <p class="titles">5 Short Litanies for Vespers</p>
       <div class="fields">
