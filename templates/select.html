@@ -2,6 +2,7 @@
 <html lang="en">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/templates.css') }}" />
 <script src="app.js"></script>
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -42,9 +43,9 @@
         <div class="container">
           {% for item in spapi.dictionary["vespersoptionalDoxogies"] %}
           <div class="zone">
-           
-             <input class="fields" type="checkbox" name="optionalDoxoVespers" value="{{item}}" />{{item}}<br />
-            
+
+            <input class="fields" type="checkbox" name="optionalDoxoVespers" value="{{item}}" />{{item}}<br />
+
           </div>
           {% endfor %}
         </div>
@@ -86,10 +87,38 @@
         </p>
       </div>
       <br></br>
+
+      <p class="titles2">Offering of the Lamb</p>
+      <p class="titles">Agpeya</p>
+      <p class="titles">3rd Hour Psalm</p>
+      <div class="zone">
+        <div class="container">
+          {% for item in spapi.dictionary["thirdHourPsalms"] %}
+          <div class="zone">
+
+            <input class="fields" type="checkbox" name="3rdHourPsalm" value="{{item}}" />{{item}}<br />
+
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <br>
+
+      <p class="titles">6th Hour Psalm</p>
+      <div class="zone">
+        <div class="container">
+          {% for item in spapi.dictionary["sixthHourPsalms"] %}
+          <div class="zone">
+            <input class="fields" type="checkbox" name="6thHourPsalm" value="{{item}}" />{{item}}<br />
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <br></br>
       <div class="buttonDiv">
         <input type="submit" />
       </div>
-
+      <br></br>
     </form>
   </div>
 </body>
