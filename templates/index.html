@@ -1,17 +1,34 @@
-{% extends 'base.html'%} {% block content %}
-<body class="heading3">
-  <h3 class = "selectDate">Select a date range</h3>
-  <br></br>
-  <form action="" method="POST" name="myform" class = "datepicker">
-    {{ form.csrt_token }} 
-    <div class = "fields1">
-    {{ form.startdate.label }}
+<!DOCTYPE html>
+<html lang="en">
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/templates.css') }}"
+  />
+  <head>
+    <title class="titles2">PowerPoint Creator</title>
+  </head>
+{% block content %}
+<div class>
+  <div class="centerVert">
+    <div class="homePage">
     </div>
     <br></br>
-    <div class = "fields1">
-    {{form.startdate(class='datepicker')}} {{form.hidden_tag()}}
-    </div>
-    <p>{{form.submit()}}</p>
-  </form>
-</body>
+    <form action="" method="POST" name="myform" class="datepicker">
+      {{ form.csrt_token }}
+      <div class="homePage">
+        {{ form.startdate.label }}
+      </div>
+      <br></br>
+      <div class="homePage">
+        {{form.startdate(class='datepicker')}} {{form.hidden_tag()}}
+      </div>
+      <div>
+        <p>{{form.submit()}}</p>
+      </div>
+
+    </form>
+
+  </div>
+</div>
 {% endblock %}
+</html>

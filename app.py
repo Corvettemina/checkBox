@@ -58,7 +58,7 @@ def select():
             spapi.dictionary["matins5ShortLitanies"] = ""
 
         spapi.dictionary["paralexHymns"] = request.form.getlist("paralexHymns")
-        print( spapi.dictionary["paralexHymns"])
+        print(spapi.dictionary["paralexHymns"])
         import mergepptxaspose
         temp = mergepptxaspose.makeIntoList(spapi.dictionary)
         # mergepptxaspose.merge(temp)
@@ -69,5 +69,5 @@ def select():
 
 
 if __name__ == "__main__":
-    #app.run(debug=True)
-    app.run(host='0.0.0.0')
+    app.run(debug=True)
+    #app.run(host='0.0.0.0')
