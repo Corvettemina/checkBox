@@ -1,15 +1,26 @@
+/*html *
+{
+   color: #000 !important;
+   font-family: Arial !important;
+}*/
 .center {
     border: 3.5rem solid #635ae4;
     display: inline-block;
     width:50rem; 
-    margin:0 auto;
+    margin: auto;
 }
 .zone {
     border: 3px solid #ffffff;
     text-align: center;
     font-size: 1em;
+    margin: 0 auto;
 }
-
+.psalms {
+    border: 3px solid #ffffff;
+    text-align: center;
+    font-size: 1em;
+    margin: 0 auto;
+}
 .container { 
     border:2px solid #ccc; 
     width:450px; 
@@ -67,6 +78,7 @@ input[type=submit]{
 @media screen and (max-width: 920px) {
     
     .center {
+        /*background-color: rgb(204, 196, 196);*/
         border: 0rem solid #635ae4;
         display: inline-block;
         width: 100%; 
@@ -90,23 +102,32 @@ input[type=submit]{
         padding: .25rem;
     }
     .fields{
+        background-color: rgb(255, 255, 255);
         text-align: center;
         margin: 0px;
         
     }
     .container { 
-        border:2px solid rgb(143, 15, 228); 
-        width:100%; 
-        height: 100px; 
+     
+        border:.1renm solid rgb(33, 34, 34); 
+        width:95%; 
+        height: 120px; 
         overflow-y: scroll;
         text-align: center;
         margin-left: .1rem;
         margin-right: .1rem;
     }
     .zone{
+        background-color: rgb(255, 255, 255);
        text-align: left;
        width: 100%;
-       font-size: 3.75vw;
+       font-size: 4.75vw;
+    }
+    .psalms{
+        background-color: rgb(255, 255, 255);
+       text-align: center;
+       width: 100%;
+       font-size: 4.75vw;
     }
   /*
     .container{

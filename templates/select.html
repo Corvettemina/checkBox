@@ -13,6 +13,7 @@
 <body>
 
   <div class="center">
+    <a href="/" class="btn btn-primary">HOME</a>
     <p class="titles">Selected Date is: {{session['startdate']}}</p>
     <p class="titles">Selected Coptic Date is: {{spapi.copticDay}}</p>
     <p class="titles">Selected Coptic Sunday is: {{spapi.sunday}}</p>
@@ -34,7 +35,8 @@
       <p class="titles">Seasonal Vespers Doxologies</p>
       {% for item in spapi.dictionary["seasonVespersDoxologies"] %}
       <div class="zone">
-        <input class="fields" type="checkbox" name="seasonalDoxoVespers" value="{{item}}" />{{item}}<br />
+        <input class="fields" type="checkbox" name="seasonalDoxoVespers"
+          value="{{item}}" />{{item.split("/")[-1]}}<br />
       </div>
       {% endfor %}
       <br></br>
@@ -44,7 +46,8 @@
           {% for item in spapi.dictionary["vespersoptionalDoxogies"] %}
           <div class="zone">
 
-            <input class="fields" type="checkbox" name="optionalDoxoVespers" value="{{item}}" />{{item}}<br />
+            <input class="fields" type="checkbox" name="optionalDoxoVespers"
+              value="{{item}}" />{{item.split("/")[-1]}}<br />
 
           </div>
           {% endfor %}
@@ -64,7 +67,7 @@
       <p class="titles">Seasonal Matins Doxologies</p>
       {% for item in spapi.dictionary["seasonmatinsDoxologies"] %}
       <div class="zone">
-        <input class="fields" type="checkbox" name="seasonalDoxoMatins" value="{{item}}" />{{item}}<br />
+        <input class="fields" type="checkbox" name="seasonalDoxoMatins" value="{{item}}" />{{item.split("/")[-1]}}<br />
       </div>
       {% endfor %}
       <br></br>
@@ -73,7 +76,8 @@
         <div class="container">
           {% for item in spapi.dictionary["matinsoptionalDoxogies"] %}
           <div class="zone">
-            <input class="fields" type="checkbox" name="optionalDoxoMatins" value="{{item}}" />{{item}}<br />
+            <input class="fields" type="checkbox" name="optionalDoxoMatins"
+              value="{{item}}" />{{item.split("/")[-1]}}<br />
           </div>
           {% endfor %}
         </div>
@@ -89,36 +93,51 @@
       <br></br>
 
       <p class="titles2">Offering of the Lamb</p>
-      <p class="titles">Agpeya</p>
       <p class="titles">3rd Hour Psalm</p>
-      <div class="zone">
-        <div class="container">
-          {% for item in spapi.dictionary["thirdHourPsalms"] %}
-          <div class="zone">
 
-            <input class="fields" type="checkbox" name="3rdHourPsalm" value="{{item}}" />{{item}}<br />
+      <div class="psalms">
+        <div class="psalms">
+          <select name="3rdHourPsalm" id="">
+            {% for item in spapi.dictionary["thirdHourPsalms"] %}
+              <option class="fields" value="{{item}}">{{item.split("/")[-1]}}</option>
+              <br />
+            {% endfor %}
+          </select>
+
+        </div>
+        <br>
+
+        <p class="titles">6th Hour Psalm</p>
+        <div class="psalms">
+          <div class="psalms">
+            <select name="6thHourPsalm" id="">
+              {% for item in spapi.dictionary["sixthHourPsalms"] %}
+                <option class="fields" value="{{item}}">{{item.split("/")[-1]}}</option>
+                <br />
+              {% endfor %}
+            </select>
 
           </div>
-          {% endfor %}
-        </div>
-      </div>
-      <br>
-
-      <p class="titles">6th Hour Psalm</p>
-      <div class="zone">
-        <div class="container">
-          {% for item in spapi.dictionary["sixthHourPsalms"] %}
+          <br></br>
+          {%if spapi.dictionary["paralexHymns"] |length > 0 %}
+          <p class="titles">Paralex Hymns</p>
           <div class="zone">
-            <input class="fields" type="checkbox" name="6thHourPsalm" value="{{item}}" />{{item}}<br />
+            <div class="container">
+              {% for item in spapi.dictionary["paralexHymns"] %}
+              <div class="zone">
+                <input class="fields" type="checkbox" name="paralexHymns"
+                  value="{{item}}" />{{item.split("/")[-1]}}<br />
+              </div>
+              {% endfor %}
+            </div>
           </div>
-          {% endfor %}
-        </div>
-      </div>
-      <br></br>
-      <div class="buttonDiv">
-        <input type="submit" />
-      </div>
-      <br></br>
+          {%endif%}
+
+          <br></br>
+          <div class="buttonDiv">
+            <input type="submit" />
+          </div>
+          <br></br>
     </form>
   </div>
 </body>

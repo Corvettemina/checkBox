@@ -50,17 +50,18 @@ def select():
         spapi.dictionary["matinsoptionalDoxogies"] = request.form.getlist(
             'optionalDoxoMatins')
 
-        spapi.dictionary["thirdHourPsalms"] = request.form.getlist(
-            '3rdHourPsalm')
-        spapi.dictionary["sixthHourPsalms"] = request.form.getlist(
-            '6thHourPsalm')
+        spapi.dictionary["thirdHourPsalms"] = request.form["3rdHourPsalm"]
+
+        spapi.dictionary["sixthHourPsalms"] = request.form['6thHourPsalm']
 
         if ((request.form['5shortMatins']) == 'no'):
             spapi.dictionary["matins5ShortLitanies"] = ""
 
+        spapi.dictionary["paralexHymns"] = request.form.getlist("paralexHymns")
+        print( spapi.dictionary["paralexHymns"])
         import mergepptxaspose
         temp = mergepptxaspose.makeIntoList(spapi.dictionary)
-        mergepptxaspose.merge(temp)
+        # mergepptxaspose.merge(temp)
 
         # return str(request.form.getlist('seasonalDoxo'))
 
@@ -68,4 +69,5 @@ def select():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    app.run(debug=True)
+    # app.run(host='0.0.0.0')
