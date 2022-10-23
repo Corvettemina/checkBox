@@ -61,7 +61,7 @@ def select():
         print(spapi.dictionary["paralexHymns"])
         import mergepptxaspose
         temp = mergepptxaspose.makeIntoList(spapi.dictionary)
-        # mergepptxaspose.merge(temp)
+        mergepptxaspose.merge(temp)
 
         # return str(request.form.getlist('seasonalDoxo'))
 
