@@ -18,15 +18,20 @@ class InfoForm(FlaskForm):
     submit = SubmitField('Submit')
 
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
+def runDropbox():
     if (("Linux" in platform.platform())):
         result = subprocess.run(['dropbox', 'status'], stdout=subprocess.PIPE)
-        stringResult = (result.stdout.decode('utf-8'))
-        if ("running" in stringResult):
-            subprocess.run(['service', 'dropbox', 'stop'],
-                           stdout=subprocess.PIPE)
-            subprocess.run(['dropbox', 'start'], stdout=subprocess.PIPE)
+    stringResult = (result.stdout.decode('utf-8'))
+    if ("running" in stringResult):
+        subprocess.run(['service', 'dropbox', 'stop'],
+                       stdout=subprocess.PIPE)
+        subprocess.run(['dropbox', 'start'], stdout=subprocess.PIPE)
+
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    
+    runDropbox()
 
     form = InfoForm()
     if form.validate_on_submit():
@@ -69,11 +74,11 @@ def select():
             spapi.dictionary["matins5ShortLitanies"] = ""
 
         spapi.dictionary["paralexHymns"] = request.form.getlist("paralexHymns")
-        print(spapi.dictionary["paralexHymns"])
+
         import mergepptxaspose
         temp = mergepptxaspose.makeIntoList(spapi.dictionary)
         mergepptxaspose.merge(temp)
-
+        runDropbox()
         # return str(request.form.getlist('seasonalDoxo'))
 
     return render_template('select.html', spapi=spapi)
