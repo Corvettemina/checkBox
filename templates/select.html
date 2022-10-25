@@ -6,7 +6,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Document</title>
+  <title>STMARKATL PowerPoint Creator</title>
 </head>
 
 <body>
@@ -35,7 +35,7 @@
         {% for item in spapi.dictionary["seasonVespersDoxologies"] %}
         <div class="zone">
           <input class="fields" type="checkbox" name="seasonalDoxoVespers"
-            value="{{item}}" />{{item.split("/")[-1]}}<br />
+            value="{{item}}" />{{item.split("/")[-1].split(".")[0]}}<br />
         </div>
         {% endfor %}
         <br></br>
@@ -46,7 +46,7 @@
             <div class="zone">
 
               <input class="fields" type="checkbox" name="optionalDoxoVespers"
-                value="{{item}}" />{{item.split("/")[-1]}}<br />
+                value="{{item}}" />{{item.split("/")[-1].split(".")[0]}}<br />
 
             </div>
             {% endfor %}
@@ -67,7 +67,7 @@
         {% for item in spapi.dictionary["seasonmatinsDoxologies"] %}
         <div class="zone">
           <input class="fields" type="checkbox" name="seasonalDoxoMatins"
-            value="{{item}}" />{{item.split("/")[-1]}}<br />
+            value="{{item}}" />{{item.split("/")[-1].split(".")[0]}}<br />
         </div>
         {% endfor %}
         <br></br>
@@ -77,7 +77,7 @@
             {% for item in spapi.dictionary["matinsoptionalDoxogies"] %}
             <div class="zone">
               <input class="fields" type="checkbox" name="optionalDoxoMatins"
-                value="{{item}}" />{{item.split("/")[-1]}}<br />
+                value="{{item}}" />{{item.split("/")[-1].split(".")[0]}}<br />
             </div>
             {% endfor %}
           </div>
@@ -92,14 +92,14 @@
         </div>
         <br></br>
 
-        <p class="titles2">OFFERINF OF THE LAMB</p>
+        <p class="titles2">OFFERING OF THE LAMB</p>
         <p class="titles">3rd Hour Psalm</p>
 
         <div class="psalms">
           <div class="psalms">
             <select name="3rdHourPsalm" id="">
               {% for item in spapi.dictionary["thirdHourPsalms"] %}
-              <option class="fields" value="{{item}}">{{item.split("/")[-1]}}</option>
+              <option class="fields" value="{{item}}">{{item.split("/")[-1].split(".")[0]}}</option>
               <br />
               {% endfor %}
             </select>
@@ -112,7 +112,7 @@
             <div class="psalms">
               <select name="6thHourPsalm" id="">
                 {% for item in spapi.dictionary["sixthHourPsalms"] %}
-                <option class="fields" value="{{item}}">{{item.split("/")[-1]}}</option>
+                <option class="fields" value="{{item}}">{{item.split("/")[-1].split(".")[0]}}</option>
                 <br />
                 {% endfor %}
               </select>
@@ -126,12 +126,20 @@
                 {% for item in spapi.dictionary["paralexHymns"] %}
                 <div class="zone">
                   <input class="fields" type="checkbox" name="paralexHymns"
-                    value="{{item}}" />{{item.split("/")[-1]}}<br />
+                    value="{{item}}" />{{item.split("/")[-1].split(".")[0]}}<br />
                 </div>
                 {% endfor %}
               </div>
             </div>
             {%endif%}
+
+            <p class="titles">3 Long Litanies</p>
+            <div class="fields">
+              <p>
+                <input class="fields" type="radio" name="Liturgy3GreatLitanies" value="yes">Yes</input>
+                <input class="fields" type="radio" name="Liturgy3GreatLitanies" value="no" checked>No</input>
+              </p>
+            </div>
 
             <p class="titles2">LITURGY OF THE FAITHFUL</p>
             <p class="titles">Reconciliation Prayer</p>
@@ -140,7 +148,7 @@
                 {% for item in spapi.dictionary["prayerOfReconcilation"] %}
                 <div class="zone">
                   <input class="fields" type="checkbox" name="prayerOfReconcilation"
-                    value="{{item}}" />{{item.split("/")[-1]}}<br />
+                    value="{{item}}" />{{item.split("/")[-1].split(".")[0]}}<br />
                 </div>
                 {% endfor %}
               </div>

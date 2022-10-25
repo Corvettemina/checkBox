@@ -108,10 +108,13 @@ def select():
         if ((request.form['prefaceToTheFraction']) == 'Gregory'):
             spapi.dictionary["prefaceToTheFraction"] = "PowerPoints/Liturgy/Preface - Gregorian.pptx"
 
+        if ((request.form['Liturgy3GreatLitanies']) == 'no'):
+            spapi.dictionary["Liturgy3GreatLitanies"] = ""
+        
         import mergepptxaspose
         temp = mergepptxaspose.makeIntoList(spapi.dictionary)
 
-        mergepptxaspose.merge(temp)
+        #mergepptxaspose.merge(temp)
         runDropbox()
         # return str(request.form.getlist('seasonalDoxo'))
 
@@ -119,5 +122,5 @@ def select():
 
 
 if __name__ == "__main__":
-    # app.run(debug=True)
-    app.run(host='0.0.0.0')
+    app.run(debug=True)
+    #app.run(host='0.0.0.0')
