@@ -21,7 +21,7 @@ class InfoForm(FlaskForm):
 def index():
     if (("Linux" in platform.platform())):
         result = subprocess.run(['ls', '-l'], stdout=subprocess.PIPE)
-        result.stdout
+        print(result.stdout.decode('utf-8'))
 
     form = InfoForm()
     if form.validate_on_submit():
