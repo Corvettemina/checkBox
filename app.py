@@ -1,3 +1,4 @@
+import string
 from flask import Flask, redirect, url_for, render_template, session, request
 from flask_wtf import FlaskForm
 from wtforms.fields import DateField
@@ -21,7 +22,11 @@ class InfoForm(FlaskForm):
 def index():
     if (("Linux" in platform.platform())):
         result = subprocess.run(['dropbox', 'status'], stdout=subprocess.PIPE)
-        print(result.stdout.decode('utf-8'))
+        stringResult = (result.stdout.decode('utf-8'))
+        if ("running" in stringResult):
+            subprocess.run(['service', 'dropbox', 'stop'],
+                           stdout=subprocess.PIPE)
+            subprocess.run(['dropbox', 'start'], stdout=subprocess.PIPE)
 
     form = InfoForm()
     if form.validate_on_submit():
