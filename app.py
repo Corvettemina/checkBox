@@ -5,6 +5,7 @@ from wtforms.validators import DataRequired
 from wtforms import validators, SubmitField
 from springApiTest import Springapi, copticDay
 import platform
+import subprocess
 
 app = Flask(__name__)
 
@@ -19,7 +20,9 @@ class InfoForm(FlaskForm):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if (("Linux" in platform.platform())):
-        print("LINUX")
+        result = subprocess.run(['ls', '-l'], stdout=subprocess.PIPE)
+        result.stdout
+
     form = InfoForm()
     if form.validate_on_submit():
         session['startdate'] = form.startdate.data
