@@ -10,135 +10,250 @@
 </head>
 
 <body>
-  <div id = "wrapper">
-  <div class="center">
-    <a href="/" class="btn btn-primary">HOME</a>
-    <p class="titles">Selected Date is: {{session['startdate']}}</p>
-    <p class="titles">Selected Coptic Date is: {{spapi.copticDay}}</p>
-    <p class="titles">Selected Coptic Sunday is: {{spapi.sunday}}</p>
-    <p class="titles">Selected Coptic Season is: {{spapi.season}}</p>
-    <p class="titles">Selected Coptic Occasion is: {{spapi.occasion}}</p>
-    <br></br>
-    <form method="POST" action="/select">
-
-      <p class="titles2">VESPERS</p>
-      <p class="titles">Bishop Present?</p>
-      <div class="fields">
-        <p>
-          <input class="fields" type="radio" name="bishopVespers" value="yes">Yes</input>
-          <input class="fields" type="radio" name="bishopVespers" value="no" checked>No</input>
-        </p>
-      </div>
+  <div id="wrapper">
+    <div class="center">
+      <a href="/" class="btn btn-primary">HOME</a>
+      <p class="titles">Selected Date is: {{session['startdate']}}</p>
+      <p class="titles">Selected Coptic Date is: {{spapi.copticDay}}</p>
+      <p class="titles">Selected Coptic Sunday is: {{spapi.sunday}}</p>
+      <p class="titles">Selected Coptic Season is: {{spapi.season}}</p>
+      <p class="titles">Selected Coptic Occasion is: {{spapi.occasion}}</p>
       <br></br>
+      <form method="POST" action="/select">
 
-      <p class="titles">Seasonal Vespers Doxologies</p>
-      {% for item in spapi.dictionary["seasonVespersDoxologies"] %}
-      <div class="zone">
-        <input class="fields" type="checkbox" name="seasonalDoxoVespers"
-          value="{{item}}" />{{item.split("/")[-1]}}<br />
-      </div>
-      {% endfor %}
-      <br></br>
-      <p class="titles">Optional Vespers Doxologies</p>
-      <div class="zone">
-        <div class="container">
-          {% for item in spapi.dictionary["vespersoptionalDoxogies"] %}
-          <div class="zone">
-
-            <input class="fields" type="checkbox" name="optionalDoxoVespers"
-              value="{{item}}" />{{item.split("/")[-1]}}<br />
-
-          </div>
-          {% endfor %}
+        <p class="titles2">VESPERS</p>
+        <p class="titles">Bishop Present?</p>
+        <div class="fields">
+          <p>
+            <input class="fields" type="radio" name="bishopVespers" value="yes">Yes</input>
+            <input class="fields" type="radio" name="bishopVespers" value="no" checked>No</input>
+          </p>
         </div>
-      </div>
+        <br></br>
 
-      <br></br>
-      <p class="titles">5 Short Litanies for Vespers</p>
-      <div class="fields">
-        <p>
-          <input class="fields" type="radio" name="5short" value="yes">Yes</input>
-          <input class="fields" type="radio" name="5short" value="no" checked>No</input>
-        </p>
-      </div>
-      <br></br>
-      <p class="titles2">MATINS</p>
-      <p class="titles">Seasonal Matins Doxologies</p>
-      {% for item in spapi.dictionary["seasonmatinsDoxologies"] %}
-      <div class="zone">
-        <input class="fields" type="checkbox" name="seasonalDoxoMatins" value="{{item}}" />{{item.split("/")[-1]}}<br />
-      </div>
-      {% endfor %}
-      <br></br>
-      <p class="titles">Optional Matins Doxologies</p>
-      <div class="zone">
-        <div class="container">
-          {% for item in spapi.dictionary["matinsoptionalDoxogies"] %}
-          <div class="zone">
-            <input class="fields" type="checkbox" name="optionalDoxoMatins"
-              value="{{item}}" />{{item.split("/")[-1]}}<br />
-          </div>
-          {% endfor %}
+        <p class="titles">Seasonal Vespers Doxologies</p>
+        {% for item in spapi.dictionary["seasonVespersDoxologies"] %}
+        <div class="zone">
+          <input class="fields" type="checkbox" name="seasonalDoxoVespers"
+            value="{{item}}" />{{item.split("/")[-1]}}<br />
         </div>
-      </div>
-      <br></br>
-      <p class="titles">5 Short Litanies for Matins</p>
-      <div class="fields">
-        <p>
-          <input class="fields" type="radio" name="5shortMatins" value="yes">Yes</input>
-          <input class="fields" type="radio" name="5shortMatins" value="no" checked>No</input>
-        </p>
-      </div>
-      <br></br>
+        {% endfor %}
+        <br></br>
+        <p class="titles">Optional Vespers Doxologies</p>
+        <div class="zone">
+          <div class="container">
+            {% for item in spapi.dictionary["vespersoptionalDoxogies"] %}
+            <div class="zone">
 
-      <p class="titles2">Offering of the Lamb</p>
-      <p class="titles">3rd Hour Psalm</p>
+              <input class="fields" type="checkbox" name="optionalDoxoVespers"
+                value="{{item}}" />{{item.split("/")[-1]}}<br />
 
-      <div class="psalms">
-        <div class="psalms">
-          <select name="3rdHourPsalm" id="">
-            {% for item in spapi.dictionary["thirdHourPsalms"] %}
-              <option class="fields" value="{{item}}">{{item.split("/")[-1]}}</option>
-              <br />
+            </div>
             {% endfor %}
-          </select>
-
+          </div>
         </div>
-        <br>
 
-        <p class="titles">6th Hour Psalm</p>
+        <br></br>
+        <p class="titles">5 Short Litanies for Vespers</p>
+        <div class="fields">
+          <p>
+            <input class="fields" type="radio" name="5short" value="yes">Yes</input>
+            <input class="fields" type="radio" name="5short" value="no" checked>No</input>
+          </p>
+        </div>
+        <br></br>
+        <p class="titles2">MATINS</p>
+        <p class="titles">Seasonal Matins Doxologies</p>
+        {% for item in spapi.dictionary["seasonmatinsDoxologies"] %}
+        <div class="zone">
+          <input class="fields" type="checkbox" name="seasonalDoxoMatins"
+            value="{{item}}" />{{item.split("/")[-1]}}<br />
+        </div>
+        {% endfor %}
+        <br></br>
+        <p class="titles">Optional Matins Doxologies</p>
+        <div class="zone">
+          <div class="container">
+            {% for item in spapi.dictionary["matinsoptionalDoxogies"] %}
+            <div class="zone">
+              <input class="fields" type="checkbox" name="optionalDoxoMatins"
+                value="{{item}}" />{{item.split("/")[-1]}}<br />
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <br></br>
+        <p class="titles">5 Short Litanies for Matins</p>
+        <div class="fields">
+          <p>
+            <input class="fields" type="radio" name="5shortMatins" value="yes">Yes</input>
+            <input class="fields" type="radio" name="5shortMatins" value="no" checked>No</input>
+          </p>
+        </div>
+        <br></br>
+
+        <p class="titles2">OFFERINF OF THE LAMB</p>
+        <p class="titles">3rd Hour Psalm</p>
+
         <div class="psalms">
           <div class="psalms">
-            <select name="6thHourPsalm" id="">
-              {% for item in spapi.dictionary["sixthHourPsalms"] %}
-                <option class="fields" value="{{item}}">{{item.split("/")[-1]}}</option>
-                <br />
+            <select name="3rdHourPsalm" id="">
+              {% for item in spapi.dictionary["thirdHourPsalms"] %}
+              <option class="fields" value="{{item}}">{{item.split("/")[-1]}}</option>
+              <br />
               {% endfor %}
             </select>
 
           </div>
-          <br></br>
-          {%if spapi.dictionary["paralexHymns"] |length > 0 %}
-          <p class="titles">Paralex Hymns</p>
-          <div class="zone">
-            <div class="container">
-              {% for item in spapi.dictionary["paralexHymns"] %}
-              <div class="zone">
-                <input class="fields" type="checkbox" name="paralexHymns"
-                  value="{{item}}" />{{item.split("/")[-1]}}<br />
-              </div>
-              {% endfor %}
-            </div>
-          </div>
-          {%endif%}
+          <br>
 
-          <br></br>
-          <div class="buttonDiv">
-            <input type="submit" />
-          </div>
-          <br></br>
-    </form>
-  </div>
+          <p class="titles">6th Hour Psalm</p>
+          <div class="psalms">
+            <div class="psalms">
+              <select name="6thHourPsalm" id="">
+                {% for item in spapi.dictionary["sixthHourPsalms"] %}
+                <option class="fields" value="{{item}}">{{item.split("/")[-1]}}</option>
+                <br />
+                {% endfor %}
+              </select>
+
+            </div>
+            <br></br>
+            {%if spapi.dictionary["paralexHymns"] |length > 0 %}
+            <p class="titles">Paralex Hymns</p>
+            <div class="zone">
+              <div class="container">
+                {% for item in spapi.dictionary["paralexHymns"] %}
+                <div class="zone">
+                  <input class="fields" type="checkbox" name="paralexHymns"
+                    value="{{item}}" />{{item.split("/")[-1]}}<br />
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+            {%endif%}
+
+            <p class="titles2">LITURGY OF THE FAITHFUL</p>
+            <p class="titles">Reconciliation Prayer</p>
+            <div class="zone">
+              <div class="container">
+                {% for item in spapi.dictionary["prayerOfReconcilation"] %}
+                <div class="zone">
+                  <input class="fields" type="checkbox" name="prayerOfReconcilation"
+                    value="{{item}}" />{{item.split("/")[-1]}}<br />
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+
+            <br></br>
+            <p class="titles">Rejoice O Mary</p>
+            <div class="fields">
+              <p>
+                <input class="fields" type="radio" name="rejoiceOMary" value="yes">Yes</input>
+                <input class="fields" type="radio" name="rejoiceOMary" value="no" checked>No</input>
+              </p>
+            </div>
+         
+            <br></br>
+            <p class="titles">Anaphora</p>
+            <div class="fields">
+              <p>
+                <input class="fields" type="radio" name="anaphora" value="Gregory">Gregory</input>
+                <input class="fields" type="radio" name="anaphora" value="Basil" checked>Basil</input>
+              </p>
+            </div>
+            
+            <br></br>
+            <p class="titles">O Lord of Hosts</p>
+            <div class="fields">
+              <p>
+                <input class="fields" type="radio" name="OLordofHosts" value="yes">Yes</input>
+                <input class="fields" type="radio" name="OLordofHosts" value="no" checked>No</input>
+              </p>
+            </div>
+
+            <br></br>
+            <p class="titles">Agios</p>
+            <div class="fields">
+              <p>
+                <input class="fields" type="radio" name="agiosLiturgy" value="Gregory">Gregory</input>
+                <input class="fields" type="radio" name="agiosLiturgy" value="Basil" checked>Basil</input>
+              </p>
+            </div>
+
+            <br></br>
+            <p class="titles">Institution Narrative</p>
+            <div class="fields">
+              <p>
+                <input class="fields" type="radio" name="instiution" value="Gregory">Gregory</input>
+                <input class="fields" type="radio" name="instiution" value="Basil" checked>Basil</input>
+              </p>
+            </div>
+
+            <br></br>
+            <p class="titles">Yes we ask You</p>
+            <div class="fields">
+              <p>
+                <input class="fields" type="radio" name="yeahWeAskYou" value="yes">Yes</input>
+                <input class="fields" type="radio" name="yeahWeAskYou" value="no" checked>No</input>
+              </p>
+            </div>
+
+            <br></br>
+            <p class="titles">Je Nai Nan</p>
+            <div class="fields">
+              <p>
+                <input class="fields" type="radio" name="jeNaiNan" value="yes">Yes</input>
+                <input class="fields" type="radio" name="jeNaiNan" value="no" checked>No</input>
+              </p>
+            </div>
+
+            <br></br>
+            <p class="titles">Healing to the Sick</p>
+            <div class="fields">
+              <p>
+                <input class="fields" type="radio" name="healingToThesick" value="yes">Yes</input>
+                <input class="fields" type="radio" name="healingToThesick" value="no" checked>No</input>
+              </p>
+            </div>
+
+            <br></br>
+            <p class="titles">Commemoration</p>
+            <div class="fields">
+              <p>
+                <input class="fields" type="radio" name="Commemoration" value="Gregory">Gregory</input>
+                <input class="fields" type="radio" name="Commemoration" value="Basil" checked>Basil</input>
+              </p>
+            </div>
+
+            <br></br>
+            <p class="titles">Post Commemoration</p>
+            <div class="fields">
+              <p>
+                <input class="fields" type="radio" name="postCommemoration" value="Gregory">Gregory</input>
+                <input class="fields" type="radio" name="postCommemoration" value="Basil" checked>Basil</input>
+              </p>
+            </div>
+
+            <br></br>
+            <p class="titles">Intro to the Fraction</p>
+            <div class="fields">
+              <p>
+                <input class="fields" type="radio" name="prefaceToTheFraction" value="Gregory">Gregory</input>
+                <input class="fields" type="radio" name="prefaceToTheFraction" value="Basil" checked>Basil</input>
+              </p>
+            </div>
+    
+
+            <br></br>
+            <div class="buttonDiv">
+              <input type="submit" />
+            </div>
+            <br></br>
+      </form>
+    </div>
 </body>
 </div>
+
 </html>
