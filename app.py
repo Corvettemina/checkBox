@@ -44,7 +44,7 @@ def index():
 def select():
     print('session', session['startdate'])
     spapi = Springapi(session['startdate'])
-    # listss = spapi.getlist()["seasonVespersDoxologies"]
+
     if request.method == 'POST':
 
         spapi.dictionary["seasonVespersDoxologies"] = request.form.getlist(
@@ -119,5 +119,5 @@ def select():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
-    # app.run(host='0.0.0.0')
+    # app.run(debug=True)
+    app.run(host='0.0.0.0')
