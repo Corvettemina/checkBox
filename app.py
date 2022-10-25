@@ -20,7 +20,7 @@ class InfoForm(FlaskForm):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if (("Linux" in platform.platform())):
-        result = subprocess.run(['ls', '-l'], stdout=subprocess.PIPE)
+        result = subprocess.run(['dropbox', 'status'], stdout=subprocess.PIPE)
         print(result.stdout.decode('utf-8'))
 
     form = InfoForm()
