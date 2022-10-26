@@ -7,8 +7,15 @@
   <head>
     <title class="titles2">PowerPoint Creator</title>
   </head>
+
 {% block content %}
-<div class>
+<div>
+  
+  <p class="titles">Current Date is: {{spapi.date}}</p>
+  <p class="titles">Current Coptic Date is: {{spapi.copticDay}}</p>
+  <p class="titles">Current Coptic Sunday is: {{spapi.sunday}}</p>
+  <p class="titles">Current Coptic Season is: {{spapi.season}}</p>
+  <p class="titles">Current Coptic Occasion is: {{spapi.occasion}}</p>
   <div class="centerVert">
     <div class="homePage">
     </div>
@@ -16,7 +23,7 @@
     <form action="" method="POST" name="myform" class="datepicker">
       {{ form.csrt_token }}
       <div class="homePage">
-        {{ form.startdate.label }}
+        {{ form.startdate.label(class='titles2') }}
       </div>
       <br></br>
       <div class="homePage">

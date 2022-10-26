@@ -32,12 +32,12 @@ def runDropbox():
 def index():
 
     runDropbox()
-
+    spapi = Springapi()
     form = InfoForm()
     if form.validate_on_submit():
         session['startdate'] = form.startdate.data
         return redirect('select')
-    return render_template('index.html', form=form)
+    return render_template('index.html', form=form, spapi = spapi)
 
 
 @app.route('/select', methods=['GET', 'POST'])
