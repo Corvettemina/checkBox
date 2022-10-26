@@ -4,10 +4,56 @@
    font-family: Arial !important;
 }*/
 
+#donate {
+    display: inline-block;
+    margin:4px;
+    text-align: center;
+    /*float:center;*/
+}
+
+#donate label {
+    text-align: center;
+    float:left;
+    width:100px;
+    margin:2px;
+    background-color:#EFEFEF;
+    border-radius:2px;
+    border:1px solid #D0D0D0;
+    overflow:auto;
+
+}
+
+#donate label span {
+    text-align:center;
+    font-size: 25px;
+    padding:7px 0px;
+    display:block;
+}
+
+#donate label input {
+    text-align: center;
+   position:absolute;
+    /*top:-20px;*/
+    visibility: hidden;
+}
+
+#donate input:checked + span {
+    text-align: center;
+    background-color:#0966f1;
+    color:#F7F7F7;
+}
+
+#donate .yellow {
+
+    text-align: center;
+    background-color:#404040;
+    color:#F7F7F7;
+    
+}
 
 
 .center {
-    border: 3.5rem solid #635ae4;
+    border: 3.5rem solid #0966f1;
     display: inline-block;
     margin: 0 auto;
     width: 50rem;

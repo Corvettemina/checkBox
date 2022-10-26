@@ -6,7 +6,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>STMARKATL PowerPoint Creator</title>
+  <title>St. Mark ATL PowerPoint Creator</title>
+
 </head>
 
 <body>
@@ -23,10 +24,10 @@
 
         <p class="titles2">VESPERS</p>
         <p class="titles">Bishop Present?</p>
-        <div class="fields">
+         <div class="fields" id = "donate">
           <p>
-            <input class="fields" type="radio" name="bishopVespers" value="yes">Yes</input>
-            <input class="fields" type="radio" name="bishopVespers" value="no" checked>No</input>
+           <label class = "yellow"><input class="fields"  type="radio" name="bishopVespers" value="yes"></input><span>Yes</span></label>
+           <label class = "yellow"><input class="fields"  type="radio" name="bishopVespers" value="no" checked></input><span>No</span></label>
           </p>
         </div>
         <br></br>
@@ -55,10 +56,10 @@
 
         <br></br>
         <p class="titles">5 Short Litanies for Vespers</p>
-        <div class="fields">
+         <div class="fields" id = "donate">
           <p>
-            <input class="fields" type="radio" name="5short" value="yes">Yes</input>
-            <input class="fields" type="radio" name="5short" value="no" checked>No</input>
+           <label class = "yellow"><input class="fields"  type="radio" name="5short" value="yes"></input><span>Yes</span></label>
+           <label class = "yellow"><input class="fields"  type="radio" name="5short" value="no" checked></input><span>No</span></label>
           </p>
         </div>
         <br></br>
@@ -84,10 +85,10 @@
         </div>
         <br></br>
         <p class="titles">5 Short Litanies for Matins</p>
-        <div class="fields">
+         <div class="fields" id = "donate">
           <p>
-            <input class="fields" type="radio" name="5shortMatins" value="yes">Yes</input>
-            <input class="fields" type="radio" name="5shortMatins" value="no" checked>No</input>
+           <label class = "yellow"><input class="fields"  type="radio" name="5shortMatins" value="yes"></input><span>Yes</span></label>
+           <label class = "yellow"><input class="fields"  type="radio" name="5shortMatins" value="no" checked></input><span>No</span></label>
           </p>
         </div>
         <br></br>
@@ -116,10 +117,12 @@
                 <br />
                 {% endfor %}
               </select>
-
-            </div>
             <br></br>
+            <p class="titles2">LITURGY OF THE WORD</p>
+            </div>
+           
             {%if spapi.dictionary["paralexHymns"] |length > 0 %}
+            <br></br>
             <p class="titles">Paralex Hymns</p>
             <div class="zone">
               <div class="container">
@@ -131,13 +134,14 @@
                 {% endfor %}
               </div>
             </div>
+            <br></br>
             {%endif%}
 
             <p class="titles">3 Long Litanies</p>
-            <div class="fields">
-              <p>
-                <input class="fields" type="radio" name="Liturgy3GreatLitanies" value="yes">Yes</input>
-                <input class="fields" type="radio" name="Liturgy3GreatLitanies" value="no" checked>No</input>
+             <div class="fields" id = "donate">
+              <p> 
+               <label class = "yellow"><input class="fields"  type="radio" name="Liturgy3GreatLitanies" value="yes"></input><span>Yes</span></label>
+               <label class = "yellow"><input class="fields"  type="radio" name="Liturgy3GreatLitanies" value="no" checked></input><span>No</span></label>
               </p>
             </div>
 
@@ -156,100 +160,100 @@
 
             <br></br>
             <p class="titles">Rejoice O Mary</p>
-            <div class="fields">
+            <div class="fields" id = "donate">
               <p>
-                <input class="fields" type="radio" name="rejoiceOMary" value="yes">Yes</input>
-                <input class="fields" type="radio" name="rejoiceOMary" value="no" checked>No</input>
+                <label class = "yellow"><input class="fields" type="radio" name="rejoiceOMary" value="yes"></input><span>Yes</span></label>
+                <label class = "yellow"><input class="fields" type="radio" name="rejoiceOMary" value="no" checked></input><span>No</span></label>
               </p>
             </div>
-         
+    
             <br></br>
             <p class="titles">Anaphora</p>
-            <div class="fields">
+             <div class="fields" id = "donate">
               <p>
-                <input class="fields" type="radio" name="anaphora" value="Gregory">Gregory</input>
-                <input class="fields" type="radio" name="anaphora" value="Basil" checked>Basil</input>
+               <label class = "yellow"><input class="fields" type="radio" name="anaphora" value="Gregory"></input><span>Gregory</span></label>
+               <label class = "yellow"><input class="fields" type="radio" name="anaphora" value="Basil" checked><span>Basil</span></label>
               </p>
             </div>
             
             <br></br>
             <p class="titles">O Lord of Hosts</p>
-            <div class="fields">
+             <div class="fields" id = "donate">
               <p>
-                <input class="fields" type="radio" name="OLordofHosts" value="yes">Yes</input>
-                <input class="fields" type="radio" name="OLordofHosts" value="no" checked>No</input>
+               <label class = "yellow"><input class="fields" type="radio" name="OLordofHosts" value="yes"></input><span>Yes</span></label>
+               <label class = "yellow"><input class="fields"  type="radio" name="OLordofHosts" value="no" checked></input><span>No</span></label>
               </p>
             </div>
 
             <br></br>
             <p class="titles">Agios</p>
-            <div class="fields">
+             <div class="fields" id = "donate">
               <p>
-                <input class="fields" type="radio" name="agiosLiturgy" value="Gregory">Gregory</input>
-                <input class="fields" type="radio" name="agiosLiturgy" value="Basil" checked>Basil</input>
+               <label class = "yellow"><input class="fields" type="radio" name="agiosLiturgy" value="Gregory"></input><span>Gregory</span></label>
+               <label class = "yellow"><input class="fields"  type="radio" name="agiosLiturgy" value="Basil" checked><span>Basil</span></label>
               </p>
             </div>
 
             <br></br>
             <p class="titles">Institution Narrative</p>
-            <div class="fields">
+             <div class="fields" id = "donate">
               <p>
-                <input class="fields" type="radio" name="instiution" value="Gregory">Gregory</input>
-                <input class="fields" type="radio" name="instiution" value="Basil" checked>Basil</input>
+               <label class = "yellow"><input class="fields" type="radio"  name="instiution" value="Gregory"></input><span>Gregory</span></label>
+               <label class = "yellow"><input class="fields" type="radio" name="instiution" value="Basil" checked><span>Basil</span></label>
               </p>
             </div>
 
             <br></br>
             <p class="titles">Yes we ask You</p>
-            <div class="fields">
+             <div class="fields" id = "donate">
               <p>
-                <input class="fields" type="radio" name="yeahWeAskYou" value="yes">Yes</input>
-                <input class="fields" type="radio" name="yeahWeAskYou" value="no" checked>No</input>
+               <label class = "yellow"><input class="fields" type="radio" name="yeahWeAskYou" value="yes"></input><span>Yes</span></label>
+               <label class = "yellow"><input class="fields"  type="radio" name="yeahWeAskYou" value="no" checked></input><span>No</span></label>
               </p>
             </div>
 
             <br></br>
             <p class="titles">Je Nai Nan</p>
-            <div class="fields">
+             <div class="fields" id = "donate">
               <p>
-                <input class="fields" type="radio" name="jeNaiNan" value="yes">Yes</input>
-                <input class="fields" type="radio" name="jeNaiNan" value="no" checked>No</input>
+               <label class = "yellow"><input class="fields"  type="radio" name="jeNaiNan" value="yes"></input><span>Yes</span></label>
+               <label class = "yellow"><input class="fields"  type="radio" name="jeNaiNan" value="no" checked></input><span>No</span></label>
               </p>
             </div>
 
             <br></br>
             <p class="titles">Healing to the Sick</p>
-            <div class="fields">
+             <div class="fields" id = "donate">
               <p>
-                <input class="fields" type="radio" name="healingToThesick" value="yes">Yes</input>
-                <input class="fields" type="radio" name="healingToThesick" value="no" checked>No</input>
+               <label class = "yellow"><input class="fields"  type="radio" name="healingToThesick" value="yes"></input><span>Yes</span></label>
+               <label class = "yellow"><input class="fields"  type="radio" name="healingToThesick" value="no" checked></input><span>No</span></label>
               </p>
             </div>
 
             <br></br>
             <p class="titles">Commemoration</p>
-            <div class="fields">
+             <div class="fields" id = "donate">
               <p>
-                <input class="fields" type="radio" name="Commemoration" value="Gregory">Gregory</input>
-                <input class="fields" type="radio" name="Commemoration" value="Basil" checked>Basil</input>
+               <label class = "yellow"><input class="fields"  type="radio" name="Commemoration" value="Gregory"></input><span>Gregory</span></label>
+               <label class = "yellow"><input class="fields"  type="radio" name="Commemoration" value="Basil" checked><span>Basil</span></label>
               </p>
             </div>
 
             <br></br>
             <p class="titles">Post Commemoration</p>
-            <div class="fields">
+             <div class="fields" id = "donate">
               <p>
-                <input class="fields" type="radio" name="postCommemoration" value="Gregory">Gregory</input>
-                <input class="fields" type="radio" name="postCommemoration" value="Basil" checked>Basil</input>
+               <label class = "yellow"><input class="fields"  type="radio" name="postCommemoration" value="Gregory"></input><span>Gregory</span></label>
+               <label class = "yellow"><input class="fields"  type="radio" name="postCommemoration" value="Basil" checked><span>Basil</span></label>
               </p>
             </div>
 
             <br></br>
             <p class="titles">Intro to the Fraction</p>
-            <div class="fields">
+             <div class="fields" id = "donate">
               <p>
-                <input class="fields" type="radio" name="prefaceToTheFraction" value="Gregory">Gregory</input>
-                <input class="fields" type="radio" name="prefaceToTheFraction" value="Basil" checked>Basil</input>
+               <label class = "yellow"><input class="fields"  type="radio" name="prefaceToTheFraction" value="Gregory"></input><span>Gregory</span></label>
+               <label class = "yellow"><input class="fields"  type="radio" name="prefaceToTheFraction" value="Basil" checked><span>Basil</span></label>
               </p>
             </div>
     
