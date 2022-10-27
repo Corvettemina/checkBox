@@ -163,6 +163,10 @@ input[type=submit]{
     margin-right: 3%;
 }
 @media screen and (max-width: 920px) {
+    input[type=submit]{
+        width: 95%;
+        height: 2.5rem;
+    }
     .datepicker{    
         font-size: 7vh;
         width: 100%; 
