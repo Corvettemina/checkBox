@@ -37,7 +37,7 @@ def index():
     if form.validate_on_submit():
         session['startdate'] = form.startdate.data
         return redirect('select')
-    return render_template('index.html', form=form, spapi = spapi)
+    return render_template('index.html', form=form, spapi=spapi)
 
 
 @app.route('/select', methods=['GET', 'POST'])
@@ -114,7 +114,7 @@ def select():
         import mergepptxaspose
         temp = mergepptxaspose.makeIntoList(spapi.dictionary)
 
-        # mergepptxaspose.merge(temp)
+        mergepptxaspose.merge(temp)
         runDropbox()
         # return str(request.form.getlist('seasonalDoxo'))
 
@@ -122,5 +122,5 @@ def select():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
-    # app.run(host='0.0.0.0')
+    # app.run(debug=True)
+    app.run(host='0.0.0.0')
