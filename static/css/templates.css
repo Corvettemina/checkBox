@@ -127,16 +127,18 @@
 }
 input[type=submit]{
     padding:5px; 
-    border:2px solid #ccc; 
+    border:2px solid rgb(204, 204, 204); 
     -webkit-border-radius: 5px;
     border-radius: 5px;
     width: 50%;
     margin-bottom: .7rem;
+    height: 5rem;
+    font-size: 24px;
 }
 .buttonDiv{
     text-align: center;
-    
 }
+
 .centerVert{
     margin: 0;
     position: absolute;
