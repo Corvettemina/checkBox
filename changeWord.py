@@ -1,6 +1,7 @@
 import collections 
 import collections.abc
 from pptx import Presentation
+from pptx.dml.color import RGBColor
 import platform
 
 def insertChange(input_pptx, replaceString):
@@ -13,9 +14,9 @@ def insertChange(input_pptx, replaceString):
     prs = Presentation(path + input_pptx)
     #slide = prs.slides[242]
 
-    testString = '#SEASON#'
+    testString = "#SEASON#"
  
-
+    '''
     # iterate through all shapes on slide
     for slide in prs.slides:
         for shape in slide.shapes:
@@ -42,7 +43,8 @@ def insertChange(input_pptx, replaceString):
                     formats.append({'size':r.font.size,
                                     'bold':r.font.bold,
                                     'underline':r.font.underline,
-                                    'italic':r.font.italic})
+                                    'italic':r.font.italic,
+                                    'color':r.font.color})
         
                 # clear paragraph
                 p.clear()
@@ -58,12 +60,45 @@ def insertChange(input_pptx, replaceString):
                     run.font.italic = formats[i]['italic']
                     run.font.size = formats[i]['size']
                     run.font.underline = formats[i]['underline']
+                    run.font.color = formats[i]['color']
+
     tempArray = input_pptx.split(".pptx")
     newPath = tempArray[0] + "today.pptx" 
 
     prs.save(path + newPath)
     #newPath = newPath.replace(path,"")
+    '''
+    
+    # To get shapes in your slides
+    slides = [slide for slide in prs.slides]
+    shapes = []
+    for slide in slides:
+        for shape in slide.shapes:
+            shapes.append(shape)
 
+    replaces = {
+                        testString: replaceString
+                }
+    
+    for shape in shapes:
+        for match, replacement in replaces.items():
+            if shape.has_text_frame:
+                if (shape.text.find(match)) != -1:
+                    text_frame = shape.text_frame
+                    for paragraph in text_frame.paragraphs:
+                        whole_text = "".join(run.text for run in paragraph.runs)
+                        whole_text = whole_text.replace(str(match), str(replacement))
+                        for idx, run in enumerate(paragraph.runs):
+                            if idx != 0:
+                                p = paragraph._p
+                                p.remove(run._r)
+                        if bool(paragraph.runs):
+                            paragraph.runs[0].text = whole_text
+    
+    tempArray = input_pptx.split(".pptx")
+    newPath = tempArray[0] + "today.pptx" 
+
+    prs.save(path + newPath)
     return newPath
 
-#insertChange("C:/Users/minah/Documents/checkBox/Anaphora - Basil.pptx","have come")
+insertChange("PowerPoints/Agpeya/gospels.pptx","have come")
