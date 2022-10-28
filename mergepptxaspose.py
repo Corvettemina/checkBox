@@ -45,6 +45,7 @@ def makeIntoList(y):
                 # print(y[1][i])
                 if (y[i] != ""):
                     answer.append(y[i])
+    
     return (answer)
 
 
