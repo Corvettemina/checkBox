@@ -13,11 +13,27 @@ def getfile_insensitive(paths):
             if (os.path.join(path, name).lower() == paths.lower()):
                 return (os.path.join(path, name))
 
-
+import changeWord
 def makeIntoList(y):
+    
+    y["anaphora"] = changeWord.insertChange(y["anaphora"], y["verb"])
+    if("Annual" in y["matinsVerseofTheCymbals"]):
+        y["matinsVerseofTheCymbals"] = changeWord.insertChange(y["matinsVerseofTheCymbals"], y["verb"])
+          
+    if("Annual" in y["vespersVerseofTheCymbals"]):
+        y["vespersVerseofTheCymbals"] = changeWord.insertChange(y["vespersVerseofTheCymbals"], y["verb"])
+    
+    if("Annual" in y["praxis"]):
+        y["praxis"] = changeWord.insertChange(y["praxis"], y["verb"])
+    
+    if("Annual" in y["hymnofIntercessions"]):
+        y["hymnofIntercessions"] = changeWord.insertChange(y["hymnofIntercessions"], y["verb"])
+
+    y["gospels"] = changeWord.insertChange(y["gospels"], y["verb"])
+
     answer = []
     for i in y:
-        if (i != "Ocassion" and i != "Season" and i != "Sunday"):
+        if (i != "Ocassion" and i != "Season" and i != "Sunday" and i != 'verb'):
             if (type(y[i]) is list):
                 for l in y[i]:
                     # print(l)
@@ -36,7 +52,7 @@ def merge(finishedList):
 
     platform.platform()
     if ("Windows" in platform.platform()):
-        path = "C:/Users/Mina Hanna/DropBox/"
+        path = "C:/Users/minah/DropBox/"
     if (("Linux" in platform.platform())):
         path = "/root/Dropbox/"
 
