@@ -101,4 +101,4 @@ def insertChange(input_pptx, replaceString):
     prs.save(path + newPath)
     return newPath
 
-insertChange("PowerPoints/Agpeya/gospels.pptx","have come")
+#insertChange("PowerPoints/Agpeya/gospels.pptx","have come")
