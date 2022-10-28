@@ -62,7 +62,7 @@ def insertChange(input_pptx, replaceString):
     newPath = tempArray[0] + "today.pptx" 
 
     prs.save(path + newPath)
-    newPath = newPath.replace(path,"")
+    #newPath = newPath.replace(path,"")
     return newPath
 
 #insertChange("C:/Users/minah/Documents/checkBox/Anaphora - Basil.pptx","have come")
