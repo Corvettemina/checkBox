@@ -32,8 +32,8 @@
                 checked></input><span>No</span></label>
           </p>
         </div>
-          <br></br>
-      
+        <br></br>
+
 
         <p class="titles">Seasonal Vespers Doxologies</p>
         {% for item in spapi.dictionary["seasonVespersDoxologies"] %}
@@ -346,7 +346,43 @@
                     checked><span>Basil</span></label>
               </p>
             </div>
+            <p class="titles">Seasonal Fractions</p>
+            <div class="break2">
+              <br></br>
+            </div>
+            <div class="zone">
+              <div class="container">
+                {% for item in spapi.dictionary["seasonalFraction"] %}
+                <div class="zone">
+                  <input class="fields" type="checkbox" name="seasonalFraction"
+                    value="{{item}}" />{{item.split("/")[-1].split(".")[0]}}<br />
+                </div>
+                {% endfor %}
+              </div>
+            </div>
 
+            <div class="break">
+              <br></br>
+            </div>
+
+            <p class="titles">Fraction Index</p>
+            <div class="break2">
+              <br></br>
+            </div>
+            <div class="zone">
+              <div class="container">
+                {% for item in spapi.dictionary["fractionIndex"] %}
+                <div class="zone">
+                  <input class="fields" type="checkbox" name="fractionIndex"
+                    value="{{item}}" />{{item.split("/")[-1].split(".")[0]}}<br />
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="break">
+              <br></br>
+            </div>
 
             <br></br>
             <div class="buttonDiv">
