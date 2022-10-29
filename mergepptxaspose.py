@@ -1,3 +1,4 @@
+import changeWord
 import asposeslidescloud
 import shutil
 from asposeslidescloud.apis.slides_api import SlidesApi
@@ -13,21 +14,24 @@ def getfile_insensitive(paths):
             if (os.path.join(path, name).lower() == paths.lower()):
                 return (os.path.join(path, name))
 
-import changeWord
+
 def makeIntoList(y):
-    
+
     y["anaphora"] = changeWord.insertChange(y["anaphora"], y["verb"])
-    if("Annual" in y["matinsVerseofTheCymbals"]):
-        y["matinsVerseofTheCymbals"] = changeWord.insertChange(y["matinsVerseofTheCymbals"], y["verb"])
-          
-    if("Annual" in y["vespersVerseofTheCymbals"]):
-        y["vespersVerseofTheCymbals"] = changeWord.insertChange(y["vespersVerseofTheCymbals"], y["verb"])
-    
-    if("Annual" in y["praxis"]):
+    if ("Annual" in y["matinsVerseofTheCymbals"]):
+        y["matinsVerseofTheCymbals"] = changeWord.insertChange(
+            y["matinsVerseofTheCymbals"], y["verb"])
+
+    if ("Annual" in y["vespersVerseofTheCymbals"]):
+        y["vespersVerseofTheCymbals"] = changeWord.insertChange(
+            y["vespersVerseofTheCymbals"], y["verb"])
+
+    if ("Annual" in y["praxis"]):
         y["praxis"] = changeWord.insertChange(y["praxis"], y["verb"])
-    
-    if("Annual" in y["hymnofIntercessions"]):
-        y["hymnofIntercessions"] = changeWord.insertChange(y["hymnofIntercessions"], y["verb"])
+
+    if ("Annual" in y["hymnofIntercessions"]):
+        y["hymnofIntercessions"] = changeWord.insertChange(
+            y["hymnofIntercessions"], y["verb"])
 
     y["gospels"] = changeWord.insertChange(y["gospels"], y["verb"])
 
@@ -45,7 +49,7 @@ def makeIntoList(y):
                 # print(y[1][i])
                 if (y[i] != ""):
                     answer.append(y[i])
-    
+
     return (answer)
 
 
@@ -53,7 +57,7 @@ def merge(finishedList):
 
     platform.platform()
     if ("Windows" in platform.platform()):
-        path = "C:/Users/minah/DropBox/"
+        path = "C:/Users/Mina Hanna/DropBox/"
     if (("Linux" in platform.platform())):
         path = "/root/Dropbox/"
 
@@ -62,8 +66,11 @@ def merge(finishedList):
     count = 0
     for i in range(0, len(finishedList), 10):
         files = []
+        filesToremove = []
         for k in finishedList[i:i+10]:
             print(path + k)
+            if ("today" in path + k):
+                filesToremove.append(path+k)
             try:
                 with open(path + k, "rb") as file_stream:
                     files.append(file_stream.read())
@@ -85,16 +92,20 @@ def merge(finishedList):
 
         presentaionsArray.append(presentation)
 
+        for i in filesToremove: 
+            os.remove(i)
+
         count += 1
 
     request = OrderedMergeRequest()
     request.presentations = presentaionsArray
-    response = slides_api.merge_and_save_online("MyPresentation.pptx",None,  request, "internal")
-    
+    response = slides_api.merge_and_save_online(
+        "MyPresentation.pptx", None,  request, "internal")
+
     result_path = path + "PowerPoints/result1.pptx"
     temp_path = slides_api.download_file("MyPresentation.pptx", "internal")
     shutil.copyfile(temp_path, result_path)
-    
+
     print('complete')
 
 
