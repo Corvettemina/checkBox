@@ -111,285 +111,289 @@
               <br />
               {% endfor %}
             </select>
-
           </div>
-          <br>
+        </div>
+        <br>
 
-          <p class="titles">6th Hour Psalm</p>
+        <p class="titles">6th Hour Psalm</p>
+        <div class="psalms">
           <div class="psalms">
-            <div class="psalms">
-              <select name="6thHourPsalm" id="">
-                {% for item in spapi.dictionary["sixthHourPsalms"] %}
-                <option class="fields" value="{{item}}">{{item.split("/")[-1].split(".")[0]}}</option>
-                <br />
-                {% endfor %}
-              </select>
-              <br></br>
-              <p class="titles2">LITURGY OF THE WORD</p>
-            </div>
-
-            {%if spapi.dictionary["paralexHymns"] |length > 0 %}
+            <select name="6thHourPsalm" id="">
+              {% for item in spapi.dictionary["sixthHourPsalms"] %}
+              <option class="fields" value="{{item}}">{{item.split("/")[-1].split(".")[0]}}</option>
+              <br />
+              {% endfor %}
+            </select>
             <br></br>
-            <p class="titles">Paralex Hymns</p>
+          </div>
+        </div>
+        <p class="titles2">LITURGY OF THE WORD</p>
+
+        {%if spapi.dictionary["paralexHymns"] |length > 0 %}
+        <br></br>
+        <p class="titles">Paralex Hymns</p>
+        <div class="zone">
+          <div class="container">
+            {% for item in spapi.dictionary["paralexHymns"] %}
             <div class="zone">
-              <div class="container">
-                {% for item in spapi.dictionary["paralexHymns"] %}
-                <div class="zone">
-                  <input class="fields" type="checkbox" name="paralexHymns"
-                    value="{{item}}" />{{item.split("/")[-1].split(".")[0]}}<br />
-                </div>
-                {% endfor %}
-              </div>
+              <input class="fields" type="checkbox" name="paralexHymns"
+                value="{{item}}" />{{item.split("/")[-1].split(".")[0]}}<br />
             </div>
+            {% endfor %}
+          </div>
+        </div>
+        <br></br>
+        {%endif%}
+
+        <p class="titles">3 Long Litanies</p>
+        <div class="fields" id="donate">
+          <p>
+            <label class="yellow"><input class="fields" type="radio" name="Liturgy3GreatLitanies"
+                value="yes"></input><span>Yes</span></label>
+            <label class="yellow"><input class="fields" type="radio" name="Liturgy3GreatLitanies" value="no"
+                checked></input><span>No</span></label>
+          </p>
+        </div>
+
+        <p class="titles2">LITURGY OF THE FAITHFUL</p>
+        <p class="titles">Reconciliation Prayer</p>
+        <div class="break2">
+          <br></br>
+        </div>
+        <div class="psalms">
+          <div class="psalms">
+            <select name="prayerOfReconcilation" id="">
+              {% for item in spapi.dictionary["prayerOfReconcilation"] %}
+              <option class="fields" value="{{item}}">{{item.split("/")[-1].split(".")[0]}}</option>
+              <br />
+              {% endfor %}
+            </select>
             <br></br>
-            {%endif%}
-
-            <p class="titles">3 Long Litanies</p>
-            <div class="fields" id="donate">
-              <p>
-                <label class="yellow"><input class="fields" type="radio" name="Liturgy3GreatLitanies"
-                    value="yes"></input><span>Yes</span></label>
-                <label class="yellow"><input class="fields" type="radio" name="Liturgy3GreatLitanies" value="no"
-                    checked></input><span>No</span></label>
-              </p>
-            </div>
-
-            <p class="titles2">LITURGY OF THE FAITHFUL</p>
-            <p class="titles">Reconciliation Prayer</p>
-            <div class="break2">
+            <div class="break">
               <br></br>
             </div>
+          </div>
+        </div>
+
+        <p class="titles">Rejoice O Mary</p>
+        <div class="break2">
+          <br></br>
+        </div>
+        <div class="fields" id="donate">
+          <p>
+            <label class="yellow"><input class="fields" type="radio" name="rejoiceOMary"
+                value="yes"></input><span>Yes</span></label>
+            <label class="yellow"><input class="fields" type="radio" name="rejoiceOMary" value="no"
+                checked></input><span>No</span></label>
+          </p>
+        </div>
+        <div class="break">
+          <br></br>
+        </div>
+
+        <p class="titles">Anaphora</p>
+        <div class="break2">
+          <br></br>
+        </div>
+        <div class="fields" id="donate">
+          <p>
+            <label class="yellow"><input class="fields" type="radio" name="anaphora"
+                value="Gregory"></input><span>Gregory</span></label>
+            <label class="yellow"><input class="fields" type="radio" name="anaphora" value="Basil"
+                checked><span>Basil</span></label>
+          </p>
+        </div>
+        <div class="break">
+          <br></br>
+        </div>
+
+        <p class="titles">O Lord of Hosts</p>
+        <div class="break2">
+          <br></br>
+        </div>
+        <div class="fields" id="donate">
+          <p>
+            <label class="yellow"><input class="fields" type="radio" name="OLordofHosts"
+                value="yes"></input><span>Yes</span></label>
+            <label class="yellow"><input class="fields" type="radio" name="OLordofHosts" value="no"
+                checked></input><span>No</span></label>
+          </p>
+        </div>
+        <div class="break">
+          <br></br>
+        </div>
+
+        <p class="titles">Agios</p>
+        <div class="break2">
+          <br></br>
+        </div>
+        <div class="fields" id="donate">
+          <p>
+            <label class="yellow"><input class="fields" type="radio" name="agiosLiturgy"
+                value="Gregory"></input><span>Gregory</span></label>
+            <label class="yellow"><input class="fields" type="radio" name="agiosLiturgy" value="Basil"
+                checked><span>Basil</span></label>
+          </p>
+        </div>
+        <div class="break">
+          <br></br>
+        </div>
+
+        <p class="titles">Institution Narrative</p>
+        <div class="break2">
+          <br></br>
+        </div>
+        <div class="fields" id="donate">
+          <p>
+            <label class="yellow"><input class="fields" type="radio" name="instiution"
+                value="Gregory"></input><span>Gregory</span></label>
+            <label class="yellow"><input class="fields" type="radio" name="instiution" value="Basil"
+                checked><span>Basil</span></label>
+          </p>
+        </div>
+
+        <div class="break">
+          <br></br>
+        </div>
+        <p class="titles">Yes we ask You</p>
+        <div class="break2">
+          <br></br>
+        </div>
+        <div class="fields" id="donate">
+          <p>
+            <label class="yellow"><input class="fields" type="radio" name="yeahWeAskYou"
+                value="yes"></input><span>Yes</span></label>
+            <label class="yellow"><input class="fields" type="radio" name="yeahWeAskYou" value="no"
+                checked></input><span>No</span></label>
+          </p>
+        </div>
+
+        <div class="break">
+          <br></br>
+        </div>
+        <p class="titles">Je Nai Nan</p>
+        <div class="break2">
+          <br></br>
+        </div>
+        <div class="fields" id="donate">
+          <p>
+            <label class="yellow"><input class="fields" type="radio" name="jeNaiNan"
+                value="yes"></input><span>Yes</span></label>
+            <label class="yellow"><input class="fields" type="radio" name="jeNaiNan" value="no"
+                checked></input><span>No</span></label>
+          </p>
+        </div>
+
+        <div class="break">
+          <br></br>
+        </div>
+        <p class="titles">Healing to the Sick</p>
+        <div class="break2">
+          <br></br>
+        </div>
+        <div class="fields" id="donate">
+          <p>
+            <label class="yellow"><input class="fields" type="radio" name="healingToThesick"
+                value="yes"></input><span>Yes</span></label>
+            <label class="yellow"><input class="fields" type="radio" name="healingToThesick" value="no"
+                checked></input><span>No</span></label>
+          </p>
+        </div>
+
+        <div class="break">
+          <br></br>
+        </div>
+        <p class="titles">Commemoration</p>
+        <div class="break2">
+          <br></br>
+        </div>
+        <div class="fields" id="donate">
+          <p>
+            <label class="yellow"><input class="fields" type="radio" name="Commemoration"
+                value="Gregory"></input><span>Gregory</span></label>
+            <label class="yellow"><input class="fields" type="radio" name="Commemoration" value="Basil"
+                checked><span>Basil</span></label>
+          </p>
+        </div>
+
+        <div class="break">
+          <br></br>
+        </div>
+        <p class="titles">Post Commemoration</p>
+        <div class="break2">
+          <br></br>
+        </div>
+        <div class="fields" id="donate">
+          <p>
+            <label class="yellow"><input class="fields" type="radio" name="postCommemoration"
+                value="Gregory"></input><span>Gregory</span></label>
+            <label class="yellow"><input class="fields" type="radio" name="postCommemoration" value="Basil"
+                checked><span>Basil</span></label>
+          </p>
+        </div>
+
+        <div class="break">
+          <br></br>
+        </div>
+        <p class="titles">Intro to the Fraction</p>
+        <div class="break2">
+          <br></br>
+        </div>
+        <div class="fields" id="donate">
+          <p>
+            <label class="yellow"><input class="fields" type="radio" name="prefaceToTheFraction"
+                value="Gregory"></input><span>Gregory</span></label>
+            <label class="yellow"><input class="fields" type="radio" name="prefaceToTheFraction" value="Basil"
+                checked><span>Basil</span></label>
+          </p>
+        </div>
+        <p class="titles">Seasonal Fractions</p>
+        <div class="break2">
+          <br></br>
+        </div>
+        <div class="psalms">
+          <div class="psalms">
+            <select name="seasonalFraction" id="">
+              <option class="fields" value="">Select Fraction</option>
+              {% for item in spapi.dictionary["seasonalFraction"] %}
+              <option class="fields" value="{{item}}">{{item.split("/")[-1].split(".")[0]}}</option>
+              <br />
+              {% endfor %}
+            </select>
+            <br></br>
+            <div class="break">
+              <br></br>
+            </div>
+          </div>
+        </div>
+
+        <p class="titles">Fraction Index</p>
+        <div class="break2">
+          <br></br>
+        </div>
+        <div class="zone">
+          <div class="container">
+            {% for item in spapi.dictionary["fractionIndex"] %}
             <div class="zone">
-              <div class="container">
-                {% for item in spapi.dictionary["prayerOfReconcilation"] %}
-                <div class="zone">
-                  <input class="fields" type="checkbox" name="prayerOfReconcilation"
-                    value="{{item}}" />{{item.split("/")[-1].split(".")[0]}}<br />
-                </div>
-                {% endfor %}
-              </div>
+              <input class="fields" type="checkbox" name="fractionIndex"
+                value="{{item}}" />{{item.split("/")[-1].split(".pptx")[0]}}<br />
             </div>
-
-
-            <br></br>
-            <p class="titles">Rejoice O Mary</p>
             <div class="break2">
               <br></br>
             </div>
-            <div class="fields" id="donate">
-              <p>
-                <label class="yellow"><input class="fields" type="radio" name="rejoiceOMary"
-                    value="yes"></input><span>Yes</span></label>
-                <label class="yellow"><input class="fields" type="radio" name="rejoiceOMary" value="no"
-                    checked></input><span>No</span></label>
-              </p>
-            </div>
-            <div class="break">
-              <br></br>
-            </div>
+            {% endfor %}
+          </div>
+        </div>
 
-            <p class="titles">Anaphora</p>
-            <div class="break2">
-              <br></br>
-            </div>
-            <div class="fields" id="donate">
-              <p>
-                <label class="yellow"><input class="fields" type="radio" name="anaphora"
-                    value="Gregory"></input><span>Gregory</span></label>
-                <label class="yellow"><input class="fields" type="radio" name="anaphora" value="Basil"
-                    checked><span>Basil</span></label>
-              </p>
-            </div>
-            <div class="break">
-              <br></br>
-            </div>
+        <div class="break">
+          <br></br>
+        </div>
 
-            <p class="titles">O Lord of Hosts</p>
-            <div class="break2">
-              <br></br>
-            </div>
-            <div class="fields" id="donate">
-              <p>
-                <label class="yellow"><input class="fields" type="radio" name="OLordofHosts"
-                    value="yes"></input><span>Yes</span></label>
-                <label class="yellow"><input class="fields" type="radio" name="OLordofHosts" value="no"
-                    checked></input><span>No</span></label>
-              </p>
-            </div>
-            <div class="break">
-              <br></br>
-            </div>
-
-            <p class="titles">Agios</p>
-            <div class="break2">
-              <br></br>
-            </div>
-            <div class="fields" id="donate">
-              <p>
-                <label class="yellow"><input class="fields" type="radio" name="agiosLiturgy"
-                    value="Gregory"></input><span>Gregory</span></label>
-                <label class="yellow"><input class="fields" type="radio" name="agiosLiturgy" value="Basil"
-                    checked><span>Basil</span></label>
-              </p>
-            </div>
-            <div class="break">
-              <br></br>
-            </div>
-
-            <p class="titles">Institution Narrative</p>
-            <div class="break2">
-              <br></br>
-            </div>
-            <div class="fields" id="donate">
-              <p>
-                <label class="yellow"><input class="fields" type="radio" name="instiution"
-                    value="Gregory"></input><span>Gregory</span></label>
-                <label class="yellow"><input class="fields" type="radio" name="instiution" value="Basil"
-                    checked><span>Basil</span></label>
-              </p>
-            </div>
-
-            <div class="break">
-              <br></br>
-            </div>
-            <p class="titles">Yes we ask You</p>
-            <div class="break2">
-              <br></br>
-            </div>
-            <div class="fields" id="donate">
-              <p>
-                <label class="yellow"><input class="fields" type="radio" name="yeahWeAskYou"
-                    value="yes"></input><span>Yes</span></label>
-                <label class="yellow"><input class="fields" type="radio" name="yeahWeAskYou" value="no"
-                    checked></input><span>No</span></label>
-              </p>
-            </div>
-
-            <div class="break">
-              <br></br>
-            </div>
-            <p class="titles">Je Nai Nan</p>
-            <div class="break2">
-              <br></br>
-            </div>
-            <div class="fields" id="donate">
-              <p>
-                <label class="yellow"><input class="fields" type="radio" name="jeNaiNan"
-                    value="yes"></input><span>Yes</span></label>
-                <label class="yellow"><input class="fields" type="radio" name="jeNaiNan" value="no"
-                    checked></input><span>No</span></label>
-              </p>
-            </div>
-
-            <div class="break">
-              <br></br>
-            </div>
-            <p class="titles">Healing to the Sick</p>
-            <div class="break2">
-              <br></br>
-            </div>
-            <div class="fields" id="donate">
-              <p>
-                <label class="yellow"><input class="fields" type="radio" name="healingToThesick"
-                    value="yes"></input><span>Yes</span></label>
-                <label class="yellow"><input class="fields" type="radio" name="healingToThesick" value="no"
-                    checked></input><span>No</span></label>
-              </p>
-            </div>
-
-            <div class="break">
-              <br></br>
-            </div>
-            <p class="titles">Commemoration</p>
-            <div class="break2">
-              <br></br>
-            </div>
-            <div class="fields" id="donate">
-              <p>
-                <label class="yellow"><input class="fields" type="radio" name="Commemoration"
-                    value="Gregory"></input><span>Gregory</span></label>
-                <label class="yellow"><input class="fields" type="radio" name="Commemoration" value="Basil"
-                    checked><span>Basil</span></label>
-              </p>
-            </div>
-
-            <div class="break">
-              <br></br>
-            </div>
-            <p class="titles">Post Commemoration</p>
-            <div class="break2">
-              <br></br>
-            </div>
-            <div class="fields" id="donate">
-              <p>
-                <label class="yellow"><input class="fields" type="radio" name="postCommemoration"
-                    value="Gregory"></input><span>Gregory</span></label>
-                <label class="yellow"><input class="fields" type="radio" name="postCommemoration" value="Basil"
-                    checked><span>Basil</span></label>
-              </p>
-            </div>
-
-            <div class="break">
-              <br></br>
-            </div>
-            <p class="titles">Intro to the Fraction</p>
-            <div class="break2">
-              <br></br>
-            </div>
-            <div class="fields" id="donate">
-              <p>
-                <label class="yellow"><input class="fields" type="radio" name="prefaceToTheFraction"
-                    value="Gregory"></input><span>Gregory</span></label>
-                <label class="yellow"><input class="fields" type="radio" name="prefaceToTheFraction" value="Basil"
-                    checked><span>Basil</span></label>
-              </p>
-            </div>
-            <p class="titles">Seasonal Fractions</p>
-            <div class="break2">
-              <br></br>
-            </div>
-            <div class="zone">
-              <div class="container">
-                {% for item in spapi.dictionary["seasonalFraction"] %}
-                <div class="zone">
-                  <input class="fields" type="checkbox" name="seasonalFraction"
-                    value="{{item}}" />{{item.split("/")[-1].split(".pptx")[0]}}<br />
-                </div>
-                {% endfor %}
-              </div>
-            </div>
-
-            <div class="break">
-              <br></br>
-            </div>
-
-            <p class="titles">Fraction Index</p>
-            <div class="break2">
-              <br></br>
-            </div>
-            <div class="zone">
-              <div class="container">
-                {% for item in spapi.dictionary["fractionIndex"] %}
-                <div class="zone">
-                  <input class="fields" type="checkbox" name="fractionIndex"
-                    value="{{item}}" />{{item.split("/")[-1].split(".pptx")[0]}}<br />
-                </div>
-                <div class="break2">
-                  <br></br>
-                </div>
-                {% endfor %}
-              </div>
-            </div>
-
-            <div class="break">
-              <br></br>
-            </div>
-
-            <br></br>
-            <div class="buttonDiv">
-              <input type="submit" />
-            </div>
-            <br></br>
+        <br></br>
+        <div class="buttonDiv">
+          <input type="submit" />
+        </div>
+        <br></br>
       </form>
     </div>
 </body>
