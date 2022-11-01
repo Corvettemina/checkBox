@@ -69,7 +69,7 @@ def merge(finishedList):
         filesToremove = []
         for k in finishedList[i:i+10]:
             print(path + k)
-            if ("today" in path + k):
+            if ("today.pptx" in path + k):
                 filesToremove.append(path+k)
             try:
                 with open(path + k, "rb") as file_stream:
