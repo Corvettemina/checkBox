@@ -5,13 +5,14 @@ import json
 import os
 import datetime
 
-today = datetime.date.today()
-d1 = today.strftime("%Y-%m-%d")
+today = ""
+d1 = ""
 
 copticDay = ""
 
-
 class Springapi:
+    today = datetime.date.today()
+    d1 = today.strftime("%Y-%m-%d")
     copticDay = ""
     season = ""
     occasion = ""

@@ -76,8 +76,11 @@ def merge(finishedList):
                     files.append(file_stream.read())
             except:
                 #print("here", getfile_insensitive(path+i))
-                with open(getfile_insensitive(path + k), "rb") as file_stream:
-                    files.append(file_stream.read())
+                try:
+                    with open(getfile_insensitive(path + k), "rb") as file_stream:
+                        files.append(file_stream.read())
+                except:
+                    pass
 
         print("uploading....")
 
