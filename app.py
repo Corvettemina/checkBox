@@ -7,6 +7,7 @@ from wtforms import validators, SubmitField
 from springApiTest import Springapi, copticDay
 import platform
 import subprocess
+import datetime
 
 app = Flask(__name__)
 
@@ -32,7 +33,9 @@ def runDropbox():
 def index():
 
     runDropbox()
-    spapi = Springapi()
+    today = datetime.date.today()
+    d1 = today.strftime("%Y-%m-%d")
+    spapi = Springapi(d1)
     form = InfoForm()
     if form.validate_on_submit():
         session['startdate'] = form.startdate.data
@@ -100,6 +103,9 @@ def select():
 
         if ((request.form['jeNaiNan']) == 'no'):
             spapi.dictionary["jeNaiNan"] = ""
+
+        if ((request.form['healingToThesick']) == 'no'):
+            spapi.dictionary["healingToThesick"] = ""
 
         if ((request.form['Commemoration']) == 'Gregory'):
             spapi.dictionary["Commemoration"] = "PowerPoints/Liturgy/Commemoration - Gregorian.pptx"

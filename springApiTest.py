@@ -10,6 +10,7 @@ d1 = ""
 
 copticDay = ""
 
+
 class Springapi:
     today = datetime.date.today()
     d1 = today.strftime("%Y-%m-%d")
@@ -20,6 +21,8 @@ class Springapi:
     dictionary = {}
 
     def __init__(self, date=d1):
+        today = datetime.date.today()
+        d1 = today.strftime("%Y-%m-%d")
         self.date = date
         try:
             datearr = self.date.split(" ")
