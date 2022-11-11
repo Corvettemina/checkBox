@@ -351,6 +351,7 @@
         <div class="break2">
           <br></br>
         </div>
+
         <div class="psalms">
           <div class="psalms">
             <select name="seasonalFraction" id="">
@@ -371,18 +372,16 @@
         <div class="break2">
           <br></br>
         </div>
-        <div class="zone">
-          <div class="container">
-            {% for item in spapi.dictionary["fractionIndex"] %}
-            <div class="zone">
-              <input class="fields" type="checkbox" name="fractionIndex"
-                value="{{item}}" />{{item.split("/")[-1].split(".pptx")[0]}}<br />
-            </div>
-            <div class="break2">
-              <br></br>
-            </div>
-            {% endfor %}
-          </div>
+        <div class="psalms">
+          <div class="psalms">
+            <select name="fractionIndex" id="">
+              <option class="fields" value="">Select Fraction</option>
+              {% for item in spapi.dictionary["fractionIndex"] %}
+              <option class="fields" value="{{item}}">{{item.split("/")[-1].split(".")[0]}}</option>
+              <br />
+              {% endfor %}
+            </select>
+            <br></br>
         </div>
 
         <div class="break">

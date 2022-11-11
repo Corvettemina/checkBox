@@ -118,8 +118,7 @@ def select():
 
         spapi.dictionary["seasonalFraction"] = request.form["seasonalFraction"]
 
-        spapi.dictionary["fractionIndex"] = request.form.getlist(
-            "fractionIndex")
+        spapi.dictionary["fractionIndex"] = request.form["fractionIndex"]
 
         import mergepptxaspose
         temp = mergepptxaspose.makeIntoList(spapi.dictionary)

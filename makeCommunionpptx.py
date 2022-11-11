@@ -14,7 +14,6 @@ def makePPT():
     slide = prs.slides[0]
     text = "HI"
  
-
     blessed = slide.shapes.add_textbox(
         Inches(.48), Inches(1.5), Inches(2.57), Inches(.54))
     tf = blessed.text_frame
@@ -27,6 +26,9 @@ def makePPT():
     click_action = blessed.click_action
     click_action.target_slide = prs.slides[1]
     click_action.action
+    line = blessed.line
+    line.color.rgb = RGBColor(79, 129, 189)
+    line.width = Pt(2)
 
     run = p.add_run()
 
@@ -34,7 +36,6 @@ def makePPT():
     font = run.font
     font.name = 'Calibri'
     font.size = Pt(24)
-    font.bold = True
     prs.save("communion2.pptx")
 
     import os
