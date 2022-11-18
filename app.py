@@ -124,7 +124,7 @@ def select():
 
         import mergepptxaspose
         temp = mergepptxaspose.makeIntoList(spapi.dictionary)
-        mergepptxaspose.merge(temp)
+        #mergepptxaspose.merge(temp)
 
         runDropbox()
 

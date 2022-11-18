@@ -7,15 +7,19 @@ from pptx.util import Inches, Pt
 from pptx.enum.text import PP_ALIGN
 
 
-def makePPT():
+def makePPT(result_path, indexes):
     #readings = getReadingsDictionary(year, month, day)
 
-    prs = Presentation('communion.pptx')
+    prs = Presentation(result_path)
     slide = prs.slides[0]
+    currentIndex = 0
+
+    
     text = "HI"
- 
+    verticalPostion = .48 
+
     blessed = slide.shapes.add_textbox(
-        Inches(.48), Inches(1.5), Inches(2.57), Inches(.54))
+        Inches(.48), Inches(verticalPostion), Inches(2.57), Inches(.54))
     tf = blessed.text_frame
 
     p = tf.paragraphs[0]
@@ -36,9 +40,9 @@ def makePPT():
     font = run.font
     font.name = 'Calibri'
     font.size = Pt(24)
-    prs.save("communion2.pptx")
+    prs.save(result_path)
 
-    import os
-    os.startfile("communion2.pptx")
+    #import os
+    #os.startfile("communion2.pptx")
 
 makePPT()

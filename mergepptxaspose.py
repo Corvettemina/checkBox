@@ -5,6 +5,9 @@ from asposeslidescloud.apis.slides_api import SlidesApi
 from asposeslidescloud.models import *
 import platform
 import os
+import collections
+import collections.abc
+from pptx import Presentation
 
 
 def getfile_insensitive(paths):
@@ -53,6 +56,8 @@ def makeIntoList(y):
                     answer.append(y[i])
 
     communionList = []
+    communionList.append("PowerPoints/BackBone/communionMenuTemplate.pptx")
+    
     for l in y["communionHymns"]:            
         l = l.replace('powerpoints', 'PowerPoints')
         communionList.append(l)
@@ -151,6 +156,7 @@ def mergeCommunion(finishedList):
     for i in range(0, len(finishedList), 10):
         files = []
         filesToremove = []
+        pptxLengths = {}
         for k in finishedList[i:i+10]:
             print(path + k)
             if ("today.pptx" in path + k):
@@ -158,44 +164,35 @@ def mergeCommunion(finishedList):
             try:
                 with open(path + k, "rb") as file_stream:
                     files.append(file_stream.read())
+                    pptxLengths[str(k.split("/")[-1].k(".")[0])] = (len(Presentation(path + k).slides))
             except:
                 #print("here", getfile_insensitive(path+i))
                 try:
                     with open(getfile_insensitive(path + k), "rb") as file_stream:
                         files.append(file_stream.read())
+                        pptxLengths[str(k.split("/")[-1].k(".")[0])] = (len(Presentation(getfile_insensitive(path + k)).slides))
                 except:
                     pass
 
         print("uploading....")
-
+        print(pptxLengths)
         slides_api = SlidesApi(
             None, "2d3b1ec8-738b-4467-915f-af02913aa7fa", "1047551018f0feaacf4296fa054d7d97")
         slides_api.merge_and_save_online("communion.pptx", files, None, "internal")
-        
-        '''
-        presentation = PresentationToMerge()
-        presentation.path = "communion.pptx"
-        presentation.source = "Storage"
 
-        presentaionsArray.append(presentation)
-
-        for i in filesToremove: 
-            os.remove(i)
-
-        count += 1
-
-    request = OrderedMergeRequest()
-    request.presentations = presentaionsArray
-    response = slides_api.merge_and_save_online(
-        "Communion.pptx", None,  request, "internal")
-    
-    result_path = path + "PowerPoints/result1.pptx"
-    temp_path = slides_api.download_file("MyPresentation.pptx", "internal")
+    result_path = path + "PowerPoints/communion.pptx"
+    temp_path = slides_api.download_file("communion.pptx", "internal")
     shutil.copyfile(temp_path, result_path)
-    '''
+
+    print('creating menu slide')
+
+    from makeCommunionpptx import makePPT
+    makePPT(result_path, pptxLengths)
+
     print('complete')
 
 
+    
 '''
 import springApiTest
 
