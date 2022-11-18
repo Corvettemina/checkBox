@@ -37,7 +37,9 @@ def makeIntoList(y):
 
     answer = []
     for i in y:
-        if (i != "Ocassion" and i != "Season" and i != "Sunday" and i != 'verb'):
+        if (i != "Ocassion" and i != "Season" and i != "Sunday" and i != "verb"
+            and i != "communionHymns" and i != "finalConclusion1" and i != "liturgyConcludingHymn" 
+            and i != "finalConclusion2" and i != "finalTransition"):
             if (type(y[i]) is list):
                 for l in y[i]:
                     # print(l)
@@ -50,6 +52,17 @@ def makeIntoList(y):
                 if (y[i] != ""):
                     answer.append(y[i])
 
+    communionList = []
+    for l in y["communionHymns"]:            
+        l = l.replace('powerpoints', 'PowerPoints')
+        communionList.append(l)
+    
+    communionList.append(y["finalConclusion1"])
+    communionList.append(y["liturgyConcludingHymn"])
+    communionList.append(y["finalConclusion2"])
+    communionList.append(y["finalTransition"])
+    mergeCommunion(communionList)
+
     return (answer)
 
 
@@ -57,7 +70,7 @@ def merge(finishedList):
 
     platform.platform()
     if ("Windows" in platform.platform()):
-        path = "C:/Users/minah/DropBox/"
+        path = "C:/Users/Mina Hanna/DropBox/"
     if (("Linux" in platform.platform())):
         path = "/root/Dropbox/"
 
@@ -67,7 +80,11 @@ def merge(finishedList):
     for i in range(0, len(finishedList), 10):
         files = []
         filesToremove = []
-        for k in finishedList[i:i+10]:
+        x = 10
+        if(len(finishedList[i+10:i+20]) < 2):
+            x = 11
+            
+        for k in finishedList[i:i+x]:
             print(path + k)
             if ("today.pptx" in path + k):
                 filesToremove.append(path+k)
@@ -99,6 +116,14 @@ def merge(finishedList):
             os.remove(i)
 
         count += 1
+        if x == 11:
+            break
+
+    presentation = PresentationToMerge()
+    presentation.path = "communion.pptx"
+    presentation.source = "Storage"
+
+    presentaionsArray.append(presentation)
 
     request = OrderedMergeRequest()
     request.presentations = presentaionsArray
@@ -109,6 +134,65 @@ def merge(finishedList):
     temp_path = slides_api.download_file("MyPresentation.pptx", "internal")
     shutil.copyfile(temp_path, result_path)
 
+    print('complete')
+
+
+def mergeCommunion(finishedList):
+    
+    platform.platform()
+    if ("Windows" in platform.platform()):
+        path = "C:/Users/Mina Hanna/DropBox/"
+    if (("Linux" in platform.platform())):
+        path = "/root/Dropbox/"
+
+    presentaionsArray = []
+
+    count = 0
+    for i in range(0, len(finishedList), 10):
+        files = []
+        filesToremove = []
+        for k in finishedList[i:i+10]:
+            print(path + k)
+            if ("today.pptx" in path + k):
+                filesToremove.append(path+k)
+            try:
+                with open(path + k, "rb") as file_stream:
+                    files.append(file_stream.read())
+            except:
+                #print("here", getfile_insensitive(path+i))
+                try:
+                    with open(getfile_insensitive(path + k), "rb") as file_stream:
+                        files.append(file_stream.read())
+                except:
+                    pass
+
+        print("uploading....")
+
+        slides_api = SlidesApi(
+            None, "2d3b1ec8-738b-4467-915f-af02913aa7fa", "1047551018f0feaacf4296fa054d7d97")
+        slides_api.merge_and_save_online("communion.pptx", files, None, "internal")
+        
+        '''
+        presentation = PresentationToMerge()
+        presentation.path = "communion.pptx"
+        presentation.source = "Storage"
+
+        presentaionsArray.append(presentation)
+
+        for i in filesToremove: 
+            os.remove(i)
+
+        count += 1
+
+    request = OrderedMergeRequest()
+    request.presentations = presentaionsArray
+    response = slides_api.merge_and_save_online(
+        "Communion.pptx", None,  request, "internal")
+    
+    result_path = path + "PowerPoints/result1.pptx"
+    temp_path = slides_api.download_file("MyPresentation.pptx", "internal")
+    shutil.copyfile(temp_path, result_path)
+    '''
     print('complete')
 
 

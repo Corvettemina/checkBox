@@ -388,6 +388,14 @@
           <br></br>
         </div>
 
+        <p class="titles">Communion Hymns</p>
+        {% for item in spapi.dictionary["communionHymns"] %}
+        <div class="zone">
+          <input class="fields" type="checkbox" name="communionHymns"
+            value="{{item}}" />{{item.split("/")[-1].split(".")[0]}}<br />
+        </div>
+        {% endfor %}
+    
         <br></br>
         <div class="buttonDiv">
           <input type="submit" />

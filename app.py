@@ -120,6 +120,8 @@ def select():
 
         spapi.dictionary["fractionIndex"] = request.form["fractionIndex"]
 
+        spapi.dictionary["communionHymns"] = request.form.getlist("communionHymns")
+
         import mergepptxaspose
         temp = mergepptxaspose.makeIntoList(spapi.dictionary)
         mergepptxaspose.merge(temp)
