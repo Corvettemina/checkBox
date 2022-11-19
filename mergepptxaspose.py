@@ -40,9 +40,7 @@ def makeIntoList(y):
 
     answer = []
     for i in y:
-        if (i != "Ocassion" and i != "Season" and i != "Sunday" and i != "verb"
-            and i != "communionHymns" and i != "finalConclusion1" and i != "liturgyConcludingHymn" 
-            and i != "finalConclusion2" and i != "finalTransition"):
+        if (i != "Ocassion" and i != "Season" and i != "Sunday" and i != "verb"):
             if (type(y[i]) is list):
                 for l in y[i]:
                     # print(l)
@@ -54,19 +52,6 @@ def makeIntoList(y):
                 # print(y[1][i])
                 if (y[i] != ""):
                     answer.append(y[i])
-
-    communionList = []
-    communionList.append("PowerPoints/BackBone/communionMenuTemplate.pptx")
-    
-    for l in y["communionHymns"]:            
-        l = l.replace('powerpoints', 'PowerPoints')
-        communionList.append(l)
-    
-    communionList.append(y["finalConclusion1"])
-    communionList.append(y["liturgyConcludingHymn"])
-    communionList.append(y["finalConclusion2"])
-    communionList.append(y["finalTransition"])
-    mergeCommunion(communionList)
 
     return (answer)
 
@@ -139,6 +124,9 @@ def merge(finishedList):
     result_path = path + "PowerPoints/result1.pptx"
     temp_path = slides_api.download_file("MyPresentation.pptx", "internal")
     shutil.copyfile(temp_path, result_path)
+
+
+    
 
     print('complete')
 
