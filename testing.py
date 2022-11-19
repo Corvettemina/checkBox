@@ -5,10 +5,12 @@ paths = "/root/Dropbox/PowerPoints/doxologies/stmarkdoxologies.pptx"
 #tempPath = ('/').join(newPath[:(len(newPath)-1)])
 
 # print(tempPath)
+dictionary = {'standardPsalm150': 6, 'Psalm150': 7, 'Fraction to the Father for Advent and the Nativity': 3}
 
+print(len(dictionary.keys()))
 test = [1,2,3,4,5]
 i = 0
-print(len(test[i:i+3]))
+print((test[-3]))
 
 '''
 for path, subdirs, files in os.walk("/root/Dropbox/PowerPoints/"):

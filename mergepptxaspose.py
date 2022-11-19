@@ -80,6 +80,7 @@ def merge(finishedList):
         path = "/root/Dropbox/"
 
     presentaionsArray = []
+    finishedList.append("PowerPoints/communion.pptx")
 
     count = 0
     for i in range(0, len(finishedList), 10):
@@ -123,13 +124,13 @@ def merge(finishedList):
         count += 1
         if x == 11:
             break
-
+    '''
     presentation = PresentationToMerge()
     presentation.path = "communion.pptx"
     presentation.source = "Storage"
 
     presentaionsArray.append(presentation)
-
+    '''
     request = OrderedMergeRequest()
     request.presentations = presentaionsArray
     response = slides_api.merge_and_save_online(
@@ -164,13 +165,17 @@ def mergeCommunion(finishedList):
             try:
                 with open(path + k, "rb") as file_stream:
                     files.append(file_stream.read())
-                    pptxLengths[str(k.split("/")[-1].k(".")[0])] = (len(Presentation(path + k).slides))
+                    #print(str(k.split("/")[-1].split(".")[0]))
+                    if(k!= finishedList[0] and k != finishedList[-1] and k != finishedList[-2] and k != finishedList[-3] and k != finishedList[-4]):
+                        pptxLengths[str(k.split("/")[-1].split(".")[0])] = (len(Presentation(path + k).slides))
             except:
                 #print("here", getfile_insensitive(path+i))
                 try:
                     with open(getfile_insensitive(path + k), "rb") as file_stream:
                         files.append(file_stream.read())
-                        pptxLengths[str(k.split("/")[-1].k(".")[0])] = (len(Presentation(getfile_insensitive(path + k)).slides))
+                        #print(str(k.split("/")[-1].split(".")[0]))
+                        if(k!= finishedList[0] and k != finishedList[-1] and k != finishedList[-2] and k != finishedList[-3] and k != finishedList[-4]):
+                            pptxLengths[str(k.split("/")[-1].split(".")[0])] = (len(Presentation(getfile_insensitive(path + k)).slides))
                 except:
                     pass
 
@@ -185,9 +190,10 @@ def mergeCommunion(finishedList):
     shutil.copyfile(temp_path, result_path)
 
     print('creating menu slide')
-
-    from makeCommunionpptx import makePPT
-    makePPT(result_path, pptxLengths)
+    
+    if(len(pptxLengths.keys()) > 0):
+        from makeCommunionpptx import makePPT
+        makePPT(result_path, pptxLengths)
 
     print('complete')
 
