@@ -108,14 +108,14 @@ def merge(finishedList):
                             atMenu = True
                 except:
                     pass
-            print("Before Communion" ,  totalBeforeCommunion)
+            #print("Before Communion" ,  totalBeforeCommunion)
             index+=1
         print("uploading....")
 
-        #slides_api = SlidesApi(
-            #None, "2d3b1ec8-738b-4467-915f-af02913aa7fa", "1047551018f0feaacf4296fa054d7d97")
-        #slides_api.merge_and_save_online(
-            #str(count) + ".pptx", files, None, "internal")
+        slides_api = SlidesApi(
+            None, "2d3b1ec8-738b-4467-915f-af02913aa7fa", "1047551018f0feaacf4296fa054d7d97")
+        slides_api.merge_and_save_online(
+            str(count) + ".pptx", files, None, "internal")
 
         presentation = PresentationToMerge()
         presentation.path = str(count) + ".pptx"
@@ -138,19 +138,19 @@ def merge(finishedList):
     '''
     request = OrderedMergeRequest()
     request.presentations = presentaionsArray
-    #response = slides_api.merge_and_save_online(
-        #"MyPresentation.pptx", None,  request, "internal")
+    response = slides_api.merge_and_save_online(
+        "MyPresentation.pptx", None,  request, "internal")
 
     result_path = path + "PowerPoints/result1.pptx"
-    #temp_path = slides_api.download_file("MyPresentation.pptx", "internal")
-    #shutil.copyfile(temp_path, result_path)
+    temp_path = slides_api.download_file("MyPresentation.pptx", "internal")
+    shutil.copyfile(temp_path, result_path)
 
     print(pptxLengths)
 
     if(len(pptxLengths.keys()) > 0):
         print("HEREEEEE")
         from makeCommunionpptx import makePPT
-        #makePPT(result_path, pptxLengths, totalBeforeCommunion)
+        makePPT(result_path, pptxLengths, totalBeforeCommunion)
 
     print('complete')
 
