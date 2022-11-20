@@ -97,10 +97,10 @@ def merge(finishedList):
                     
             except:
                 try:
-                    print("not found")
                     with open(getfile_insensitive(path + k), "rb") as file_stream:
                         files.append(file_stream.read())
                         if(finishedList.index(k,index) > finishedList.index("PowerPoints/BackBone/communionMenuTemplate.pptx") and finishedList.index(k,index) < finishedList.index("PowerPoints/BackBone/finalConclusion1.pptx")):
+                            print("HERE")
                             pptxLengths[str(k.split("/")[-1].split(".")[0])] = (len(Presentation(getfile_insensitive(path + k)).slides))
 
                         if(finishedList.index(k,index) < finishedList.index("PowerPoints/BackBone/communionMenuTemplate.pptx") and atMenu == False):
