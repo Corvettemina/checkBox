@@ -97,6 +97,7 @@ def merge(finishedList):
                     
             except:
                 try:
+                    print("not found")
                     with open(getfile_insensitive(path + k), "rb") as file_stream:
                         files.append(file_stream.read())
                         if(finishedList.index(k,index) > finishedList.index("PowerPoints/BackBone/communionMenuTemplate.pptx") and finishedList.index(k,index) < finishedList.index("PowerPoints/BackBone/finalConclusion1.pptx")):
@@ -112,10 +113,10 @@ def merge(finishedList):
             index+=1
         print("uploading....")
 
-        slides_api = SlidesApi(
-            None, "2d3b1ec8-738b-4467-915f-af02913aa7fa", "1047551018f0feaacf4296fa054d7d97")
-        slides_api.merge_and_save_online(
-            str(count) + ".pptx", files, None, "internal")
+        #slides_api = SlidesApi(
+            #None, "2d3b1ec8-738b-4467-915f-af02913aa7fa", "1047551018f0feaacf4296fa054d7d97")
+        #slides_api.merge_and_save_online(
+            #str(count) + ".pptx", files, None, "internal")
 
         presentation = PresentationToMerge()
         presentation.path = str(count) + ".pptx"
@@ -138,19 +139,19 @@ def merge(finishedList):
     '''
     request = OrderedMergeRequest()
     request.presentations = presentaionsArray
-    response = slides_api.merge_and_save_online(
-        "MyPresentation.pptx", None,  request, "internal")
+    #response = slides_api.merge_and_save_online(
+        #"MyPresentation.pptx", None,  request, "internal")
 
     result_path = path + "PowerPoints/result1.pptx"
-    temp_path = slides_api.download_file("MyPresentation.pptx", "internal")
-    shutil.copyfile(temp_path, result_path)
+    #temp_path = slides_api.download_file("MyPresentation.pptx", "internal")
+    #shutil.copyfile(temp_path, result_path)
 
     print(pptxLengths)
 
     if(len(pptxLengths.keys()) > 0):
         print("HEREEEEE")
         from makeCommunionpptx import makePPT
-        makePPT(result_path, pptxLengths, totalBeforeCommunion)
+        #makePPT(result_path, pptxLengths, totalBeforeCommunion)
 
     print('complete')
 
