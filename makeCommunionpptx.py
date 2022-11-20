@@ -7,12 +7,13 @@ from pptx.util import Inches, Pt
 from pptx.enum.text import PP_ALIGN
 
 
-def makePPT(result_path, indexes):
+def makePPT(result_path, indexes, beforeCommunion):
     #readings = getReadingsDictionary(year, month, day)
-
+    print(indexes)
     prs = Presentation(result_path)
-    slide = prs.slides[0]
-    currentIndex = 1
+    beforeCommunion
+    slide = prs.slides[beforeCommunion]
+    currentIndex = beforeCommunion + 1 
     verticalPostion = .48
     horizonatlPosition = .48 
     for i in indexes.keys():
@@ -46,10 +47,10 @@ def makePPT(result_path, indexes):
 
         verticalPostion = verticalPostion + 1
         currentIndex = currentIndex + indexes[i]
-        #print(currentIndex)
+        print("current index" ,currentIndex)
         #print(verticalPostion)
 
-    for i in range(int(currentIndex)):
+    for i in range(beforeCommunion, int(currentIndex)):
         slide = prs.slides[i]
         text = "Menu"
         menu = slide.shapes.add_textbox(
@@ -62,7 +63,7 @@ def makePPT(result_path, indexes):
         menu.fill.solid()
         menu.fill.fore_color.rgb = RGBColor(255, 255, 255)
         click_action = menu.click_action
-        click_action.target_slide = prs.slides[0]
+        click_action.target_slide = prs.slides[beforeCommunion]
         click_action.action
         line = menu.line
         line.color.rgb = RGBColor(79, 129, 189)
@@ -103,6 +104,6 @@ def makePPT(result_path, indexes):
 
     #import os
     #s.startfile("communion2.pptx")
-#dictionary = {'standardPsalm150': 6, 'Psalm150': 7, 'Fraction to the Father for Advent and the Nativity': 3}
-#path = "C:/Users/Mina Hanna/Dropbox/PowerPoints/communion.pptx"
-#makePPT(path, dictionary)
+#dictionary = {'standardPsalm150': 6, 'Fraction to the Father for Advent and the Nativity': 3}
+#path = "C:/Users/Mina Hanna/Dropbox/PowerPoints/result1.pptx"
+#makePPT(path, dictionary, 457)

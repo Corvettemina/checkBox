@@ -65,9 +65,12 @@ def merge(finishedList):
         path = "/root/Dropbox/"
 
     presentaionsArray = []
-    finishedList.append("PowerPoints/communion.pptx")
-
+    #finishedList.append("PowerPoints/communion.pptx")
+    pptxLengths = {}
+    totalBeforeCommunion = 0
     count = 0
+    atMenu = False
+    index = 0
     for i in range(0, len(finishedList), 10):
         files = []
         filesToremove = []
@@ -82,14 +85,31 @@ def merge(finishedList):
             try:
                 with open(path + k, "rb") as file_stream:
                     files.append(file_stream.read())
+                    if(finishedList.index(k,index) > finishedList.index("PowerPoints/BackBone/communionMenuTemplate.pptx") and finishedList.index(k,index) < finishedList.index("PowerPoints/BackBone/finalConclusion1.pptx")):
+                        pptxLengths[str(k.split("/")[-1].split(".")[0])] = (len(Presentation(path + k).slides))
+
+                    if(finishedList.index(k,index) < finishedList.index("PowerPoints/BackBone/communionMenuTemplate.pptx") and atMenu == False):
+                        totalBeforeCommunion = totalBeforeCommunion + (len(Presentation(path + k).slides))
+                    if(k == "PowerPoints/BackBone/communionMenuTemplate.pptx"):
+                        atMenu = True
+                        #totalBeforeCommunion = totalBeforeCommunion - 1
+
+                    
             except:
-                #print("here", getfile_insensitive(path+i))
                 try:
                     with open(getfile_insensitive(path + k), "rb") as file_stream:
                         files.append(file_stream.read())
+                        if(finishedList.index(k,index) > finishedList.index("PowerPoints/BackBone/communionMenuTemplate.pptx") and finishedList.index(k,index) < finishedList.index("PowerPoints/BackBone/finalConclusion1.pptx")):
+                            pptxLengths[str(k.split("/")[-1].split(".")[0])] = (len(Presentation(getfile_insensitive(path + k)).slides))
+
+                        if(finishedList.index(k,index) < finishedList.index("PowerPoints/BackBone/communionMenuTemplate.pptx") and atMenu == False):
+                            totalBeforeCommunion = totalBeforeCommunion + (len(getfile_insensitive(path + k)).slides)
+                        if(k == "PowerPoints/BackBone/communionMenuTemplate.pptx"):
+                            atMenu = True
                 except:
                     pass
-
+            print("Before Communion" ,  totalBeforeCommunion)
+            index+=1
         print("uploading....")
 
         slides_api = SlidesApi(
@@ -125,8 +145,12 @@ def merge(finishedList):
     temp_path = slides_api.download_file("MyPresentation.pptx", "internal")
     shutil.copyfile(temp_path, result_path)
 
+    print(pptxLengths)
 
-    
+    if(len(pptxLengths.keys()) > 0):
+        print("HEREEEEE")
+        from makeCommunionpptx import makePPT
+        makePPT(result_path, pptxLengths, totalBeforeCommunion)
 
     print('complete')
 
@@ -154,7 +178,7 @@ def mergeCommunion(finishedList):
                 with open(path + k, "rb") as file_stream:
                     files.append(file_stream.read())
                     #print(str(k.split("/")[-1].split(".")[0]))
-                    if(k!= finishedList[0] and k != finishedList[-1] and k != finishedList[-2] and k != finishedList[-3] and k != finishedList[-4]):
+                    if(finishedList.index(k) > finishedList.index("PowerPoints/BackBone/communionMenuTemplate.pptx") and finishedList.index(k) < finishedList.index("PowerPoints/BackBone/finalConclusion1.pptx")):
                         pptxLengths[str(k.split("/")[-1].split(".")[0])] = (len(Presentation(path + k).slides))
             except:
                 #print("here", getfile_insensitive(path+i))
