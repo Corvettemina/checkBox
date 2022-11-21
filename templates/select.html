@@ -388,13 +388,30 @@
           <br></br>
         </div>
         <p class="titles2">Communion Hymns</p>
+        
         <p class="titles">Seasonal Communion Hymns</p>
-        {% for item in spapi.dictionary["communionHymns"] %}
         <div class="zone">
-          <input class="fields" type="checkbox" name="communionHymns"
-            value="{{item}}" />{{item.split("/")[-1].split(".")[0].upper()}}<br />
+          <div class="container">
+            {% for item in spapi.dictionary["communionHymns"] %}
+            <div class="zone">
+              <input class="fields" type="checkbox" name="communionHymns"
+                value="{{item}}" />{{item.split("/")[-1].split(".")[0].upper()}}<br />
+            </div>
+            {% endfor %}
+          </div>
         </div>
-        {% endfor %}
+
+        <p class="titles">All Communion Hymns Index</p>
+        <div class="zone">
+          <div class="container">
+            {% for item in spapi.dictionary["AllCommunionHymns"] %}
+            <div class="zone">
+              <input class="fields" type="checkbox" name="AllCommunionHymns"
+                value="{{item}}" />{{item.split("/")[-1].split(".")[0].upper()}}<br />
+            </div>
+            {% endfor %}
+          </div>
+        </div>
     
         <br></br>
         <div class="buttonDiv">
