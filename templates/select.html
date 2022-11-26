@@ -39,7 +39,7 @@
         {% for item in spapi.dictionary["seasonVespersDoxologies"] %}
         <div class="zone">
           <input class="fields" type="checkbox" name="seasonalDoxoVespers"
-            value="{{item}}" />{{item.split("/")[-1].split(".")[0]}}<br />
+            value="{{item}}" />{{item.split("/")[-1].split(".pptx")[0]}}<br />
         </div>
         {% endfor %}
         <br></br>
@@ -50,7 +50,7 @@
             <div class="zone">
 
               <input class="fields" type="checkbox" name="optionalDoxoVespers"
-                value="{{item}}" />{{item.split("/")[-1].split(".")[0]}}<br />
+                value="{{item}}" />{{item.split("/")[-1].split(".pptx")[0]}}<br />
 
             </div>
             {% endfor %}
@@ -73,7 +73,7 @@
         {% for item in spapi.dictionary["seasonmatinsDoxologies"] %}
         <div class="zone">
           <input class="fields" type="checkbox" name="seasonalDoxoMatins"
-            value="{{item}}" />{{item.split("/")[-1].split(".")[0]}}<br />
+            value="{{item}}" />{{item.split("/")[-1].split(".pptx")[0]}}<br />
         </div>
         {% endfor %}
         <br></br>
@@ -83,7 +83,7 @@
             {% for item in spapi.dictionary["matinsoptionalDoxogies"] %}
             <div class="zone">
               <input class="fields" type="checkbox" name="optionalDoxoMatins"
-                value="{{item}}" />{{item.split("/")[-1].split(".")[0]}}<br />
+                value="{{item}}" />{{item.split("/")[-1].split(".pptx")[0]}}<br />
             </div>
             {% endfor %}
           </div>
