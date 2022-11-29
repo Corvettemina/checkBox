@@ -40,7 +40,7 @@ class Springapi:
         response = requests.get(
             'http://192.81.219.24:8080/greeting?date=' + str(newDate))
 
-        answer = []
+    
         y = json.loads(response.text)
 
         # print(y[0]['standardDoxologies'])

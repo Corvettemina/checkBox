@@ -7,7 +7,8 @@ from wtforms import validators, SubmitField
 from springApiTest import Springapi, copticDay
 import platform
 import subprocess
-import datetime
+import requests
+import json
 
 app = Flask(__name__)
 
@@ -33,14 +34,15 @@ def runDropbox():
 def index():
 
     runDropbox()
-    today = datetime.date.today()
-    d1 = today.strftime("%Y-%m-%d")
-    spapi = Springapi(d1)
+
+    response = requests.get('http://192.81.219.24:8080/home')
+    y = json.loads(response.text)
+
     form = InfoForm()
     if form.validate_on_submit():
         session['startdate'] = form.startdate.data
         return redirect('select')
-    return render_template('index.html', form=form, spapi=spapi)
+    return render_template('index.html', form=form, y=y)
 
 
 @app.route('/select', methods=['GET', 'POST'])
