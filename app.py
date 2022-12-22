@@ -63,6 +63,9 @@ def select():
             spapi.dictionary["vespersPrayerofThanksgiving"] = "PowerPoints/BackBone/PrayerOfThanksgivingBishopVespers.pptx"
             spapi.dictionary["vespersConclusion"] = "PowerPoints/BackBone/bishopConcludingHymn.pptx"
 
+        if ((request.form['vespersGospelLitany']) == 'yes'):
+            spapi.dictionary["vespersLitanyofTheGospel"] = "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx"
+
         if ((request.form['5short']) == 'no'):
             spapi.dictionary["vespers5ShortLitanies"] = ""
 
@@ -71,14 +74,21 @@ def select():
         spapi.dictionary["matinsoptionalDoxogies"] = request.form.getlist(
             'optionalDoxoMatins')
 
-        spapi.dictionary["thirdHourPsalms"] = request.form["3rdHourPsalm"]
 
-        spapi.dictionary["sixthHourPsalms"] = request.form['6thHourPsalm']
+        if ((request.form['matinsGospelLitany']) == 'yes'):
+            spapi.dictionary["matinsLitanyofTheGospel"] = "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx"
 
         if ((request.form['5shortMatins']) == 'no'):
             spapi.dictionary["matins5ShortLitanies"] = ""
 
+        spapi.dictionary["thirdHourPsalms"] = request.form["3rdHourPsalm"]
+
+        spapi.dictionary["sixthHourPsalms"] = request.form['6thHourPsalm']
+
         spapi.dictionary["paralexHymns"] = request.form.getlist("paralexHymns")
+
+        if ((request.form['liturgyGospelLitany']) == 'yes'):
+            spapi.dictionary["LiturgylitanyoftheGospel"] = "PowerPoints/BackBone/litanyofthegospel.pptx"
 
         if ((request.form['Liturgy3GreatLitanies']) == 'no'):
             spapi.dictionary["Liturgy3GreatLitanies"] = ""
