@@ -9,8 +9,11 @@ import platform
 import subprocess
 import requests
 import json
+from datetime import datetime
+from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
+bootstrap = Bootstrap(app)
 
 app.config['SECRET_KEY'] = '#$%^&*'
 
@@ -47,8 +50,12 @@ def index():
 
 @app.route('/select', methods=['GET', 'POST'])
 def select():
-    print('session', session['startdate'])
+    print('Session', session['startdate'])
     spapi = Springapi(session['startdate'])
+
+    start_date_str = session['startdate']
+    start_date = datetime.strptime(start_date_str, "%a, %d %b %Y %H:%M:%S %Z")
+    start_date = start_date.strftime("%A, %b %d, %Y")
 
     if request.method == 'POST':
 
@@ -143,9 +150,14 @@ def select():
 
         # return str(request.form.getlist('seasonalDoxo'))
 
-    return render_template('select.html', spapi=spapi)
+    return render_template('select.html', spapi=spapi, start_date=start_date)
+
+@app.route('/test', methods=['GET', 'POST'])
+def test():
+
+    return render_template('test.html')
 
 
 if __name__ == "__main__":
-    # app.run(debug=True)
+    #app.run(debug=True)
     app.run(host='0.0.0.0')
