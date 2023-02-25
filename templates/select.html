@@ -6,10 +6,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="{{ url_for('static', filename='js/toggle.js') }}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
   <title>St. Mark ATL PowerPoint Creator</title>
 
 </head>
 
+{% block content %}
 <body>
   <div id="wrapper">
     <div class="center">
@@ -22,39 +30,47 @@
       <br></br>
       <form method="POST" action="/select">
 
-        <p class="titles2">VESPERS</p>
+      <p class="titles2">VESPERS</p>
         <p class="titles">Bishop Present?</p>
-        <div class="fields" id="donate">
-          <p>
-            <label class="yellow"><input class="fields" type="radio" name="bishopVespers"
-                value="yes"></input><span>Yes</span></label>
-            <label class="yellow"><input class="fields" type="radio" name="bishopVespers" value="no"
-                checked></input><span>No</span></label>
-          </p>
-        </div>
-        <br></br>
 
+        {{ form.csrf_token }}
+        <div class="form-group">
+          <div class="custom-control custom-switch btn-lg">
+            {{ form.toggle(class="custom-control-input", id="toggle") }}
+            <input type="hidden" name="toggle" id="toggle-input" value="{{ form.toggle.data }}">
+            <label class="custom-control-label" for="toggle" id="toggle-label">No</label>
+          </div>
+        </div>
 
         <p class="titles">Seasonal Vespers Doxologies</p>
         {% for item in spapi.dictionary["seasonVespersDoxologies"] %}
         <div class="zone">
-          <input class="fields" type="checkbox" name="seasonalDoxoVespers"
-            value="{{item}}" />{{item.split("/")[-1].split(".pptx")[0]}}<br />
+          <label class="form-check-label">
+            <input class="form-check-input fields" type="checkbox" name="seasonalDoxoVespers" value="{{item}}">
+            {{item.split("/")[-1].split(".pptx")[0]}}
+          </label>
+            <br />
         </div>
         {% endfor %}
         <br></br>
         <p class="titles">Optional Vespers Doxologies</p>
         <div class="zone">
-          <div class="container">
-            {% for item in spapi.dictionary["vespersoptionalDoxogies"] %}
-            <div class="zone">
-
-              <input class="fields" type="checkbox" name="optionalDoxoVespers"
-                value="{{item}}" />{{item.split("/")[-1].split(".pptx")[0]}}<br />
-
-            </div>
-            {% endfor %}
+          <div class="form-group">
+            <input type="text" class="form-control" id="searchInput" placeholder="Search...">
           </div>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Doxologies
+            </button>
+            <div class="dropdown-menu" style="max-height: 200px; overflow-y: auto;" aria-labelledby="dropdownMenuButton">
+              {% for item in spapi.dictionary["vespersoptionalDoxogies"] %}
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="optionalDoxoVespers" value="{{item}}" id="{{item}}">
+                <label class="form-check-label" for="{{item}}">{{item.split("/")[-1].split(".pptx")[0]}}</label>
+              </div>
+              {% endfor %}
+            </div>
+          </div>   
         </div>
 
         <br></br>
@@ -99,6 +115,7 @@
             {% endfor %}
           </div>
         </div>
+        
         <br></br>
 
         <br></br>
@@ -179,7 +196,7 @@
           </p>
         </div>
         <br></br>
-        
+
         <p class="titles">3 Long Litanies</p>
         <div class="fields" id="donate">
           <p>
@@ -448,7 +465,7 @@
             {% endfor %}
           </div>
         </div>
-    
+
         <br></br>
         <div class="buttonDiv">
           <input type="submit" />
@@ -457,6 +474,7 @@
       </form>
     </div>
 </body>
+{% endblock %}
 </div>
 
 </html>

@@ -3,7 +3,7 @@ from flask import Flask, redirect, url_for, render_template, session, request
 from flask_wtf import FlaskForm
 from wtforms.fields import DateField
 from wtforms.validators import DataRequired
-from wtforms import validators, SubmitField
+from wtforms import validators, SubmitField, RadioField
 from springApiTest import Springapi, copticDay
 import platform
 import subprocess
@@ -11,14 +11,18 @@ import requests
 import json
 from datetime import datetime
 from flask_bootstrap import Bootstrap
+from wtforms import BooleanField
+from wtforms.widgets import CheckboxInput
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 
 app.config['SECRET_KEY'] = '#$%^&*'
-
+ 
 
 class InfoForm(FlaskForm):
+    toggle = BooleanField('Toggle')
+
     startdate = DateField('Select Day For PowerPoint', format='%Y-%m-%d')
     submit = SubmitField('Submit')
 
@@ -50,6 +54,7 @@ def index():
 
 @app.route('/select', methods=['GET', 'POST'])
 def select():
+    form = InfoForm()
     print('Session', session['startdate'])
     spapi = Springapi(session['startdate'])
 
@@ -58,18 +63,21 @@ def select():
     start_date = start_date.strftime("%A, %b %d, %Y")
 
     if request.method == 'POST':
+        print(form.toggle.data)
+
+        print(request.form['toggle'])
 
         spapi.dictionary["seasonVespersDoxologies"] = request.form.getlist(
             'seasonalDoxoVespers')
         spapi.dictionary["vespersoptionalDoxogies"] = request.form.getlist(
             'optionalDoxoVespers')
-
+        '''
         if ((request.form['bishopVespers']) == 'yes'):
             spapi.dictionary["vespersoptionalDoxogies"].append(
                 "PowerPoints/BackBone/BishopDoxology.pptx")
             spapi.dictionary["vespersPrayerofThanksgiving"] = "PowerPoints/BackBone/PrayerOfThanksgivingBishopVespers.pptx"
             spapi.dictionary["vespersConclusion"] = "PowerPoints/BackBone/bishopConcludingHymn.pptx"
-
+        '''
         if ((request.form['vespersGospelLitany']) == 'yes'):
             spapi.dictionary["vespersLitanyofTheGospel"] = "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx"
 
@@ -144,13 +152,13 @@ def select():
 
         import mergepptxaspose
         temp = mergepptxaspose.makeIntoList(spapi.dictionary)
-        mergepptxaspose.merge(temp)
+        #mergepptxaspose.merge(temp)
 
         runDropbox()
 
         # return str(request.form.getlist('seasonalDoxo'))
 
-    return render_template('select.html', spapi=spapi, start_date=start_date)
+    return render_template('select.html', spapi=spapi, start_date=start_date, form=form)
 
 @app.route('/test', methods=['GET', 'POST'])
 def test():
@@ -159,5 +167,5 @@ def test():
 
 
 if __name__ == "__main__":
-    #app.run(debug=True)
-    app.run(host='0.0.0.0')
+    app.run(debug=True)
+    #app.run(host='0.0.0.0')
