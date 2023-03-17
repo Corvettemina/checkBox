@@ -13,6 +13,7 @@ from datetime import datetime
 from flask_bootstrap import Bootstrap
 from wtforms import BooleanField
 from wtforms.widgets import CheckboxInput
+from threading import Thread
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
@@ -26,6 +27,10 @@ class InfoForm(FlaskForm):
     startdate = DateField('Select Day For PowerPoint', format='%Y-%m-%d')
     submit = SubmitField('Submit')
 
+
+def merge(temp):
+    import mergepptxaspose
+    mergepptxaspose.merge(temp)
 
 def runDropbox():
     if (("Linux" in platform.platform())):
@@ -152,20 +157,24 @@ def select():
 
         import mergepptxaspose
         temp = mergepptxaspose.makeIntoList(spapi.dictionary)
+
+        t = Thread(target=merge, args=(temp,))
+        t.start()
         #mergepptxaspose.merge(temp)
 
         runDropbox()
+        return redirect('finalScreen')
 
         # return str(request.form.getlist('seasonalDoxo'))
 
     return render_template('select.html', spapi=spapi, start_date=start_date, form=form)
 
-@app.route('/test', methods=['GET', 'POST'])
+@app.route('/finalScreen', methods=['GET', 'POST'])
 def test():
 
-    return render_template('test.html')
+    return render_template('finalScreen.html')
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
-    #app.run(host='0.0.0.0')
+    #app.run(debug=True)
+    app.run(host='0.0.0.0')
