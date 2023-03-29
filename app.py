@@ -1,5 +1,5 @@
 import string
-from flask import Flask, redirect, url_for, render_template, session, request
+from flask import Flask, redirect, url_for, render_template, session, request, jsonify
 from flask_wtf import FlaskForm
 from wtforms.fields import DateField
 from wtforms.validators import DataRequired
@@ -174,6 +174,17 @@ def test():
 
     return render_template('finalScreen.html')
 
+
+@app.route('/myroute', methods=['POST'])
+def myroute():
+    data = request.get_json()  # Get the JSON data from the request
+    # Do something with the data...
+    print(data)
+    result = {'status': 'success'}
+    return jsonify(result)
+
+if __name__ == '__main__':
+    app.run()
 
 if __name__ == "__main__":
     #app.run(debug=True)
