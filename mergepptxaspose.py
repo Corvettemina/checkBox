@@ -11,7 +11,7 @@ from pptx import Presentation
 
 
 def getfile_insensitive(paths):
-    for path, subdirs, files in os.walk("/root/Dropbox/PowerPoints/"):
+    for path, subdirs, files in os.walk("/root/Dropbox/"):
         for name in files:
             #print(os.path.join(path, name).lower())
             if (os.path.join(path, name).lower() == paths.lower()):
