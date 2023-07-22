@@ -60,7 +60,7 @@ def merge(finishedList):
 
     platform.platform()
     if ("Windows" in platform.platform()):
-        path = "C:/Users/Mina Hanna/DropBox/"
+        path = "C:/Users/minah/DropBox/"
     if (("Linux" in platform.platform())):
         path = "/root/Dropbox/"
 
@@ -159,7 +159,7 @@ def mergeCommunion(finishedList):
     
     platform.platform()
     if ("Windows" in platform.platform()):
-        path = "C:/Users/Mina Hanna/DropBox/"
+        path = "C:/Users/minah/DropBox/"
     if (("Linux" in platform.platform())):
         path = "/root/Dropbox/"
 

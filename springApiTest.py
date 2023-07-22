@@ -37,6 +37,9 @@ class Springapi:
         except:
             newDate = d1
 
+        postResponse = requests.post('http://192.81.219.24:8080/date?date=' + str(newDate))
+        print(postResponse.text)
+        
         response = requests.get(
             'http://192.81.219.24:8080/greeting?date=' + str(newDate))
 

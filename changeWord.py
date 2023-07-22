@@ -8,7 +8,7 @@ import platform
 def insertChange(input_pptx, replaceString):
 
     if ("Windows" in platform.platform()):
-        path = "C:/Users/Mina Hanna/DropBox/"
+        path = "C:/Users/minah/DropBox/"
     if (("Linux" in platform.platform())):
         path = "/root/Dropbox/"
 
