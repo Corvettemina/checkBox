@@ -20,7 +20,8 @@ class Springapi:
     sunday = ""
     dictionary = {}
 
-    def __init__(self, date=d1):
+    def __init__(self, path):
+        '''
         today = datetime.date.today()
         d1 = today.strftime("%Y-%m-%d")
         self.date = date
@@ -36,23 +37,25 @@ class Springapi:
                 str(month_number) + '-' + str(datearr[1])
         except:
             newDate = d1
+        '''
 
-        postResponse = requests.post('http://192.81.219.24:8080/date?date=' + str(newDate))
-        print(postResponse.text)
-        
         response = requests.get(
-            'http://192.81.219.24:8080/greeting?date=' + str(newDate))
-
+                'http://192.81.219.24:8080/' + path)
+            
+        #print(response.text)
     
+        
         y = json.loads(response.text)
-
+        
         # print(y[0]['standardDoxologies'])
-        self.copticDay = (y[0]['date'])
-        self.sunday = (y[1]['Sunday'])
-        self.season = (y[1]['Season'])
-        self.occasion = (y[1]['Ocassion'])
+        print(y[0]['copticDate'])
+        self.copticDay = (y[0]['copticDate'])
+        self.sunday = (y[0]['sunday'])
+        self.season = (y[0]['season'])
+        self.occasion = (y[0]['ocassion'])
+        
         self.dictionary = y[1]
-
+        
     def getfile_insensitive(self):
         if ("Windows" in platform.platform()):
             path = "C:/Users/Mina Hanna/DropBox/"

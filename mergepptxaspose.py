@@ -19,25 +19,38 @@ def getfile_insensitive(paths):
 
 
 def makeIntoList(y):
+    try:
+        y["anaphora"] = changeWord.insertChange(y["anaphora"], y["verb"])
+    except:
+        pass
+    try:
+        if ("Annual" in y["matinsVerseofTheCymbals"]):
+            y["matinsVerseofTheCymbals"] = changeWord.insertChange(
+                y["matinsVerseofTheCymbals"], y["verb"])
+    except:
+        pass
+    
+    try:
+        if ("Annual" in y["vespersVerseofTheCymbals"]):
+            y["vespersVerseofTheCymbals"] = changeWord.insertChange(
+                y["vespersVerseofTheCymbals"], y["verb"])
+    except:
+        pass
 
-    y["anaphora"] = changeWord.insertChange(y["anaphora"], y["verb"])
-    if ("Annual" in y["matinsVerseofTheCymbals"]):
-        y["matinsVerseofTheCymbals"] = changeWord.insertChange(
-            y["matinsVerseofTheCymbals"], y["verb"])
+    try:
+        if ("Annual" in y["praxis"]):
+            y["praxis"] = changeWord.insertChange(y["praxis"], y["verb"])
 
-    if ("Annual" in y["vespersVerseofTheCymbals"]):
-        y["vespersVerseofTheCymbals"] = changeWord.insertChange(
-            y["vespersVerseofTheCymbals"], y["verb"])
-
-    if ("Annual" in y["praxis"]):
-        y["praxis"] = changeWord.insertChange(y["praxis"], y["verb"])
-
-    if ("Annual" in y["hymnofIntercessions"]):
-        y["hymnofIntercessions"] = changeWord.insertChange(
-            y["hymnofIntercessions"], y["verb"])
-
-    y["gospels"] = changeWord.insertChange(y["gospels"], y["verb"])
-
+        if ("Annual" in y["hymnofIntercessions"]):
+            y["hymnofIntercessions"] = changeWord.insertChange(
+                y["hymnofIntercessions"], y["verb"])
+    except:
+        pass
+    
+    try:
+        y["gospels"] = changeWord.insertChange(y["gospels"], y["verb"])
+    except:
+        pass
     answer = []
     for i in y:
         if (i != "Ocassion" and i != "Season" and i != "Sunday" and i != "verb"):

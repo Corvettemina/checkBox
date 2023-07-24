@@ -1,4 +1,4 @@
-import string
+
 from flask import Flask, redirect, url_for, render_template, session, request, jsonify
 from flask_wtf import FlaskForm
 from wtforms.fields import DateField
@@ -14,11 +14,13 @@ from flask_bootstrap import Bootstrap
 from wtforms import BooleanField
 from wtforms.widgets import CheckboxInput
 from threading import Thread
+import mergepptxaspose
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 
 app.config['SECRET_KEY'] = '#$%^&*'
+app.config['GLOBAL_LIST'] = []
  
 
 class InfoForm(FlaskForm):
@@ -53,9 +55,50 @@ def index():
     form = InfoForm()
     if form.validate_on_submit():
         session['startdate'] = form.startdate.data
-        return redirect('select')
+        print(session['startdate'])
+
+        postResponse = requests.post('http://192.81.219.24:8080/date?date=' + str(session['startdate']))
+        print(postResponse.text)
+        return redirect('vespers')
     return render_template('index.html', form=form, y=y)
 
+
+@app.route('/vespers', methods=['GET', 'POST'])
+def vespers():
+    form = InfoForm()
+    print('Session', session['startdate'])
+    spapi = Springapi("vespers")
+    
+    start_date_str = session['startdate']
+    start_date = datetime.strptime(start_date_str, "%a, %d %b %Y %H:%M:%S %Z")
+    start_date = start_date.strftime("%A, %b %d, %Y")
+
+    if request.method == 'POST':
+        print(form.toggle.data)
+
+        print(request.form['toggle'])
+
+        spapi.dictionary["seasonVespersDoxologies"] = request.form.getlist(
+            'seasonalDoxoVespers')
+        spapi.dictionary["vespersoptionalDoxogies"] = request.form.getlist(
+            'optionalDoxoVespers')
+        '''
+        if ((request.form['bishopVespers']) == 'yes'):
+            spapi.dictionary["vespersoptionalDoxogies"].append(
+                "PowerPoints/BackBone/BishopDoxology.pptx")
+            spapi.dictionary["vespersPrayerofThanksgiving"] = "PowerPoints/BackBone/PrayerOfThanksgivingBishopVespers.pptx"
+            spapi.dictionary["vespersConclusion"] = "PowerPoints/BackBone/bishopConcludingHymn.pptx"
+        '''
+        if ((request.form['vespersGospelLitany']) == 'yes'):
+            spapi.dictionary["vespersLitanyofTheGospel"] = "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx"
+
+        if ((request.form['5short']) == 'no'):
+            spapi.dictionary["vespers5ShortLitanies"] = ""
+        
+        my_global_list = app.config['GLOBAL_LIST']
+        my_global_list += mergepptxaspose.makeIntoList(spapi.dictionary)
+        #print(my_global_list)
+    return render_template('vespers.html', spapi=spapi, start_date=start_date, form=form)
 
 @app.route('/select', methods=['GET', 'POST'])
 def select():
