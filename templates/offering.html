@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/templates.css') }}" />
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="{{ url_for('static', filename='js/toggle.js') }}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <title>St. Mark ATL PowerPoint Creator</title>
+
+</head>
+
+{% block content %}
+<body>
+  <div id="wrapper">
+    <div class="center">
+      <a href="/" class="btn btn-primary">HOME</a>
+      <p class="titles">Selected Date is: {{start_date}}</p>
+      <p class="titles">Selected Coptic Date is: {{spapi.copticDay}}</p>
+      <p class="titles">Selected Coptic Sunday is: {{spapi.sunday}}</p>
+      <p class="titles">Selected Coptic Season is: {{spapi.season}}</p>
+      <p class="titles">Selected Coptic Occasion is: {{spapi.occasion}}</p>
+      <br></br>
+      <form method="POST" action="/offering">
+
+        <p class="titles2">OFFERING OF THE LAMB</p>
+        <p class="titles">3rd Hour Psalm</p>
+
+        <div class="psalms">
+          <div class="psalms">
+            <select name="3rdHourPsalm" id="">
+              {% for item in spapi.dictionary["thirdHourPsalms"] %}
+              <option class="fields" value="{{item}}">{{item.split("/")[-1].split(".")[0]}}</option>
+              <br />
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <br>
+
+        <p class="titles">6th Hour Psalm</p>
+        <div class="psalms">
+          <div class="psalms">
+            <select name="6thHourPsalm" id="">
+              {% for item in spapi.dictionary["sixthHourPsalms"] %}
+              <option class="fields" value="{{item}}">{{item.split("/")[-1].split(".")[0]}}</option>
+              <br />
+              {% endfor %}
+            </select>
+            <br></br>
+          </div>
+        </div>      
+        <br></br>
+        <div class="buttonDiv">
+          <input type="submit" />
+        </div>
+        <br></br>
+      </form>
+    </div>
+</body>
+{% endblock %}
+</div>
+
+</html>

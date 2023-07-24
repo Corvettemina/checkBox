@@ -98,7 +98,65 @@ def vespers():
         my_global_list = app.config['GLOBAL_LIST']
         my_global_list += mergepptxaspose.makeIntoList(spapi.dictionary)
         #print(my_global_list)
+        return redirect('matins')
     return render_template('vespers.html', spapi=spapi, start_date=start_date, form=form)
+
+@app.route('/matins', methods=['GET', 'POST'])
+def matins():
+    form = InfoForm()
+    print('Session', session['startdate'])
+    spapi = Springapi("matins")
+    
+    start_date_str = session['startdate']
+    start_date = datetime.strptime(start_date_str, "%a, %d %b %Y %H:%M:%S %Z")
+    start_date = start_date.strftime("%A, %b %d, %Y")
+
+    if request.method == 'POST':
+        print(form.toggle.data)
+
+        print(request.form['toggle'])
+        spapi.dictionary["seasonmatinsDoxologies"] = request.form.getlist(
+            'seasonalDoxoMatins')
+        #spapi.dictionary["matinsoptionalDoxogies"] = request.form.getlist(
+            #'optionalDoxoMatins')
+
+
+        if ((request.form['matinsGospelLitany']) == 'yes'):
+            spapi.dictionary["matinsLitanyofTheGospel"] = "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx"
+
+        if ((request.form['5shortMatins']) == 'no'):
+            spapi.dictionary["matins5ShortLitanies"] = ""
+     
+        my_global_list = app.config['GLOBAL_LIST']
+        my_global_list += mergepptxaspose.makeIntoList(spapi.dictionary)
+        #print(my_global_list)
+        return redirect('offering')
+    
+    return render_template('matins.html', spapi=spapi, start_date=start_date, form=form)
+'''
+@app.route('/offering', methods=['GET', 'POST'])
+def offering():
+    form = InfoForm()
+    print('Session', session['startdate'])
+    spapi = Springapi("offering")
+    
+    start_date_str = session['startdate']
+    start_date = datetime.strptime(start_date_str, "%a, %d %b %Y %H:%M:%S %Z")
+    start_date = start_date.strftime("%A, %b %d, %Y")
+
+    if request.method == 'POST':
+        print(form.toggle.data)
+
+        print(request.form['toggle'])
+        spapi.dictionary["thirdHourPsalms"] = request.form["3rdHourPsalm"]
+
+        spapi.dictionary["sixthHourPsalms"] = request.form['6thHourPsalm']
+        
+        my_global_list = app.config['GLOBAL_LIST']
+        my_global_list += mergepptxaspose.makeIntoList(spapi.dictionary)
+        #print(my_global_list)
+    return render_template('offering.html', spapi=spapi, start_date=start_date, form=form)
+'''
 
 @app.route('/select', methods=['GET', 'POST'])
 def select():

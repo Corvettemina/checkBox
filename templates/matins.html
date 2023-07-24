@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/templates.css') }}" />
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="{{ url_for('static', filename='js/toggle.js') }}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <title>St. Mark ATL PowerPoint Creator</title>
+
+</head>
+
+{% block content %}
+<body>
+  <div id="wrapper">
+    <div class="center">
+      <a href="/" class="btn btn-primary">HOME</a>
+      <p class="titles">Selected Date is: {{start_date}}</p>
+      <p class="titles">Selected Coptic Date is: {{spapi.copticDay}}</p>
+      <p class="titles">Selected Coptic Sunday is: {{spapi.sunday}}</p>
+      <p class="titles">Selected Coptic Season is: {{spapi.season}}</p>
+      <p class="titles">Selected Coptic Occasion is: {{spapi.occasion}}</p>
+      <br></br>
+      <form method="POST" action="/matins">
+
+        <br></br>
+        <p class="titles2">MATINS</p>
+        <p class="titles">Seasonal Matins Doxologies</p>
+        {% for item in spapi.dictionary["seasonmatinsDoxologies"] %}
+        <div class="zone">
+          <input class="fields" type="checkbox" name="seasonalDoxoMatins"
+            value="{{item}}" />{{item.split("/")[-1].split(".pptx")[0]}}<br />
+        </div>
+        {% endfor %}
+        <br></br>
+        {#
+        <!--
+        <p class="titles">Optional Matins Doxologies</p>
+        <div class="zone">
+          <div class="container">
+            {% for item in spapi.dictionary["matinsoptionalDoxogies"] %}
+            <div class="zone">
+              <input class="fields" type="checkbox" name="optionalDoxoMatins"
+                value="{{item}}" />{{item.split("/")[-1].split(".pptx")[0]}}<br />
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        
+        <br></br>
+        -->
+        ...#}
+        <br></br>
+        <p class="titles">Matins Gospel Litany</p>
+        <div class="fields" id="donate">
+          <p>
+            <label class="yellow"><input class="fields" type="radio" name="matinsGospelLitany"
+                value="yes"></input><span>Alternate</span></label>
+            <label class="yellow"><input class="fields" type="radio" name="matinsGospelLitany" value="no"
+                checked></input><span>Standard</span></label>
+          </p>
+        </div>
+        <br></br>
+
+        <p class="titles">5 Short Litanies for Matins</p>
+        <div class="fields" id="donate">
+          <p>
+            <label class="yellow"><input class="fields" type="radio" name="5shortMatins"
+                value="yes"></input><span>Yes</span></label>
+            <label class="yellow"><input class="fields" type="radio" name="5shortMatins" value="no"
+                checked></input><span>No</span></label>
+          </p>
+        </div>
+        <br></br>
+        
+        <br></br>
+        <div class="buttonDiv">
+          <input type="submit" value="Next"/>
+        </div>
+        <br></br>
+      </form>
+    </div>
+</body>
+{% endblock %}
+</div>
+
+</html>
