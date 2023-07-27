@@ -3,6 +3,7 @@ from flask import Flask, redirect, url_for, render_template, session, request, j
 from flask_wtf import FlaskForm
 from wtforms.fields import DateField
 from wtforms.validators import DataRequired
+from flask_cors import CORS
 from wtforms import validators, SubmitField, RadioField
 from springApiTest import Springapi, copticDay
 import platform
@@ -17,6 +18,7 @@ from threading import Thread
 import mergepptxaspose
 
 app = Flask(__name__)
+CORS(app)
 bootstrap = Bootstrap(app)
 
 app.config['SECRET_KEY'] = '#$%^&*'
@@ -133,30 +135,33 @@ def matins():
         return redirect('offering')
     
     return render_template('matins.html', spapi=spapi, start_date=start_date, form=form)
-'''
+
 @app.route('/offering', methods=['GET', 'POST'])
 def offering():
-    form = InfoForm()
-    print('Session', session['startdate'])
+    #form = InfoForm()
+    #print('Session', session['startdate'])
     spapi = Springapi("offering")
-    
+    '''
     start_date_str = session['startdate']
     start_date = datetime.strptime(start_date_str, "%a, %d %b %Y %H:%M:%S %Z")
     start_date = start_date.strftime("%A, %b %d, %Y")
-
+    '''
     if request.method == 'POST':
-        print(form.toggle.data)
+        data = request.get_json()  # Get the JSON data from the request
+        # Do something with the data...
+        print(data)
+        spapi.dictionary["thirdHourPsalms"] = data["thirdHourPsalm"]
 
-        print(request.form['toggle'])
-        spapi.dictionary["thirdHourPsalms"] = request.form["3rdHourPsalm"]
-
-        spapi.dictionary["sixthHourPsalms"] = request.form['6thHourPsalm']
+        spapi.dictionary["sixthHourPsalms"] = data['sixthHourPsalm']
         
         my_global_list = app.config['GLOBAL_LIST']
         my_global_list += mergepptxaspose.makeIntoList(spapi.dictionary)
-        #print(my_global_list)
-    return render_template('offering.html', spapi=spapi, start_date=start_date, form=form)
-'''
+        print(my_global_list)
+        result = {'status': 'Offering Updated'}
+    
+    return jsonify(result)
+    #return render_template('offering.html', spapi=spapi)
+
 
 @app.route('/select', methods=['GET', 'POST'])
 def select():
@@ -285,5 +290,5 @@ def myroute():
     return jsonify(result)
 
 if __name__ == "__main__":
-    #app.run(debug=True)
-    app.run(host='0.0.0.0')
+    app.run(debug=True)
+    #app.run(host='0.0.0.0')
