@@ -140,7 +140,7 @@ def matins():
 def offering():
     #form = InfoForm()
     #print('Session', session['startdate'])
-    spapi = Springapi("offering")
+    #spapi = Springapi("offering")
     '''
     start_date_str = session['startdate']
     start_date = datetime.strptime(start_date_str, "%a, %d %b %Y %H:%M:%S %Z")
@@ -150,12 +150,12 @@ def offering():
         data = request.get_json()  # Get the JSON data from the request
         # Do something with the data...
         print(data)
-        spapi.dictionary["thirdHourPsalms"] = data["thirdHourPsalm"]
+        #spapi.dictionary["thirdHourPsalms"] = data["thirdHourPsalm"]
 
-        spapi.dictionary["sixthHourPsalms"] = data['sixthHourPsalm']
+        #spapi.dictionary["sixthHourPsalms"] = data['sixthHourPsalm']
         
         my_global_list = app.config['GLOBAL_LIST']
-        my_global_list += mergepptxaspose.makeIntoList(spapi.dictionary)
+        my_global_list += mergepptxaspose.makeIntoList(data)
         print(my_global_list)
         result = {'status': 'Offering Updated'}
     
