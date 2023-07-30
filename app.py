@@ -67,55 +67,38 @@ def index():
 
 @app.route('/vespers', methods=['GET', 'POST'])
 def vespers():
+    app.config['GLOBAL_LIST'] = []
     form = InfoForm()
-    print('Session', session['startdate'])
-    spapi = Springapi("vespers")
-    
-    start_date_str = session['startdate']
-    start_date = datetime.strptime(start_date_str, "%a, %d %b %Y %H:%M:%S %Z")
-    start_date = start_date.strftime("%A, %b %d, %Y")
+    #print('Session', session['startdate'])
+    #spapi = Springapi("matins")
 
     if request.method == 'POST':
-        print(form.toggle.data)
+        data = request.get_json()  # Get the JSON data from the request
+        # Do something with the data...
+        print(data)
+        data["seasonVespersDoxologies"] = data["seasonVespersDoxologies"][0]
 
-        print(request.form['toggle'])
-
-        spapi.dictionary["seasonVespersDoxologies"] = request.form.getlist(
-            'seasonalDoxoVespers')
-        spapi.dictionary["vespersoptionalDoxogies"] = request.form.getlist(
-            'optionalDoxoVespers')
-        '''
-        if ((request.form['bishopVespers']) == 'yes'):
-            spapi.dictionary["vespersoptionalDoxogies"].append(
-                "PowerPoints/BackBone/BishopDoxology.pptx")
-            spapi.dictionary["vespersPrayerofThanksgiving"] = "PowerPoints/BackBone/PrayerOfThanksgivingBishopVespers.pptx"
-            spapi.dictionary["vespersConclusion"] = "PowerPoints/BackBone/bishopConcludingHymn.pptx"
-        '''
-        if ((request.form['vespersGospelLitany']) == 'yes'):
-            spapi.dictionary["vespersLitanyofTheGospel"] = "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx"
-
-        if ((request.form['5short']) == 'no'):
-            spapi.dictionary["vespers5ShortLitanies"] = ""
-        
         my_global_list = app.config['GLOBAL_LIST']
-        my_global_list += mergepptxaspose.makeIntoList(spapi.dictionary)
-        #print(my_global_list)
-        return redirect('matins')
+        my_global_list += mergepptxaspose.makeIntoList(data)
+        for i in my_global_list:
+            print(i)
+        result = {'status': 'Vespers Updated'}
+    
+    return jsonify(result)
     return render_template('vespers.html', spapi=spapi, start_date=start_date, form=form)
 
 @app.route('/matins', methods=['GET', 'POST'])
 def matins():
     form = InfoForm()
-    print('Session', session['startdate'])
-    spapi = Springapi("matins")
-    
-    start_date_str = session['startdate']
-    start_date = datetime.strptime(start_date_str, "%a, %d %b %Y %H:%M:%S %Z")
-    start_date = start_date.strftime("%A, %b %d, %Y")
+    #print('Session', session['startdate'])
+    #spapi = Springapi("matins")
 
     if request.method == 'POST':
-        print(form.toggle.data)
-
+        data = request.get_json()  # Get the JSON data from the request
+        # Do something with the data...
+        print(data)
+        data["seasonmatinsDoxologies"] = data["seasonmatinsDoxologies"][0]
+        '''
         print(request.form['toggle'])
         spapi.dictionary["seasonmatinsDoxologies"] = request.form.getlist(
             'seasonalDoxoMatins')
@@ -128,11 +111,14 @@ def matins():
 
         if ((request.form['5shortMatins']) == 'no'):
             spapi.dictionary["matins5ShortLitanies"] = ""
-     
+        '''
         my_global_list = app.config['GLOBAL_LIST']
-        my_global_list += mergepptxaspose.makeIntoList(spapi.dictionary)
-        #print(my_global_list)
-        return redirect('offering')
+        my_global_list += mergepptxaspose.makeIntoList(data)
+        for i in my_global_list:
+            print(i)
+        result = {'status': 'Matins Updated'}
+    
+    return jsonify(result)
     
     return render_template('matins.html', spapi=spapi, start_date=start_date, form=form)
 
