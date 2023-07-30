@@ -77,6 +77,7 @@ def vespers():
         # Do something with the data...
         print(data)
         data["seasonVespersDoxologies"] = data["seasonVespersDoxologies"][0]
+        
 
         my_global_list = app.config['GLOBAL_LIST']
         my_global_list += mergepptxaspose.makeIntoList(data)
@@ -98,20 +99,20 @@ def matins():
         # Do something with the data...
         print(data)
         data["seasonmatinsDoxologies"] = data["seasonmatinsDoxologies"][0]
-        '''
-        print(request.form['toggle'])
-        spapi.dictionary["seasonmatinsDoxologies"] = request.form.getlist(
-            'seasonalDoxoMatins')
-        #spapi.dictionary["matinsoptionalDoxogies"] = request.form.getlist(
-            #'optionalDoxoMatins')
 
 
-        if ((request.form['matinsGospelLitany']) == 'yes'):
-            spapi.dictionary["matinsLitanyofTheGospel"] = "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx"
 
-        if ((request.form['5shortMatins']) == 'no'):
-            spapi.dictionary["matins5ShortLitanies"] = ""
-        '''
+        if ((data['matinsLitanyofTheGospel']) == 'Alternate'):
+            data['matinsLitanyofTheGospel'] = "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx"
+        else:
+            data['matinsLitanyofTheGospel'] = "PowerPoints/BackBone/litanyofthegospel.pptx"
+
+        if ((data['matins5ShortLitanies']) == 'No'):
+            data['matins5ShortLitanies'] = ""
+        else:
+            data['matins5ShortLitanies'] = "PowerPoints/BackBone/5ShortLitanies.pptx"
+
+
         my_global_list = app.config['GLOBAL_LIST']
         my_global_list += mergepptxaspose.makeIntoList(data)
         for i in my_global_list:
