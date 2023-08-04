@@ -22,7 +22,7 @@ CORS(app)
 bootstrap = Bootstrap(app)
 
 app.config['SECRET_KEY'] = '#$%^&*'
-app.config['GLOBAL_LIST'] = []
+app.config['GLOBAL_LIST'] = {}
  
 
 class InfoForm(FlaskForm):
@@ -67,7 +67,7 @@ def index():
 
 @app.route('/vespers', methods=['GET', 'POST'])
 def vespers():
-    app.config['GLOBAL_LIST'] = []
+    app.config['GLOBAL_LIST'] = {}
     form = InfoForm()
     #print('Session', session['startdate'])
     #spapi = Springapi("matins")
@@ -75,14 +75,27 @@ def vespers():
     if request.method == 'POST':
         data = request.get_json()  # Get the JSON data from the request
         # Do something with the data...
-        print(data)
-        data["seasonVespersDoxologies"] = data["seasonVespersDoxologies"][0]
         
+        data["seasonVespersDoxologies"] = data["seasonVespersDoxologies"][0]
+
+        if ((data['vespersLitanyofTheGospel']) == 'Alternate'):
+                data['vespersLitanyofTheGospel'] = "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx"
+        else:
+            data['vespersLitanyofTheGospel'] = "PowerPoints/BackBone/litanyofthegospel.pptx"
+
+        if ((data['vespers5ShortLitanies']) == 'No'):
+            data['vespers5ShortLitanies'] = ""
+        else:
+            data['vespers5ShortLitanies'] = "PowerPoints/BackBone/5ShortLitanies.pptx"
 
         my_global_list = app.config['GLOBAL_LIST']
-        my_global_list += mergepptxaspose.makeIntoList(data)
-        for i in my_global_list:
-            print(i)
+        
+        #my_global_list += mergepptxaspose.makeIntoList(data)
+        
+        my_global_list["vespers"] = data
+
+        #print(my_global_list)
+
         result = {'status': 'Vespers Updated'}
     
     return jsonify(result)
@@ -97,10 +110,8 @@ def matins():
     if request.method == 'POST':
         data = request.get_json()  # Get the JSON data from the request
         # Do something with the data...
-        print(data)
+        
         data["seasonmatinsDoxologies"] = data["seasonmatinsDoxologies"][0]
-
-
 
         if ((data['matinsLitanyofTheGospel']) == 'Alternate'):
             data['matinsLitanyofTheGospel'] = "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx"
@@ -114,9 +125,11 @@ def matins():
 
 
         my_global_list = app.config['GLOBAL_LIST']
-        my_global_list += mergepptxaspose.makeIntoList(data)
-        for i in my_global_list:
-            print(i)
+
+        my_global_list["matins"] = data
+
+        #my_global_list += mergepptxaspose.makeIntoList(data)
+
         result = {'status': 'Matins Updated'}
     
     return jsonify(result)
@@ -125,30 +138,50 @@ def matins():
 
 @app.route('/offering', methods=['GET', 'POST'])
 def offering():
-    #form = InfoForm()
-    #print('Session', session['startdate'])
-    #spapi = Springapi("offering")
-    '''
-    start_date_str = session['startdate']
-    start_date = datetime.strptime(start_date_str, "%a, %d %b %Y %H:%M:%S %Z")
-    start_date = start_date.strftime("%A, %b %d, %Y")
-    '''
     if request.method == 'POST':
         data = request.get_json()  # Get the JSON data from the request
         # Do something with the data...
-        print(data)
-        #spapi.dictionary["thirdHourPsalms"] = data["thirdHourPsalm"]
-
-        #spapi.dictionary["sixthHourPsalms"] = data['sixthHourPsalm']
         
+        
+
         my_global_list = app.config['GLOBAL_LIST']
-        my_global_list += mergepptxaspose.makeIntoList(data)
-        print(my_global_list)
+        my_global_list["offering"] = data
+
+        #print(my_global_list)
         result = {'status': 'Offering Updated'}
     
     return jsonify(result)
     #return render_template('offering.html', spapi=spapi)
 
+@app.route('/liturgyOfWord', methods=['GET', 'POST'])
+def liturgyOfWord():
+    form = InfoForm()
+    #print('Session', session['startdate'])
+    #spapi = Springapi("matins")
+
+    if request.method == 'POST':
+        data = request.get_json()  # Get the JSON data from the request
+        # Do something with the data...
+        #print(data)
+        data["paralexHymns"] = data["paralexHymns"][0]
+       
+        if ((data['LiturgylitanyoftheGospel']) == 'Alternate'):
+            data['LiturgylitanyoftheGospel'] = "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx"
+        else:
+            data['LiturgylitanyoftheGospel'] = "PowerPoints/BackBone/litanyofthegospel.pptx"
+
+
+        my_global_list = app.config['GLOBAL_LIST']
+        
+        my_global_list["liturgyOfWord"] = data
+
+        #my_global_list += mergepptxaspose.makeIntoList(data)
+        for i in my_global_list:
+            for k in my_global_list[i]:
+                print(k , my_global_list[i][k])
+        result = {'status': 'Liturgy of the Word Updated'}
+    
+    return jsonify(result)
 
 @app.route('/select', methods=['GET', 'POST'])
 def select():
