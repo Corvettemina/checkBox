@@ -15,6 +15,8 @@ from flask_bootstrap import Bootstrap
 from wtforms import BooleanField
 from wtforms.widgets import CheckboxInput
 from threading import Thread
+import json
+import uuid
 import mergepptxaspose
 
 app = Flask(__name__)
@@ -175,13 +177,44 @@ def liturgyOfWord():
         
         my_global_list["liturgyOfWord"] = data
 
-        #my_global_list += mergepptxaspose.makeIntoList(data)
-        for i in my_global_list:
-            for k in my_global_list[i]:
-                print(k , my_global_list[i][k])
+        #my_global_list += mergepptxaspose.makeIntoList(data
+
+
+        try:
+            filename = "data.json"
+
+        # Step 2: Create a dictionary
+            with open(filename, "r") as json_file:
+                # Step 3: Load the JSON data into a Python dictionary
+                data = json.load(json_file)
+        except:
+            data = {}
+
+        # Step 4: Now you can access the data as a dictionary
+        print(data)
+        key = str(uuid.uuid4().int)[:8]
+        data[key] = my_global_list
+
+        data[key]["date"] = convert_date_format(("-").join(my_global_list["liturgyOfWord"]["LiturgyGospel"].split("/")[3].split("-")[1:]))
+        # Step 3: Open the .json file in write mode
+       
+        
+        with open(filename, "w") as json_file:
+            # Step 4: Write the dictionary data to the .json file
+            json.dump( data , json_file)
+
         result = {'status': 'Liturgy of the Word Updated'}
     
     return jsonify(result)
+
+def convert_date_format(date_str):
+    # Parse the input date string into a datetime object
+    dt = datetime.strptime(date_str, '%Y-%b-%d')
+
+    # Convert the datetime object back to a string with the desired format
+    new_date_str = dt.strftime('%Y-%m-%d')
+
+    return new_date_str
 
 @app.route('/select', methods=['GET', 'POST'])
 def select():
