@@ -1,5 +1,5 @@
 
-from flask import Flask, redirect, url_for, render_template, session, request, jsonify
+from flask import Flask, redirect, url_for, render_template, session, request, jsonify, Response
 from flask_wtf import FlaskForm
 from wtforms.fields import DateField
 from wtforms.validators import DataRequired
@@ -15,6 +15,7 @@ from flask_bootstrap import Bootstrap
 from wtforms import BooleanField
 from wtforms.widgets import CheckboxInput
 from threading import Thread
+from collections import OrderedDict
 import json
 import uuid
 import mergepptxaspose
@@ -73,7 +74,28 @@ def vespers():
     form = InfoForm()
     #print('Session', session['startdate'])
     #spapi = Springapi("matins")
+    if request.method =='GET':
+        try:
+            filename = "data.json"
+            with open(filename, "r") as json_file:
+                data = json.load(json_file)
+        except:
+            result = {'status': "Empty Database"}
+            return jsonify(result)
 
+        date = request.args.get('date')
+        try:
+            data[date]
+        except:
+            result = {'status': "No PPT For this date"}
+            return jsonify(result)
+        
+        dataTosend = data[date]["vespers"]
+        response_data = json.dumps(dataTosend, ensure_ascii=False, indent=4)
+        response = Response(response_data, content_type='application/json')
+        
+        return response
+    
     if request.method == 'POST':
         data = request.get_json()  # Get the JSON data from the request
         # Do something with the data...
@@ -108,7 +130,29 @@ def matins():
     form = InfoForm()
     #print('Session', session['startdate'])
     #spapi = Springapi("matins")
+    if request.method =='GET':
+    
+        try:
+            filename = "data.json"
+            with open(filename, "r") as json_file:
+                data = json.load(json_file)
+        except:
+            result = {'status': "Empty Database"}
+            return jsonify(result)
 
+        date = request.args.get('date')
+        try:
+            data[date]
+        except:
+            result = {'status': "No PPT For this date"}
+            return jsonify(result)
+        
+        dataTosend = data[date]["matins"]
+        response_data = json.dumps(dataTosend, ensure_ascii=False, indent=4)
+        response = Response(response_data, content_type='application/json')
+        
+        return response
+    
     if request.method == 'POST':
         data = request.get_json()  # Get the JSON data from the request
         # Do something with the data...
@@ -140,11 +184,33 @@ def matins():
 
 @app.route('/offering', methods=['GET', 'POST'])
 def offering():
+
+    if request.method =='GET':
+
+        try:
+            filename = "data.json"
+            with open(filename, "r") as json_file:
+                data = json.load(json_file)
+        except:
+            result = {'status': "Empty Database"}
+            return jsonify(result)
+
+        date = request.args.get('date')
+        try:
+            data[date]
+        except:
+            result = {'status': "No PPT For this date"}
+            return jsonify(result)
+        
+        dataTosend = data[date]["offering"]
+        response_data = json.dumps(dataTosend, ensure_ascii=False, indent=4)
+        response = Response(response_data, content_type='application/json')
+        
+        return response
+
     if request.method == 'POST':
         data = request.get_json()  # Get the JSON data from the request
         # Do something with the data...
-        
-        
 
         my_global_list = app.config['GLOBAL_LIST']
         my_global_list["offering"] = data
@@ -160,7 +226,29 @@ def liturgyOfWord():
     form = InfoForm()
     #print('Session', session['startdate'])
     #spapi = Springapi("matins")
+    if request.method =='GET':
 
+        try:
+            filename = "data.json"
+            with open(filename, "r") as json_file:
+                data = json.load(json_file)
+        except:
+            result = {'status': "Empty Database"}
+            return jsonify(result)
+
+        date = request.args.get('date')
+        try:
+            data[date]
+        except:
+            result = {'status': "No PPT For this date"}
+            return jsonify(result)
+        
+        dataTosend = data[date]["liturgyOfWord"]
+        response_data = json.dumps(dataTosend, ensure_ascii=False, indent=4)
+        response = Response(response_data, content_type='application/json')
+        
+        return response
+    
     if request.method == 'POST':
         data = request.get_json()  # Get the JSON data from the request
         # Do something with the data...
@@ -192,10 +280,8 @@ def liturgyOfWord():
 
         # Step 4: Now you can access the data as a dictionary
         print(data)
-        key = str(uuid.uuid4().int)[:8]
-        data[key] = my_global_list
 
-        data[key]["date"] = convert_date_format(("-").join(my_global_list["liturgyOfWord"]["LiturgyGospel"].split("/")[3].split("-")[1:]))
+        data[convert_date_format(("-").join(my_global_list["liturgyOfWord"]["LiturgyGospel"].split("/")[3].split("-")[1:]))] = my_global_list
         # Step 3: Open the .json file in write mode
        
         
