@@ -270,15 +270,11 @@ def liturgyOfWord():
 
         try:
             filename = "data.json"
-
-        # Step 2: Create a dictionary
             with open(filename, "r") as json_file:
-                # Step 3: Load the JSON data into a Python dictionary
                 data = json.load(json_file)
         except:
             data = {}
 
-        # Step 4: Now you can access the data as a dictionary
         print(data)
 
         data[convert_date_format(("-").join(my_global_list["liturgyOfWord"]["LiturgyGospel"].split("/")[3].split("-")[1:]))] = my_global_list
