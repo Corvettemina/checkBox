@@ -64,7 +64,7 @@ def index():
 
         postResponse = requests.post('http://192.81.219.24:8080/date?date=' + str(session['startdate']))
         print(postResponse.text)
-        return redirect('vespers')
+        return redirect('select')
     return render_template('index.html', form=form, y=y)
 
 
