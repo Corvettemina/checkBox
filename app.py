@@ -306,7 +306,7 @@ def convert_date_format(date_str):
 def select():
     form = InfoForm()
     print('Session', session['startdate'])
-    spapi = Springapi(session['startdate'])
+    spapi = Springapi( session['startdate'])
 
     start_date_str = session['startdate']
     start_date = datetime.strptime(start_date_str, "%a, %d %b %Y %H:%M:%S %Z")
@@ -429,5 +429,5 @@ def myroute():
     return jsonify(result)
 
 if __name__ == "__main__":
-    #app.run(debug=True)
-    app.run(host='0.0.0.0')
+    app.run(debug=True)
+    #app.run(host='0.0.0.0')

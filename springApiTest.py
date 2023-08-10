@@ -21,10 +21,10 @@ class Springapi:
     dictionary = {}
 
     def __init__(self, path):
-        '''
+        
         today = datetime.date.today()
         d1 = today.strftime("%Y-%m-%d")
-        self.date = date
+        self.date = path
         try:
             datearr = self.date.split(" ")
 
@@ -37,23 +37,24 @@ class Springapi:
                 str(month_number) + '-' + str(datearr[1])
         except:
             newDate = d1
-        '''
-
+        
+        print(path)
         response = requests.get(
-                'http://192.81.219.24:8080/' + path)
+                'http://192.81.219.24:8080/greeting/?date=' + newDate)
             
-        #print(response.text)
+        print(response.text)
     
         
         y = json.loads(response.text)
         
         # print(y[0]['standardDoxologies'])
-        print(y[0]['copticDate'])
+        
+        '''
         self.copticDay = (y[0]['copticDate'])
         self.sunday = (y[0]['sunday'])
         self.season = (y[0]['season'])
         self.occasion = (y[0]['ocassion'])
-        
+        '''
         self.dictionary = y[1]
         
     def getfile_insensitive(self):
