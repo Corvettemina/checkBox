@@ -99,19 +99,20 @@ def vespers():
     if request.method == 'POST':
         data = request.get_json()  # Get the JSON data from the request
         # Do something with the data...
-        
-        data["seasonVespersDoxologies"] = data["seasonVespersDoxologies"][0]
+        print(data)
+        data["seasonVespersDoxologies"] = data["seasonVespersDoxologies"]
 
-        if ((data['vespersLitanyofTheGospel']) == 'Alternate'):
+        '''
+        if ((data['vespersLitanyofTheGospel']) == 'alternate'):
                 data['vespersLitanyofTheGospel'] = "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx"
         else:
             data['vespersLitanyofTheGospel'] = "PowerPoints/BackBone/litanyofthegospel.pptx"
 
-        if ((data['vespers5ShortLitanies']) == 'No'):
+        if ((data['vespers5ShortLitanies']) == 'no'):
             data['vespers5ShortLitanies'] = ""
         else:
             data['vespers5ShortLitanies'] = "PowerPoints/BackBone/5ShortLitanies.pptx"
-
+        '''
         my_global_list = app.config['GLOBAL_LIST']
         
         #my_global_list += mergepptxaspose.makeIntoList(data)
@@ -119,6 +120,22 @@ def vespers():
         my_global_list["vespers"] = data
 
         #print(my_global_list)
+        try:
+            filename = "data.json"
+            with open(filename, "r") as json_file:
+                data = json.load(json_file)
+        except:
+            data = {}
+
+        #print(data)
+
+        data[convert_date_format(("-").join(my_global_list["vespers"]["vespersGospel"].split("/")[3].split("-")[1:]))] = my_global_list
+        # Step 3: Open the .json file in write mode
+       
+        
+        with open(filename, "w") as json_file:
+            # Step 4: Write the dictionary data to the .json file
+            json.dump( data , json_file)
 
         result = {'status': 'Vespers Updated'}
     
@@ -159,12 +176,12 @@ def matins():
         
         data["seasonmatinsDoxologies"] = data["seasonmatinsDoxologies"][0]
 
-        if ((data['matinsLitanyofTheGospel']) == 'Alternate'):
+        if ((data['matinsLitanyofTheGospel']) == 'alternate'):
             data['matinsLitanyofTheGospel'] = "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx"
         else:
             data['matinsLitanyofTheGospel'] = "PowerPoints/BackBone/litanyofthegospel.pptx"
 
-        if ((data['matins5ShortLitanies']) == 'No'):
+        if ((data['matins5ShortLitanies']) == 'no'):
             data['matins5ShortLitanies'] = ""
         else:
             data['matins5ShortLitanies'] = "PowerPoints/BackBone/5ShortLitanies.pptx"
