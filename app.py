@@ -97,10 +97,10 @@ def vespers():
         return response
     
     if request.method == 'POST':
-        data = request.get_json()  # Get the JSON data from the request
+        dataPosted = request.get_json()  # Get the JSON data from the request
         # Do something with the data...
-        print(data)
-        data["seasonVespersDoxologies"] = data["seasonVespersDoxologies"]
+        print(dataPosted)
+        #dataPosted["seasonVespersDoxologies"] = dataPosted["seasonVespersDoxologies"]
 
         '''
         if ((data['vespersLitanyofTheGospel']) == 'alternate'):
@@ -117,7 +117,7 @@ def vespers():
         
         #my_global_list += mergepptxaspose.makeIntoList(data)
         
-        my_global_list["vespers"] = data
+        my_global_list["vespers"] = dataPosted
 
         #print(my_global_list)
         try:
@@ -129,10 +129,7 @@ def vespers():
 
         #print(data)
 
-        data[convert_date_format(("-").join(my_global_list["vespers"]["vespersGospel"].split("/")[3].split("-")[1:]))] = my_global_list
-        # Step 3: Open the .json file in write mode
-       
-        
+        data[request.args.get('date')] = dataPosted        
         with open(filename, "w") as json_file:
             # Step 4: Write the dictionary data to the .json file
             json.dump( data , json_file)
@@ -171,11 +168,11 @@ def matins():
         return response
     
     if request.method == 'POST':
-        data = request.get_json()  # Get the JSON data from the request
+        dataPosted = request.get_json()  # Get the JSON data from the request
         # Do something with the data...
         
-        data["seasonmatinsDoxologies"] = data["seasonmatinsDoxologies"][0]
-
+        #data["seasonmatinsDoxologies"] = data["seasonmatinsDoxologies"][0]
+        '''
         if ((data['matinsLitanyofTheGospel']) == 'alternate'):
             data['matinsLitanyofTheGospel'] = "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx"
         else:
@@ -185,13 +182,25 @@ def matins():
             data['matins5ShortLitanies'] = ""
         else:
             data['matins5ShortLitanies'] = "PowerPoints/BackBone/5ShortLitanies.pptx"
-
+        '''
 
         my_global_list = app.config['GLOBAL_LIST']
 
-        my_global_list["matins"] = data
+        my_global_list["matins"] = dataPosted
 
-        #my_global_list += mergepptxaspose.makeIntoList(data)
+        try:
+            filename = "data.json"
+            with open(filename, "r") as json_file:
+                data = json.load(json_file)
+        except:
+            data = {}
+
+        #print(data)
+
+        data[request.args.get('date')]['matins'] =  dataPosted      
+        with open(filename, "w") as json_file:
+            # Step 4: Write the dictionary data to the .json file
+            json.dump( data , json_file)
 
         result = {'status': 'Matins Updated'}
     
@@ -226,11 +235,26 @@ def offering():
         return response
 
     if request.method == 'POST':
-        data = request.get_json()  # Get the JSON data from the request
+        dataPosted = request.get_json()  # Get the JSON data from the request
         # Do something with the data...
 
         my_global_list = app.config['GLOBAL_LIST']
-        my_global_list["offering"] = data
+        my_global_list["offering"] = dataPosted
+
+
+        try:
+            filename = "data.json"
+            with open(filename, "r") as json_file:
+                data = json.load(json_file)
+        except:
+            data = {}
+
+        #print(data)
+
+        data[request.args.get('date')]['offering'] =  dataPosted      
+        with open(filename, "w") as json_file:
+            # Step 4: Write the dictionary data to the .json file
+            json.dump( data , json_file)
 
         #print(my_global_list)
         result = {'status': 'Offering Updated'}
@@ -267,16 +291,17 @@ def liturgyOfWord():
         return response
     
     if request.method == 'POST':
-        data = request.get_json()  # Get the JSON data from the request
+        dataPosted = request.get_json()  # Get the JSON data from the request
         # Do something with the data...
         #print(data)
-        data["paralexHymns"] = data["paralexHymns"][0]
+        #data["paralexHymns"] = data["paralexHymns"][0]
        
+        '''
         if ((data['LiturgylitanyoftheGospel']) == 'Alternate'):
             data['LiturgylitanyoftheGospel'] = "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx"
         else:
             data['LiturgylitanyoftheGospel'] = "PowerPoints/BackBone/litanyofthegospel.pptx"
-
+        '''
 
         my_global_list = app.config['GLOBAL_LIST']
         
@@ -292,12 +317,9 @@ def liturgyOfWord():
         except:
             data = {}
 
-        print(data)
+        #print(data)
 
-        data[convert_date_format(("-").join(my_global_list["liturgyOfWord"]["LiturgyGospel"].split("/")[3].split("-")[1:]))] = my_global_list
-        # Step 3: Open the .json file in write mode
-       
-        
+        data[request.args.get('date')]['liturgyOfWord'] =  dataPosted      
         with open(filename, "w") as json_file:
             # Step 4: Write the dictionary data to the .json file
             json.dump( data , json_file)
