@@ -1,1 +1,112 @@
-{"2023-08-27": {"vespers": {"Vespers": "PowerPoints/BackBone/Vespers.pptx", "vespersPrayerofThanksgiving": "PowerPoints/BackBone/PrayerOfThanksgiving.pptx", "vespersVerseofTheCymbals": "PowerPoints/Annual/VerseOfTheCymbalsStandardVespers.pptx", "vespersLitaines": "PowerPoints/BackBone/LitanyofTheDeparted.pptx", "vesperspreDoxoPrayers": "PowerPoints/BackBone/GraciouslyAccordOLord.pptx", "vesperspreDoxoPrayersUniversal": "PowerPoints/BackBone/HolyHolyHoly-InroToDoxologies.pptx", "seasonVespersDoxologies": [], "vespersDoxolgiesConcl": "PowerPoints/BackBone/DoxolgyConclusion.pptx", "vespersintroToCreed": "PowerPoints/BackBone/IntroToTheCreed.pptx", "vesperscreed": "PowerPoints/BackBone/Creed.pptx", "vespersOGodHaveMercy": "PowerPoints/BackBone/oGodHaveMercyUponUS.pptx", "vespersLitanyofTheGospel": "standard", "VespersPsalmResponse": "", "vespersGospel": "Readings/2023/08August/26-2023-aug-27/Vespers Gospel.pptx", "vespersGospelResponse": "PowerPoints/St. Mary Fast/VespersGospelResoponse.pptx", "vespers5ShortLitanies": "yes", "vespersAbsolution": "PowerPoints/BackBone/absolutionToTheSon.pptx", "vespersConcludingHymn": "PowerPoints/BackBone/conclusionWaters.pptx", "vespersConclusion": "PowerPoints/BackBone/Conclusion.pptx"}}, "2023-08-13": {"vespers": {"Vespers": "PowerPoints/BackBone/Vespers.pptx", "vespersPrayerofThanksgiving": "PowerPoints/BackBone/PrayerOfThanksgiving.pptx", "vespersVerseofTheCymbals": "PowerPoints/Annual/VerseOfTheCymbalsStandardVespers.pptx", "vespersLitaines": "PowerPoints/BackBone/LitanyofTheDeparted.pptx", "vesperspreDoxoPrayers": "PowerPoints/BackBone/GraciouslyAccordOLord.pptx", "vesperspreDoxoPrayersUniversal": "PowerPoints/BackBone/HolyHolyHoly-InroToDoxologies.pptx", "seasonVespersDoxologies": ["powerpoints/annual/doxologies/02apostlesdoxologies.pptx"], "vespersDoxolgiesConcl": "PowerPoints/BackBone/DoxolgyConclusion.pptx", "vespersintroToCreed": "PowerPoints/BackBone/IntroToTheCreed.pptx", "vesperscreed": "PowerPoints/BackBone/Creed.pptx", "vespersOGodHaveMercy": "PowerPoints/BackBone/oGodHaveMercyUponUS.pptx", "vespersLitanyofTheGospel": "PowerPoints/BackBone/litanyofthegospel.pptx", "VespersPsalmResponse": "", "vespersGospel": "Readings/2023/08August/12-2023-aug-13/Vespers Gospel.pptx", "vespersGospelResponse": "PowerPoints/St. Mary Fast/VespersGospelResoponse.pptx", "vespers5ShortLitanies": "", "vespersAbsolution": "PowerPoints/BackBone/absolutionToTheSon.pptx", "vespersConcludingHymn": "PowerPoints/BackBone/conclusionWaters.pptx", "vespersConclusion": "PowerPoints/BackBone/Conclusion.pptx"}, "matins": {"Matins": "PowerPoints/BackBone/Matins.pptx", "matinsPrayerofThanksgiving": "PowerPoints/BackBone/PrayerOfThanksgiving.pptx", "matinsVerseofTheCymbals": "PowerPoints/Annual/VerseOfTheCymbalsStandardMatins.pptx", "matinsLitaines": "PowerPoints/BackBone/matinsLitanies.pptx", "matinspreDoxoPrayers": "PowerPoints/BackBone/LetUsPraiseWithTheAngels.pptx", "matinspreDoxoPrayersUniversal": "PowerPoints/BackBone/HolyHolyHoly-InroToDoxologies.pptx", "seasonmatinsDoxologies": [], "matinsDoxolgiesConcl": "PowerPoints/BackBone/DoxolgyConclusion.pptx", "matinsintroToCreed": "PowerPoints/BackBone/IntroToTheCreed.pptx", "matinscreed": "PowerPoints/BackBone/Creed.pptx", "matinsOGodHaveMercy": "PowerPoints/BackBone/oGodHaveMercyUponUS", "matinsLitanyofTheGospel": "PowerPoints/BackBone/litanyofthegospel.pptx", "matinsPsalmResponse": "", "matinsGospel": "Readings/2023/08August/12-2023-aug-13/Matins Gospel.pptx", "matinsGospelResponse": "PowerPoints/St. Mary Fast/matinsGospelResponse.pptx", "matins5ShortLitanies": "", "matinsAbsolution": "PowerPoints/BackBone/absolutionToTheSon.pptx", "matinsConcludingHymn": "PowerPoints/BackBone/conclusionWaters.pptx", "matinsConclusion": "PowerPoints/BackBone/Conclusion.pptx"}, "offering": {"transitionSlide": "PowerPoints/Agpeya/AnnualTransition.pptx", "ThirdHourIntro": "PowerPoints/Agpeya/Third Hour Intro.pptx", "thirdHourPsalms": ["powerpoints/agpeya/3rd hour psalms/psalm 19.pptx"], "sixthHourIntro": "PowerPoints/Agpeya/6th Hour Intro.pptx", "sixthHourPsalms": ["powerpoints/agpeya/6th hour psalms/psalm 56.pptx"], "gospels": "PowerPoints/Agpeya/Gospels.pptx", "OfferingintroCreed": "PowerPoints/BackBone/IntroToTheCreed.pptx", "OfferingCreed": "PowerPoints/BackBone/Creed.pptx", "OfferingSelection": "PowerPoints/BackBone/OfferingSelection.pptx", "OfferingAlleluia": "PowerPoints/BackBone/AlleluiaThisIsTheDay.pptx", "OfferingThanksgiving": "PowerPoints/BackBone/OfferingPrayerOfThanksgiving.pptx"}, "liturgyOfWord": {"hymnOfCenser": "PowerPoints/BackBone/thisCenser.pptx", "hymnofIntercessions": "PowerPoints/Annual/StandardHiten.pptx", "pauline": ["Readings/2023/08August/12-2023-aug-13/Pauline.pptx"], "catholic": "Readings/2023/08August/12-2023-aug-13/Catholic.pptx", "praxis": "PowerPoints/Annual/StandardPraxisResponse.pptx", "acts": "Readings/2023/08August/12-2023-aug-13/Acts.pptx", "synxar": "", "paralexHymns": [], "agios": "PowerPoints/Annual/StandardAgios.pptx", "LiturgylitanyoftheGospel": "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx", "LiturgyPsalm": "Readings/2023/08August/12-2023-aug-13/LiturgyPsalm.pptx", "LiturgyPsalmResonse": "", "LiturgyGospel": "Readings/2023/08August/12-2023-aug-13/LiturgyGospel.pptx", "transitionSlide1": "PowerPoints/Agpeya/AnnualTransition.pptx", "LiturgyGospelresponse": "PowerPoints/St. Mary Fast/LiturgyGospelResponse.pptx"}}, "2023-04-09": {"vespers": {"Vespers": "PowerPoints/BackBone/Vespers.pptx", "vespersPrayerofThanksgiving": "PowerPoints/BackBone/PrayerOfThanksgiving.pptx", "vespersVerseofTheCymbals": "PowerPoints/Annual/VerseOfTheCymbalsStandardVespers.pptx", "vespersLitaines": "PowerPoints/BackBone/LitanyofTheDeparted.pptx", "vesperspreDoxoPrayers": "PowerPoints/BackBone/GraciouslyAccordOLord.pptx", "vesperspreDoxoPrayersUniversal": "PowerPoints/BackBone/HolyHolyHoly-InroToDoxologies.pptx", "seasonVespersDoxologies": ["PowerPoints/BackBone/VespersDoxologiesStMary.pptx", "powerpoints/annual/doxologies/01heavenlydoxolgies.pptx", "powerpoints/annual/doxologies/02apostlesdoxologies.pptx", "powerpoints/annual/doxologies/03stmarkdoxologies.pptx"], "vespersDoxolgiesConcl": "PowerPoints/BackBone/DoxolgyConclusion.pptx", "vespersintroToCreed": "PowerPoints/BackBone/IntroToTheCreed.pptx", "vesperscreed": "PowerPoints/BackBone/Creed.pptx", "vespersOGodHaveMercy": "PowerPoints/BackBone/oGodHaveMercyUponUS.pptx", "vespersLitanyofTheGospel": "PowerPoints/BackBone/litanyofthegospel.pptx", "VespersPsalmResponse": "", "vespersGospel": "Readings/2023/04April/8-2023-apr-9/Vespers Gospel.pptx", "vespersGospelResponse": "PowerPoints/Annual/vespersGospelResponseStandard.pptx", "vespers5ShortLitanies": "", "vespersAbsolution": "PowerPoints/BackBone/absolutionToTheSon.pptx", "vespersConcludingHymn": "PowerPoints/BackBone/conclusionAir.pptx", "vespersConclusion": "PowerPoints/BackBone/Conclusion.pptx"}, "matins": {"Matins": "PowerPoints/BackBone/Matins.pptx", "matinsPrayerofThanksgiving": "PowerPoints/BackBone/PrayerOfThanksgiving.pptx", "matinsVerseofTheCymbals": "PowerPoints/Annual/VerseOfTheCymbalsStandardMatins.pptx", "matinsLitaines": "PowerPoints/BackBone/matinsLitanies.pptx", "matinspreDoxoPrayers": "PowerPoints/BackBone/LetUsPraiseWithTheAngels.pptx", "matinspreDoxoPrayersUniversal": "PowerPoints/BackBone/HolyHolyHoly-InroToDoxologies.pptx", "seasonmatinsDoxologies": ["PowerPoints/BackBone/MatinsVirginDoxology.pptx", "powerpoints/annual/doxologies/01heavenlydoxolgies.pptx", "powerpoints/annual/doxologies/02apostlesdoxologies.pptx", "powerpoints/annual/doxologies/03stmarkdoxologies.pptx"], "matinsDoxolgiesConcl": "PowerPoints/BackBone/DoxolgyConclusion.pptx", "matinsintroToCreed": "PowerPoints/BackBone/IntroToTheCreed.pptx", "matinscreed": "PowerPoints/BackBone/Creed.pptx", "matinsOGodHaveMercy": "PowerPoints/BackBone/oGodHaveMercyUponUS", "matinsLitanyofTheGospel": "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx", "matinsPsalmResponse": "", "matinsGospel": "Readings/2023/04April/8-2023-apr-9/Matins Gospel.pptx", "matinsGospelResponse": "PowerPoints/Annual/vespersGospelResponseStandard.pptx", "matins5ShortLitanies": "", "matinsAbsolution": "PowerPoints/BackBone/absolutionToTheSon.pptx", "matinsConcludingHymn": "PowerPoints/BackBone/conclusionAir.pptx", "matinsConclusion": "PowerPoints/BackBone/Conclusion.pptx"}, "offering": {"transitionSlide": "PowerPoints/Agpeya/AnnualTransition.pptx", "ThirdHourIntro": "PowerPoints/Agpeya/Third Hour Intro.pptx", "thirdHourPsalms": ["powerpoints/agpeya/3rd hour psalms/psalm 19.pptx"], "sixthHourIntro": "PowerPoints/Agpeya/6th Hour Intro.pptx", "sixthHourPsalms": ["powerpoints/agpeya/6th hour psalms/psalm 56.pptx"], "gospels": "PowerPoints/Agpeya/Gospels.pptx", "OfferingintroCreed": "PowerPoints/BackBone/IntroToTheCreed.pptx", "OfferingCreed": "PowerPoints/BackBone/Creed.pptx", "OfferingSelection": "PowerPoints/BackBone/OfferingSelection.pptx", "OfferingAlleluia": "PowerPoints/BackBone/AlleluiaThisIsTheDay.pptx", "OfferingThanksgiving": "PowerPoints/BackBone/OfferingPrayerOfThanksgiving.pptx"}, "liturgyOfWord": {"hymnOfCenser": "PowerPoints/BackBone/thisCenser.pptx", "hymnofIntercessions": "PowerPoints/Annual/StandardHiten.pptx", "pauline": ["Readings/2023/04April/8-2023-apr-9/Pauline.pptx"], "catholic": "Readings/2023/04April/8-2023-apr-9/Catholic.pptx", "praxis": "PowerPoints/Annual/StandardPraxisResponse.pptx", "acts": "Readings/2023/04April/8-2023-apr-9/Acts.pptx", "synxar": "", "paralexHymns": [], "agios": "PowerPoints/Annual/StandardAgios.pptx", "LiturgylitanyoftheGospel": "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx", "LiturgyPsalm": "Readings/2023/04April/8-2023-apr-9/LiturgyPsalm.pptx", "LiturgyPsalmResonse": "", "LiturgyGospel": "Readings/2023/04April/8-2023-apr-9/LiturgyGospel.pptx", "transitionSlide1": "PowerPoints/Agpeya/AnnualTransition.pptx", "LiturgyGospelresponse": "PowerPoints/Annual/LiturgyGospelResponse.pptx"}}}
+{
+    "2023-08-06": {
+        "vespers": {
+            "Vespers": "PowerPoints/BackBone/Vespers.pptx",
+            "vespersPrayerofThanksgiving": "PowerPoints/BackBone/PrayerOfThanksgiving.pptx",
+            "vespersVerseofTheCymbals": "PowerPoints/Annual/VerseOfTheCymbalsStandardVespers.pptx",
+            "vespersLitaines": "PowerPoints/BackBone/LitanyofTheDeparted.pptx",
+            "vesperspreDoxoPrayers": "PowerPoints/BackBone/GraciouslyAccordOLord.pptx",
+            "vesperspreDoxoPrayersUniversal": "PowerPoints/BackBone/HolyHolyHoly-InroToDoxologies.pptx",
+            "seasonVespersDoxologies": [
+                "PowerPoints/BackBone/VespersDoxologiesStMary.pptx",
+                "powerpoints/annual/doxologies/01heavenlydoxolgies.pptx",
+                "powerpoints/annual/doxologies/02apostlesdoxologies.pptx",
+                "powerpoints/annual/doxologies/03stmarkdoxologies.pptx"
+            ],
+            "vespersDoxolgiesConcl": "PowerPoints/BackBone/DoxolgyConclusion.pptx",
+            "vespersintroToCreed": "PowerPoints/BackBone/IntroToTheCreed.pptx",
+            "vesperscreed": "PowerPoints/BackBone/Creed.pptx",
+            "vespersOGodHaveMercy": "PowerPoints/BackBone/oGodHaveMercyUponUS.pptx",
+            "vespersLitanyofTheGospel": "PowerPoints/BackBone/litanyofthegospel.pptx",
+            "VespersPsalmResponse": "",
+            "vespersGospel": "Readings/2023/04April/8-2023-apr-9/Vespers Gospel.pptx",
+            "vespersGospelResponse": "PowerPoints/Annual/vespersGospelResponseStandard.pptx",
+            "vespers5ShortLitanies": "",
+            "vespersAbsolution": "PowerPoints/BackBone/absolutionToTheSon.pptx",
+            "vespersConcludingHymn": "PowerPoints/BackBone/conclusionAir.pptx",
+            "vespersConclusion": "PowerPoints/BackBone/Conclusion.pptx"
+        }
+    },
+    "2023-08-07": {
+        "vespers": {
+            "Vespers": "PowerPoints/BackBone/Vespers.pptx",
+            "vespersPrayerofThanksgiving": "PowerPoints/BackBone/PrayerOfThanksgiving.pptx",
+            "vespersVerseofTheCymbals": "PowerPoints/Annual/VerseOfTheCymbalsStandardVespers.pptx",
+            "vespersLitaines": "PowerPoints/BackBone/LitanyofTheDeparted.pptx",
+            "vesperspreDoxoPrayers": "PowerPoints/BackBone/GraciouslyAccordOLord.pptx",
+            "vesperspreDoxoPrayersUniversal": "PowerPoints/BackBone/HolyHolyHoly-InroToDoxologies.pptx",
+            "seasonVespersDoxologies": [
+                "PowerPoints/BackBone/VespersDoxologiesStMary.pptx",
+                "powerpoints/annual/doxologies/01heavenlydoxolgies.pptx",
+                "powerpoints/annual/doxologies/02apostlesdoxologies.pptx",
+                "powerpoints/annual/doxologies/03stmarkdoxologies.pptx"
+            ],
+            "vespersDoxolgiesConcl": "PowerPoints/BackBone/DoxolgyConclusion.pptx",
+            "vespersintroToCreed": "PowerPoints/BackBone/IntroToTheCreed.pptx",
+            "vesperscreed": "PowerPoints/BackBone/Creed.pptx",
+            "vespersOGodHaveMercy": "PowerPoints/BackBone/oGodHaveMercyUponUS.pptx",
+            "vespersLitanyofTheGospel": "PowerPoints/BackBone/litanyofthegospel.pptx",
+            "VespersPsalmResponse": "",
+            "vespersGospel": "Readings/2023/04April/8-2023-apr-9/Vespers Gospel.pptx",
+            "vespersGospelResponse": "PowerPoints/Annual/vespersGospelResponseStandard.pptx",
+            "vespers5ShortLitanies": "",
+            "vespersAbsolution": "PowerPoints/BackBone/absolutionToTheSon.pptx",
+            "vespersConcludingHymn": "PowerPoints/BackBone/conclusionAir.pptx",
+            "vespersConclusion": "PowerPoints/BackBone/Conclusion.pptx"
+        }
+    },
+    "2023-08-05": {
+        "vespers": {
+            "Vespers": "PowerPoints/BackBone/Vespers.pptx",
+            "vespersPrayerofThanksgiving": "PowerPoints/BackBone/PrayerOfThanksgiving.pptx",
+            "vespersVerseofTheCymbals": "PowerPoints/Annual/VerseOfTheCymbalsStandardVespers.pptx",
+            "vespersLitaines": "PowerPoints/BackBone/LitanyofTheDeparted.pptx",
+            "vesperspreDoxoPrayers": "PowerPoints/BackBone/GraciouslyAccordOLord.pptx",
+            "vesperspreDoxoPrayersUniversal": "PowerPoints/BackBone/HolyHolyHoly-InroToDoxologies.pptx",
+            "seasonVespersDoxologies": [
+                "PowerPoints/BackBone/VespersDoxologiesStMary.pptx",
+                "powerpoints/annual/doxologies/01heavenlydoxolgies.pptx",
+                "powerpoints/annual/doxologies/02apostlesdoxologies.pptx",
+                "powerpoints/annual/doxologies/03stmarkdoxologies.pptx"
+            ],
+            "vespersDoxolgiesConcl": "PowerPoints/BackBone/DoxolgyConclusion.pptx",
+            "vespersintroToCreed": "PowerPoints/BackBone/IntroToTheCreed.pptx",
+            "vesperscreed": "PowerPoints/BackBone/Creed.pptx",
+            "vespersOGodHaveMercy": "PowerPoints/BackBone/oGodHaveMercyUponUS.pptx",
+            "vespersLitanyofTheGospel": "PowerPoints/BackBone/litanyofthegospel.pptx",
+            "VespersPsalmResponse": "",
+            "vespersGospel": "Readings/2023/04April/8-2023-apr-9/Vespers Gospel.pptx",
+            "vespersGospelResponse": "PowerPoints/Annual/vespersGospelResponseStandard.pptx",
+            "vespers5ShortLitanies": "",
+            "vespersAbsolution": "PowerPoints/BackBone/absolutionToTheSon.pptx",
+            "vespersConcludingHymn": "PowerPoints/BackBone/conclusionAir.pptx",
+            "vespersConclusion": "PowerPoints/BackBone/Conclusion.pptx"
+        },
+        "matins": {
+            "Vespers": "PowerPoints/BackBone/Vespers.pptx",
+            "vespersPrayerofThanksgiving": "PowerPoints/BackBone/PrayerOfThanksgiving.pptx",
+            "vespersVerseofTheCymbals": "PowerPoints/Annual/VerseOfTheCymbalsStandardVespers.pptx",
+            "vespersLitaines": "PowerPoints/BackBone/LitanyofTheDeparted.pptx",
+            "vesperspreDoxoPrayers": "PowerPoints/BackBone/GraciouslyAccordOLord.pptx",
+            "vesperspreDoxoPrayersUniversal": "PowerPoints/BackBone/HolyHolyHoly-InroToDoxologies.pptx",
+            "seasonVespersDoxologies": [
+                "PowerPoints/BackBone/VespersDoxologiesStMary.pptx",
+                "powerpoints/annual/doxologies/01heavenlydoxolgies.pptx",
+                "powerpoints/annual/doxologies/02apostlesdoxologies.pptx",
+                "powerpoints/annual/doxologies/03stmarkdoxologies.pptx"
+            ],
+            "vespersDoxolgiesConcl": "PowerPoints/BackBone/DoxolgyConclusion.pptx",
+            "vespersintroToCreed": "PowerPoints/BackBone/IntroToTheCreed.pptx",
+            "vesperscreed": "PowerPoints/BackBone/Creed.pptx",
+            "vespersOGodHaveMercy": "PowerPoints/BackBone/oGodHaveMercyUponUS.pptx",
+            "vespersLitanyofTheGospel": "PowerPoints/BackBone/litanyofthegospel.pptx",
+            "VespersPsalmResponse": "",
+            "vespersGospel": "Readings/2023/04April/8-2023-apr-9/Vespers Gospel.pptx",
+            "vespersGospelResponse": "PowerPoints/Annual/vespersGospelResponseStandard.pptx",
+            "vespers5ShortLitanies": "",
+            "vespersAbsolution": "PowerPoints/BackBone/absolutionToTheSon.pptx",
+            "vespersConcludingHymn": "PowerPoints/BackBone/conclusionAir.pptx",
+            "vespersConclusion": "PowerPoints/BackBone/Conclusion.pptx"
+        }
+    }
+}

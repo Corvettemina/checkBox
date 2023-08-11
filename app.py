@@ -128,8 +128,12 @@ def vespers():
             data = {}
 
         #print(data)
-
-        data[request.args.get('date')] = dataPosted        
+        
+        if request.args.get('date') in data:
+            data[request.args.get('date')]['vespers'] = dataPosted
+        else:
+            data[request.args.get('date')] = {}
+            data[request.args.get('date')]['vespers'] = dataPosted
         with open(filename, "w") as json_file:
             # Step 4: Write the dictionary data to the .json file
             json.dump( data , json_file)
@@ -196,8 +200,13 @@ def matins():
             data = {}
 
         #print(data)
+        
+        if request.args.get('date') in data:
+            data[request.args.get('date')]['matins'] = dataPosted
+        else:
+            data[request.args.get('date')] = {}
+            data[request.args.get('date')]['matins'] = dataPosted
 
-        data[request.args.get('date')]['matins'] =  dataPosted      
         with open(filename, "w") as json_file:
             # Step 4: Write the dictionary data to the .json file
             json.dump( data , json_file)
@@ -250,8 +259,12 @@ def offering():
             data = {}
 
         #print(data)
+        if request.args.get('date') in data:
+            data[request.args.get('date')]['offering'] = dataPosted
+        else:
+            data[request.args.get('date')] = {}
+            data[request.args.get('date')]['offering'] = dataPosted   
 
-        data[request.args.get('date')]['offering'] =  dataPosted      
         with open(filename, "w") as json_file:
             # Step 4: Write the dictionary data to the .json file
             json.dump( data , json_file)
@@ -319,7 +332,12 @@ def liturgyOfWord():
 
         #print(data)
 
-        data[request.args.get('date')]['liturgyOfWord'] =  dataPosted      
+        if request.args.get('date') in data:
+            data[request.args.get('date')]['liturgyOfWord'] = dataPosted
+        else:
+            data[request.args.get('date')] = {}
+            data[request.args.get('date')]['liturgyOfWord'] = dataPosted  
+
         with open(filename, "w") as json_file:
             # Step 4: Write the dictionary data to the .json file
             json.dump( data , json_file)
@@ -464,5 +482,5 @@ def myroute():
     return jsonify(result)
 
 if __name__ == "__main__":
-    #app.run(debug=True)
-    app.run(host='0.0.0.0')
+    app.run(debug=True)
+    #app.run(host='0.0.0.0')
