@@ -278,8 +278,6 @@ def offering():
 @app.route('/liturgyOfWord', methods=['GET', 'POST'])
 def liturgyOfWord():
     form = InfoForm()
-    #print('Session', session['startdate'])
-    #spapi = Springapi("matins")
     if request.method =='GET':
 
         try:
@@ -345,6 +343,147 @@ def liturgyOfWord():
         result = {'status': 'Liturgy of the Word Updated'}
     
     return jsonify(result)
+
+
+@app.route('/liturgyOfFaithful', methods=['GET', 'POST'])
+def liturgyOfFaithful():
+    form = InfoForm()
+    if request.method =='GET':
+
+        try:
+            filename = "data.json"
+            with open(filename, "r") as json_file:
+                data = json.load(json_file)
+        except:
+            result = {'status': "Empty Database"}
+            return jsonify(result)
+
+        date = request.args.get('date')
+        try:
+            data[date]
+        except:
+            result = {'status': "No PPT For this date"}
+            return jsonify(result)
+        
+        dataTosend = data[date]["liturgyOfFaithful"]
+        response_data = json.dumps(dataTosend, ensure_ascii=False, indent=4)
+        response = Response(response_data, content_type='application/json')
+        
+        return response
+    
+    if request.method == 'POST':
+        dataPosted = request.get_json()  # Get the JSON data from the request
+        # Do something with the data...
+        #print(data)
+        #data["paralexHymns"] = data["paralexHymns"][0]
+       
+        '''
+        if ((data['LiturgylitanyoftheGospel']) == 'Alternate'):
+            data['LiturgylitanyoftheGospel'] = "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx"
+        else:
+            data['LiturgylitanyoftheGospel'] = "PowerPoints/BackBone/litanyofthegospel.pptx"
+        '''
+
+        my_global_list = app.config['GLOBAL_LIST']
+        
+        my_global_list["liturgyOfFaithful"] = data
+
+        #my_global_list += mergepptxaspose.makeIntoList(data
+
+
+        try:
+            filename = "data.json"
+            with open(filename, "r") as json_file:
+                data = json.load(json_file)
+        except:
+            data = {}
+
+        #print(data)
+
+        if request.args.get('date') in data:
+            data[request.args.get('date')]['liturgyOfFaithful'] = dataPosted
+        else:
+            data[request.args.get('date')] = {}
+            data[request.args.get('date')]['liturgyOfFaithful'] = dataPosted  
+
+        with open(filename, "w") as json_file:
+            # Step 4: Write the dictionary data to the .json file
+            json.dump( data , json_file)
+
+        result = {'status': 'Liturgy of the Faithful Updated'}
+    
+    return jsonify(result)
+
+
+@app.route('/communion', methods=['GET', 'POST'])
+def communion():
+    form = InfoForm()
+    if request.method =='GET':
+
+        try:
+            filename = "data.json"
+            with open(filename, "r") as json_file:
+                data = json.load(json_file)
+        except:
+            result = {'status': "Empty Database"}
+            return jsonify(result)
+
+        date = request.args.get('date')
+        try:
+            data[date]
+        except:
+            result = {'status': "No PPT For this date"}
+            return jsonify(result)
+        
+        dataTosend = data[date]["communion"]
+        response_data = json.dumps(dataTosend, ensure_ascii=False, indent=4)
+        response = Response(response_data, content_type='application/json')
+        
+        return response
+    
+    if request.method == 'POST':
+        dataPosted = request.get_json()  # Get the JSON data from the request
+        # Do something with the data...
+        #print(data)
+        #data["paralexHymns"] = data["paralexHymns"][0]
+       
+        '''
+        if ((data['LiturgylitanyoftheGospel']) == 'Alternate'):
+            data['LiturgylitanyoftheGospel'] = "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx"
+        else:
+            data['LiturgylitanyoftheGospel'] = "PowerPoints/BackBone/litanyofthegospel.pptx"
+        '''
+
+        my_global_list = app.config['GLOBAL_LIST']
+        
+        my_global_list["communion"] = data
+
+        #my_global_list += mergepptxaspose.makeIntoList(data
+
+
+        try:
+            filename = "data.json"
+            with open(filename, "r") as json_file:
+                data = json.load(json_file)
+        except:
+            data = {}
+
+        #print(data)
+
+        if request.args.get('date') in data:
+            data[request.args.get('date')]['communion'] = dataPosted
+        else:
+            data[request.args.get('date')] = {}
+            data[request.args.get('date')]['communion'] = dataPosted  
+
+        with open(filename, "w") as json_file:
+            # Step 4: Write the dictionary data to the .json file
+            json.dump( data , json_file)
+
+        result = {'status': 'Communion Updated'}
+    
+    return jsonify(result)
+
 
 def convert_date_format(date_str):
     # Parse the input date string into a datetime object
