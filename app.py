@@ -316,7 +316,7 @@ def liturgyOfWord():
 
         my_global_list = app.config['GLOBAL_LIST']
         
-        my_global_list["liturgyOfWord"] = data
+        my_global_list["liturgyOfWord"] = dataPosted
 
         #my_global_list += mergepptxaspose.makeIntoList(data
 
@@ -386,7 +386,7 @@ def liturgyOfFaithful():
 
         my_global_list = app.config['GLOBAL_LIST']
         
-        my_global_list["liturgyOfFaithful"] = data
+        my_global_list["liturgyOfFaithful"] = dataPosted
 
         #my_global_list += mergepptxaspose.makeIntoList(data
 
@@ -456,7 +456,7 @@ def communion():
 
         my_global_list = app.config['GLOBAL_LIST']
         
-        my_global_list["communion"] = data
+        my_global_list["communion"] = dataPosted
 
         #my_global_list += mergepptxaspose.makeIntoList(data
 
@@ -621,5 +621,5 @@ def myroute():
     return jsonify(result)
 
 if __name__ == "__main__":
-    #app.run(debug=True)
-    app.run(host='0.0.0.0')
+    app.run(debug=True)
+    #app.run(host='0.0.0.0')
