@@ -484,6 +484,26 @@ def communion():
     
     return jsonify(result)
 
+@app.route('/makeppt', methods=['GET', 'POST'])
+def makePptx():
+    date = request.args.get('date')
+    if request.method == 'POST':
+        try:
+            filename = "data.json"
+            with open(filename, "r") as json_file:
+                database = json.load(json_file)
+        except:
+            database = {}
+
+        finalList = []
+
+        paths = ["vespers","matins","offering","liturgyOfWord","liturgyOfFaithful","communion"]
+
+        for i in paths:
+            finalList = finalList +  mergepptxaspose.makeIntoList(database[date][i])  
+             
+        t = Thread(target=merge, args=(finalList,))
+        t.start()
 
 def convert_date_format(date_str):
     # Parse the input date string into a datetime object
@@ -621,5 +641,5 @@ def myroute():
     return jsonify(result)
 
 if __name__ == "__main__":
-    #app.run(debug=True)
+    #`app.run(debug=True)
     app.run(host='0.0.0.0')
