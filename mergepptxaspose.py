@@ -155,13 +155,12 @@ def merge(finishedList):
     index = 0
     for i in range(0, len(finishedList), 10):
         
-        print("RESET")
+
         files = []
         filesToremove = []
         x = 10
         if(len(finishedList[i+10:i+20]) < 2):
             x = 11
-        print(len(files))  
         for k in finishedList[i:i+x]:
             
             if ("today.pptx" in path + k):
@@ -180,8 +179,7 @@ def merge(finishedList):
                         #totalBeforeCommunion = totalBeforeCommunion - 1
 
                     
-            except Exception as e:
-                print (e)
+            except:
                 try:
                     with open(getfile_insensitive(path + k), "rb") as file_stream:
                         files.append(file_stream.read())
@@ -198,7 +196,6 @@ def merge(finishedList):
             #print("Before Communion" ,  totalBeforeCommunion)
             index+=1
         print("uploading....")
-        print(len(files))
         slides_api = SlidesApi(
             None, "2d3b1ec8-738b-4467-915f-af02913aa7fa", "1047551018f0feaacf4296fa054d7d97")
     

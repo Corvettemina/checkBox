@@ -449,7 +449,7 @@ def makePptx():
             print (i)  
         mergepptxaspose.merge(finalList)
         t = Thread(target=merge, args=(finalList,))
-        #t.start()
+        t.start()
 
     result = {'status': 'Powerpoint OTW'}
     
