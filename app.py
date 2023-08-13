@@ -448,7 +448,7 @@ def makePptx():
         for i in finalList:
             print (i)  
         t = Thread(target=merge, args=(finalList,))
-        t.start()
+        #t.start()
 
     result = {'status': 'Powerpoint OTW'}
     
@@ -562,9 +562,10 @@ def select():
 
         import mergepptxaspose
         temp = mergepptxaspose.makeIntoList(spapi.dictionary)
-
+        for i in temp:
+            print(i)
         t = Thread(target=merge, args=(temp,))
-        t.start()
+        #t.start()
         #mergepptxaspose.merge(temp)
 
         runDropbox()
