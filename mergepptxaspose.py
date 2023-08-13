@@ -163,12 +163,13 @@ def merge(finishedList):
             x = 11
         print(len(files))  
         for k in finishedList[i:i+x]:
-            print(path + k)
+            
             if ("today.pptx" in path + k):
                 filesToremove.append(path+k)
             try:
                 with open(path + k, "rb") as file_stream:
                     files.append(file_stream.read())
+                    print(path + k)
                     if(finishedList.index(k,index) > finishedList.index("PowerPoints/BackBone/communionMenuTemplate.pptx") and finishedList.index(k,index) < finishedList.index("PowerPoints/BackBone/finalConclusion1.pptx")):
                         pptxLengths[str(k.split("/")[-1].split(".")[0])] = (len(Presentation(path + k).slides))
 
@@ -183,6 +184,7 @@ def merge(finishedList):
                 try:
                     with open(getfile_insensitive(path + k), "rb") as file_stream:
                         files.append(file_stream.read())
+                        print(path + k)
                         if(finishedList.index(k,index) > finishedList.index("PowerPoints/BackBone/communionMenuTemplate.pptx") and finishedList.index(k,index) < finishedList.index("PowerPoints/BackBone/finalConclusion1.pptx")):
                             pptxLengths[str(k.split("/")[-1].split(".")[0])] = (len(Presentation(getfile_insensitive(path + k)).slides))
                    
