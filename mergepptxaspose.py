@@ -180,7 +180,8 @@ def merge(finishedList):
                         #totalBeforeCommunion = totalBeforeCommunion - 1
 
                     
-            except:
+            except Exception as e:
+                print (e)
                 try:
                     with open(getfile_insensitive(path + k), "rb") as file_stream:
                         files.append(file_stream.read())
