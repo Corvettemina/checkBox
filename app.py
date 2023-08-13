@@ -97,29 +97,14 @@ def vespers():
         return response
     
     if request.method == 'POST':
-        dataPosted = request.get_json()  # Get the JSON data from the request
-        # Do something with the data...
+        dataPosted = request.get_json()  
+
         print(dataPosted)
-        #dataPosted["seasonVespersDoxologies"] = dataPosted["seasonVespersDoxologies"]
-
-        '''
-        if ((data['vespersLitanyofTheGospel']) == 'alternate'):
-                data['vespersLitanyofTheGospel'] = "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx"
-        else:
-            data['vespersLitanyofTheGospel'] = "PowerPoints/BackBone/litanyofthegospel.pptx"
-
-        if ((data['vespers5ShortLitanies']) == 'no'):
-            data['vespers5ShortLitanies'] = ""
-        else:
-            data['vespers5ShortLitanies'] = "PowerPoints/BackBone/5ShortLitanies.pptx"
-        '''
+  
         my_global_list = app.config['GLOBAL_LIST']
         
-        #my_global_list += mergepptxaspose.makeIntoList(data)
-        
         my_global_list["vespers"] = dataPosted
-
-        #print(my_global_list)
+        
         try:
             filename = "data.json"
             with open(filename, "r") as json_file:
@@ -302,24 +287,11 @@ def liturgyOfWord():
         return response
     
     if request.method == 'POST':
-        dataPosted = request.get_json()  # Get the JSON data from the request
-        # Do something with the data...
-        #print(data)
-        #data["paralexHymns"] = data["paralexHymns"][0]
-       
-        '''
-        if ((data['LiturgylitanyoftheGospel']) == 'Alternate'):
-            data['LiturgylitanyoftheGospel'] = "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx"
-        else:
-            data['LiturgylitanyoftheGospel'] = "PowerPoints/BackBone/litanyofthegospel.pptx"
-        '''
+        dataPosted = request.get_json() 
 
         my_global_list = app.config['GLOBAL_LIST']
         
         my_global_list["liturgyOfWord"] = dataPosted
-
-        #my_global_list += mergepptxaspose.makeIntoList(data
-
 
         try:
             filename = "data.json"
@@ -372,24 +344,11 @@ def liturgyOfFaithful():
         return response
     
     if request.method == 'POST':
-        dataPosted = request.get_json()  # Get the JSON data from the request
-        # Do something with the data...
-        #print(data)
-        #data["paralexHymns"] = data["paralexHymns"][0]
+        dataPosted = request.get_json()  
        
-        '''
-        if ((data['LiturgylitanyoftheGospel']) == 'Alternate'):
-            data['LiturgylitanyoftheGospel'] = "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx"
-        else:
-            data['LiturgylitanyoftheGospel'] = "PowerPoints/BackBone/litanyofthegospel.pptx"
-        '''
-
         my_global_list = app.config['GLOBAL_LIST']
         
         my_global_list["liturgyOfFaithful"] = dataPosted
-
-        #my_global_list += mergepptxaspose.makeIntoList(data
-
 
         try:
             filename = "data.json"
@@ -398,7 +357,6 @@ def liturgyOfFaithful():
         except:
             data = {}
 
-        #print(data)
 
         if request.args.get('date') in data:
             data[request.args.get('date')]['liturgyOfFaithful'] = dataPosted
@@ -442,24 +400,11 @@ def communion():
         return response
     
     if request.method == 'POST':
-        dataPosted = request.get_json()  # Get the JSON data from the request
-        # Do something with the data...
-        #print(data)
-        #data["paralexHymns"] = data["paralexHymns"][0]
-       
-        '''
-        if ((data['LiturgylitanyoftheGospel']) == 'Alternate'):
-            data['LiturgylitanyoftheGospel'] = "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx"
-        else:
-            data['LiturgylitanyoftheGospel'] = "PowerPoints/BackBone/litanyofthegospel.pptx"
-        '''
+        dataPosted = request.get_json() 
 
         my_global_list = app.config['GLOBAL_LIST']
         
         my_global_list["communion"] = dataPosted
-
-        #my_global_list += mergepptxaspose.makeIntoList(data
-
 
         try:
             filename = "data.json"

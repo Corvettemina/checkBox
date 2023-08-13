@@ -62,6 +62,22 @@ def makeIntoList(y):
                     answer.append(l)
                     pass
             else:
+                if(y[i] == "alternate"):
+                    y[i] = "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx"
+                
+                if(y[i] == "standard"):
+                    y[i] = "PowerPoints/BackBone/litanyofthegospel.pptx"
+                
+                if(y[i] == "no"):
+                    y[i] = ""
+
+                if(i == "vespers5ShortLitanies" and y[i] == "yes"):
+                   y[i] = "PowerPoints/BackBone/5ShortLitanies.pptx" 
+                   
+                if(i == "matins5ShortLitanies" and y[i] == "yes"):
+                    y[i] = "PowerPoints/BackBone/5ShortLitanies.pptx" 
+   
+                                 
                 # print(y[1][i])
                 if (y[i] != ""):
                     answer.append(y[i])
