@@ -505,6 +505,9 @@ def makePptx():
         t = Thread(target=merge, args=(finalList,))
         t.start()
 
+    result = {'status': 'Powerpoint OTW'}
+    
+    return jsonify(result)
 def convert_date_format(date_str):
     # Parse the input date string into a datetime object
     dt = datetime.strptime(date_str, '%Y-%b-%d')
