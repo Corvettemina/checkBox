@@ -98,8 +98,6 @@ def vespers():
     
     if request.method == 'POST':
         dataPosted = request.get_json()  
-
-        print(dataPosted)
   
         my_global_list = app.config['GLOBAL_LIST']
         
@@ -446,7 +444,9 @@ def makePptx():
 
         for i in paths:
             finalList = finalList +  mergepptxaspose.makeIntoList(database[date][i])  
-             
+
+        for i in finalList:
+            print (i)  
         t = Thread(target=merge, args=(finalList,))
         t.start()
 
