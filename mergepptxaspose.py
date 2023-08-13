@@ -154,6 +154,7 @@ def merge(finishedList):
     atMenu = False
     index = 0
     for i in range(0, len(finishedList), 10):
+        print("RESET")
         files = []
         filesToremove = []
         x = 10
