@@ -76,9 +76,62 @@ def makeIntoList(y):
                    
                 if(i == "matins5ShortLitanies" and y[i] == "yes"):
                     y[i] = "PowerPoints/BackBone/5ShortLitanies.pptx" 
-   
-                                 
-                # print(y[1][i])
+                
+                if(i == "Liturgy3GreatLitanies" and y[i] == "yes"):
+                    y[i] = "PowerPoints/BackBone/threeGreatLitanies.pptx" 
+                
+                if(i == "rejoiceOMary" and y[i] == "yes"):
+                    y[i] = "PowerPoints/Liturgy/Rejoice O Mary.pptx"
+                    
+                if(i == "OLordofHosts" and y[i] == "yes"):
+                    y[i] = "PowerPoints/Liturgy/O Lord of Hosts.pptx"
+
+                if(i == "anaphora" and y[i] == "basil"):
+                    y[i] = "PowerPoints/Liturgy/Anaphora - Basil.pptx"
+                
+                if(i == "anaphora" and y[i] == "gregory"):
+                    y[i] = "PowerPoints/Liturgy/Anaphora - Gregorian.pptx"
+
+                if(i == "agiosLiturgy" and y[i] == "basil"):
+                    y[i] = "PowerPoints/Liturgy/Agios - Basil.pptx"
+                
+                if(i == "agiosLiturgy" and y[i] == "gregory"):
+                    y[i] = "PowerPoints/Liturgy/Agios - Gregorian.pptx"  
+                
+                if(i == "instiution" and y[i] == "basil"):
+                    y[i] = "PowerPoints/Liturgy/Institution - Basil.pptx"
+                
+                if(i == "instiution" and y[i] == "gregory"):
+                    y[i] = "PowerPoints/Liturgy/Institution - Gregorian.pptx"  
+                
+                if(i == "yeahWeAskYou" and y[i] == "yes"):
+                    y[i] = "PowerPoints/Liturgy/Yea we ask You.pptx"
+                
+                if(i == "jeNaiNan" and y[i] == "yes"):
+                    y[i] = "PowerPoints/Liturgy/JeNaiNan.pptx"
+                
+                if(i == "healingToThesick" and y[i] == "yes"):
+                    y[i] = "PowerPoints/Liturgy/Healing to the Sick.pptx"
+                
+                if(i == "Commemoration" and y[i] == "basil"):
+                    y[i] = "PowerPoints/Liturgy/Commemoration - Basil.pptx"
+                
+                if(i == "Commemoration" and y[i] == "gregory"):
+                    y[i] = "PowerPoints/Liturgy/Commemoration - Gregorian.pptx"  
+                
+                if(i == "postCommemoration" and y[i] == "basil"):
+                    y[i] = "PowerPoints/Liturgy/Post Commemoration - Basil.pptx"
+                
+                if(i == "postCommemoration" and y[i] == "gregory"):
+                    y[i] = "PowerPoints/Liturgy/Commemoration - Gregorian.pptx"  
+
+                if(i == "prefaceToTheFraction" and y[i] == "basil"):
+                    y[i] = "PowerPoints/Liturgy/Preface - Basil.pptx"
+                
+                if(i == "prefaceToTheFraction" and y[i] == "gregory"):
+                    y[i] = "PowerPoints/Liturgy/Preface - Gregorian.pptx"  
+
+
                 if (y[i] != ""):
                     answer.append(y[i])
 
