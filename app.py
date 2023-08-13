@@ -447,6 +447,7 @@ def makePptx():
 
         for i in finalList:
             print (i)  
+        mergepptxaspose.merge(finalList)
         t = Thread(target=merge, args=(finalList,))
         #t.start()
 
@@ -473,9 +474,9 @@ def select():
     start_date = start_date.strftime("%A, %b %d, %Y")
 
     if request.method == 'POST':
-        print(form.toggle.data)
+        #print(form.toggle.data)
 
-        print(request.form['toggle'])
+        #print(request.form['toggle'])
 
         spapi.dictionary["seasonVespersDoxologies"] = request.form.getlist(
             'seasonalDoxoVespers')
@@ -565,7 +566,7 @@ def select():
         for i in temp:
             print(i)
         t = Thread(target=merge, args=(temp,))
-        #t.start()
+        t.start()
         #mergepptxaspose.merge(temp)
 
         runDropbox()
