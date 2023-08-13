@@ -199,7 +199,7 @@ def merge(finishedList):
     
         slides_api.merge_and_save_online(
             str(count) + ".pptx", files, None, "internal")
-        print(len(files))
+
         presentation = PresentationToMerge()
         presentation.path = str(count) + ".pptx"
         presentation.source = "Storage"

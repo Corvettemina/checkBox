@@ -441,7 +441,7 @@ def makePptx():
         finalList = []
 
         paths = ["vespers","matins","offering","liturgyOfWord","liturgyOfFaithful","communion"]
-
+        import mergepptxaspose
         for i in paths:
             finalList = finalList +  mergepptxaspose.makeIntoList(database[date][i])  
 
