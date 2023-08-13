@@ -154,14 +154,14 @@ def merge(finishedList):
     atMenu = False
     index = 0
     for i in range(0, len(finishedList), 10):
-        print(len(files))
+        
         print("RESET")
         files = []
         filesToremove = []
         x = 10
         if(len(finishedList[i+10:i+20]) < 2):
             x = 11
-            
+        print(len(files))  
         for k in finishedList[i:i+x]:
             print(path + k)
             if ("today.pptx" in path + k):
