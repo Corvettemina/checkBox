@@ -196,7 +196,7 @@ def merge(finishedList):
 
         slides_api = SlidesApi(
             None, "2d3b1ec8-738b-4467-915f-af02913aa7fa", "1047551018f0feaacf4296fa054d7d97")
-        print(files , len(files))
+    
         slides_api.merge_and_save_online(
             str(count) + ".pptx", files, None, "internal")
 
