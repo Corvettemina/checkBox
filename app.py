@@ -222,11 +222,15 @@ def get(path):
         result = {'status': "No PPT For this date"}
         return jsonify(result)
         
-    dataTosend = data[date][path]
-    response_data = json.dumps(dataTosend, ensure_ascii=False, indent=4)
-    response = Response(response_data, content_type='application/json')
-        
-    return response
+    try:
+        dataTosend = data[date][path]
+        response_data = json.dumps(dataTosend, ensure_ascii=False, indent=4)
+        response = Response(response_data, content_type='application/json')
+        return response
+    except:
+        result = {'status': "No PPT For this date"}
+        return jsonify(result)   
+
 
 def convert_date_format(date_str):
     # Parse the input date string into a datetime object
