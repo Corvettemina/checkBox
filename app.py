@@ -447,7 +447,7 @@ def makePptx():
 
         for i in finalList:
             print (i)  
-        mergepptxaspose.merge(finalList)
+        #mergepptxaspose.merge(finalList)
         t = Thread(target=merge, args=(finalList,))
         t.start()
 
@@ -592,4 +592,5 @@ def myroute():
 
 if __name__ == "__main__":
     #`app.run(debug=True)
-    app.run(host='0.0.0.0')
+    #app.run(host='0.0.0.0')
+    app.run(ssl_context='adhoc')
