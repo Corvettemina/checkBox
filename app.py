@@ -70,189 +70,41 @@ def index():
 
 @app.route('/vespers', methods=['GET', 'POST'])
 def vespers():
-    app.config['GLOBAL_LIST'] = {}
-    form = InfoForm()
-    #print('Session', session['startdate'])
-    #spapi = Springapi("matins")
-    if request.method =='GET':
-        try:
-            filename = "data.json"
-            with open(filename, "r") as json_file:
-                data = json.load(json_file)
-        except:
-            result = {'status': "Empty Database"}
-            return jsonify(result)
 
-        date = request.args.get('date')
-        try:
-            data[date]
-        except:
-            result = {'status': "No PPT For this date"}
-            return jsonify(result)
-        
-        dataTosend = data[date]["vespers"]
-        response_data = json.dumps(dataTosend, ensure_ascii=False, indent=4)
-        response = Response(response_data, content_type='application/json')
-        
-        return response
+    if request.method =='GET':
+        return get('vespers')
     
     if request.method == 'POST':
-        dataPosted = request.get_json()  
-  
-        my_global_list = app.config['GLOBAL_LIST']
-        
-        my_global_list["vespers"] = dataPosted
-        
-        try:
-            filename = "data.json"
-            with open(filename, "r") as json_file:
-                data = json.load(json_file)
-        except:
-            data = {}
-
-        #print(data)
-        
-        if request.args.get('date') in data:
-            data[request.args.get('date')]['vespers'] = dataPosted
-        else:
-            data[request.args.get('date')] = {}
-            data[request.args.get('date')]['vespers'] = dataPosted
-        with open(filename, "w") as json_file:
-            # Step 4: Write the dictionary data to the .json file
-            json.dump( data , json_file)
+        post('vespers')
 
         result = {'status': 'Vespers Updated'}
     
     return jsonify(result)
-    return render_template('vespers.html', spapi=spapi, start_date=start_date, form=form)
-
+ 
 @app.route('/matins', methods=['GET', 'POST'])
 def matins():
-    form = InfoForm()
-    #print('Session', session['startdate'])
-    #spapi = Springapi("matins")
     if request.method =='GET':
     
-        try:
-            filename = "data.json"
-            with open(filename, "r") as json_file:
-                data = json.load(json_file)
-        except:
-            result = {'status': "Empty Database"}
-            return jsonify(result)
-
-        date = request.args.get('date')
-        try:
-            data[date]
-        except:
-            result = {'status': "No PPT For this date"}
-            return jsonify(result)
-        
-        dataTosend = data[date]["matins"]
-        response_data = json.dumps(dataTosend, ensure_ascii=False, indent=4)
-        response = Response(response_data, content_type='application/json')
-        
-        return response
+        return get('matins')
     
     if request.method == 'POST':
-        dataPosted = request.get_json()  # Get the JSON data from the request
-        # Do something with the data...
-        
-        #data["seasonmatinsDoxologies"] = data["seasonmatinsDoxologies"][0]
-        '''
-        if ((data['matinsLitanyofTheGospel']) == 'alternate'):
-            data['matinsLitanyofTheGospel'] = "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx"
-        else:
-            data['matinsLitanyofTheGospel'] = "PowerPoints/BackBone/litanyofthegospel.pptx"
-
-        if ((data['matins5ShortLitanies']) == 'no'):
-            data['matins5ShortLitanies'] = ""
-        else:
-            data['matins5ShortLitanies'] = "PowerPoints/BackBone/5ShortLitanies.pptx"
-        '''
-
-        my_global_list = app.config['GLOBAL_LIST']
-
-        my_global_list["matins"] = dataPosted
-
-        try:
-            filename = "data.json"
-            with open(filename, "r") as json_file:
-                data = json.load(json_file)
-        except:
-            data = {}
-
-        #print(data)
-        
-        if request.args.get('date') in data:
-            data[request.args.get('date')]['matins'] = dataPosted
-        else:
-            data[request.args.get('date')] = {}
-            data[request.args.get('date')]['matins'] = dataPosted
-
-        with open(filename, "w") as json_file:
-            # Step 4: Write the dictionary data to the .json file
-            json.dump( data , json_file)
+        post('matins')
 
         result = {'status': 'Matins Updated'}
     
     return jsonify(result)
     
-    return render_template('matins.html', spapi=spapi, start_date=start_date, form=form)
+   
 
 @app.route('/offering', methods=['GET', 'POST'])
 def offering():
 
     if request.method =='GET':
-
-        try:
-            filename = "data.json"
-            with open(filename, "r") as json_file:
-                data = json.load(json_file)
-        except:
-            result = {'status': "Empty Database"}
-            return jsonify(result)
-
-        date = request.args.get('date')
-        try:
-            data[date]
-        except:
-            result = {'status': "No PPT For this date"}
-            return jsonify(result)
-        
-        dataTosend = data[date]["offering"]
-        response_data = json.dumps(dataTosend, ensure_ascii=False, indent=4)
-        response = Response(response_data, content_type='application/json')
-        
-        return response
+        return get("offering")
 
     if request.method == 'POST':
-        dataPosted = request.get_json()  # Get the JSON data from the request
-        # Do something with the data...
+        post('offering')
 
-        my_global_list = app.config['GLOBAL_LIST']
-        my_global_list["offering"] = dataPosted
-
-
-        try:
-            filename = "data.json"
-            with open(filename, "r") as json_file:
-                data = json.load(json_file)
-        except:
-            data = {}
-
-        #print(data)
-        if request.args.get('date') in data:
-            data[request.args.get('date')]['offering'] = dataPosted
-        else:
-            data[request.args.get('date')] = {}
-            data[request.args.get('date')]['offering'] = dataPosted   
-
-        with open(filename, "w") as json_file:
-            # Step 4: Write the dictionary data to the .json file
-            json.dump( data , json_file)
-
-        #print(my_global_list)
         result = {'status': 'Offering Updated'}
     
     return jsonify(result)
@@ -260,55 +112,12 @@ def offering():
 
 @app.route('/liturgyOfWord', methods=['GET', 'POST'])
 def liturgyOfWord():
-    form = InfoForm()
     if request.method =='GET':
-
-        try:
-            filename = "data.json"
-            with open(filename, "r") as json_file:
-                data = json.load(json_file)
-        except:
-            result = {'status': "Empty Database"}
-            return jsonify(result)
-
-        date = request.args.get('date')
-        try:
-            data[date]
-        except:
-            result = {'status': "No PPT For this date"}
-            return jsonify(result)
-        
-        dataTosend = data[date]["liturgyOfWord"]
-        response_data = json.dumps(dataTosend, ensure_ascii=False, indent=4)
-        response = Response(response_data, content_type='application/json')
-        
-        return response
+        return get('liturgyOfWord')
     
     if request.method == 'POST':
-        dataPosted = request.get_json() 
-
-        my_global_list = app.config['GLOBAL_LIST']
         
-        my_global_list["liturgyOfWord"] = dataPosted
-
-        try:
-            filename = "data.json"
-            with open(filename, "r") as json_file:
-                data = json.load(json_file)
-        except:
-            data = {}
-
-        #print(data)
-
-        if request.args.get('date') in data:
-            data[request.args.get('date')]['liturgyOfWord'] = dataPosted
-        else:
-            data[request.args.get('date')] = {}
-            data[request.args.get('date')]['liturgyOfWord'] = dataPosted  
-
-        with open(filename, "w") as json_file:
-            # Step 4: Write the dictionary data to the .json file
-            json.dump( data , json_file)
+        post('liturgyOfWord')
 
         result = {'status': 'Liturgy of the Word Updated'}
     
@@ -319,52 +128,11 @@ def liturgyOfWord():
 def liturgyOfFaithful():
     form = InfoForm()
     if request.method =='GET':
-
-        try:
-            filename = "data.json"
-            with open(filename, "r") as json_file:
-                data = json.load(json_file)
-        except:
-            result = {'status': "Empty Database"}
-            return jsonify(result)
-
-        date = request.args.get('date')
-        try:
-            data[date]
-        except:
-            result = {'status': "No PPT For this date"}
-            return jsonify(result)
-        
-        dataTosend = data[date]["liturgyOfFaithful"]
-        response_data = json.dumps(dataTosend, ensure_ascii=False, indent=4)
-        response = Response(response_data, content_type='application/json')
-        
-        return response
+        return get('liturgyOfFaithful')
     
     if request.method == 'POST':
-        dataPosted = request.get_json()  
-       
-        my_global_list = app.config['GLOBAL_LIST']
         
-        my_global_list["liturgyOfFaithful"] = dataPosted
-
-        try:
-            filename = "data.json"
-            with open(filename, "r") as json_file:
-                data = json.load(json_file)
-        except:
-            data = {}
-
-
-        if request.args.get('date') in data:
-            data[request.args.get('date')]['liturgyOfFaithful'] = dataPosted
-        else:
-            data[request.args.get('date')] = {}
-            data[request.args.get('date')]['liturgyOfFaithful'] = dataPosted  
-
-        with open(filename, "w") as json_file:
-            # Step 4: Write the dictionary data to the .json file
-            json.dump( data , json_file)
+        post('liturgyOfFaithful')
 
         result = {'status': 'Liturgy of the Faithful Updated'}
     
@@ -373,56 +141,13 @@ def liturgyOfFaithful():
 
 @app.route('/communion', methods=['GET', 'POST'])
 def communion():
-    form = InfoForm()
+
     if request.method =='GET':
-
-        try:
-            filename = "data.json"
-            with open(filename, "r") as json_file:
-                data = json.load(json_file)
-        except:
-            result = {'status': "Empty Database"}
-            return jsonify(result)
-
-        date = request.args.get('date')
-        try:
-            data[date]
-        except:
-            result = {'status': "No PPT For this date"}
-            return jsonify(result)
+        return get('communion')
         
-        dataTosend = data[date]["communion"]
-        response_data = json.dumps(dataTosend, ensure_ascii=False, indent=4)
-        response = Response(response_data, content_type='application/json')
-        
-        return response
     
     if request.method == 'POST':
-        dataPosted = request.get_json() 
-
-        my_global_list = app.config['GLOBAL_LIST']
-        
-        my_global_list["communion"] = dataPosted
-
-        try:
-            filename = "data.json"
-            with open(filename, "r") as json_file:
-                data = json.load(json_file)
-        except:
-            data = {}
-
-        #print(data)
-
-        if request.args.get('date') in data:
-            data[request.args.get('date')]['communion'] = dataPosted
-        else:
-            data[request.args.get('date')] = {}
-            data[request.args.get('date')]['communion'] = dataPosted  
-
-        with open(filename, "w") as json_file:
-            # Step 4: Write the dictionary data to the .json file
-            json.dump( data , json_file)
-
+        post('communion')
         result = {'status': 'Communion Updated'}
     
     return jsonify(result)
@@ -454,6 +179,55 @@ def makePptx():
     result = {'status': 'Powerpoint OTW'}
     
     return jsonify(result)
+
+def post(path):
+    dataPosted = request.get_json()  # Get the JSON data from the request
+        # Do something with the data...
+
+    my_global_list = app.config['GLOBAL_LIST']
+    my_global_list[path] = dataPosted
+
+
+    try:
+        filename = "data.json"
+        with open(filename, "r") as json_file:
+            data = json.load(json_file)
+    except:
+        data = {}
+
+        #print(data)
+    if request.args.get('date') in data:
+        data[request.args.get('date')][path] = dataPosted
+    else:
+        data[request.args.get('date')] = {}
+        data[request.args.get('date')][path] = dataPosted   
+
+    with open(filename, "w") as json_file:
+            # Step 4: Write the dictionary data to the .json file
+        json.dump( data , json_file)
+    
+def get(path):
+    try:
+        filename = "data.json"
+        with open(filename, "r") as json_file:
+            data = json.load(json_file)
+    except:
+        result = {'status': "Empty Database"}
+        return jsonify(result)
+
+    date = request.args.get('date')
+    try:
+        data[date]
+    except:
+        result = {'status': "No PPT For this date"}
+        return jsonify(result)
+        
+    dataTosend = data[date][path]
+    response_data = json.dumps(dataTosend, ensure_ascii=False, indent=4)
+    response = Response(response_data, content_type='application/json')
+        
+    return response
+
 def convert_date_format(date_str):
     # Parse the input date string into a datetime object
     dt = datetime.strptime(date_str, '%Y-%b-%d')
