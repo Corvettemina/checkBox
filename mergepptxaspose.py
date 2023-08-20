@@ -8,6 +8,7 @@ import os
 import collections
 import collections.abc
 from pptx import Presentation
+import requests
 
 
 def getfile_insensitive(paths):
@@ -18,40 +19,42 @@ def getfile_insensitive(paths):
                 return (os.path.join(path, name))
 
 
-def makeIntoList(y):
+def makeIntoList(y ,verb):
+
     try:
-        y["anaphora"] = changeWord.insertChange(y["anaphora"], y["verb"])
+        y["anaphora"] = changeWord.insertChange(y["anaphora"], verb)
     except:
         pass
     try:
         if ("Annual" in y["matinsVerseofTheCymbals"]):
             y["matinsVerseofTheCymbals"] = changeWord.insertChange(
-                y["matinsVerseofTheCymbals"], y["verb"])
+                y["matinsVerseofTheCymbals"], verb)
     except:
         pass
     
     try:
         if ("Annual" in y["vespersVerseofTheCymbals"]):
             y["vespersVerseofTheCymbals"] = changeWord.insertChange(
-                y["vespersVerseofTheCymbals"], y["verb"])
+                y["vespersVerseofTheCymbals"], verb)
     except:
         pass
 
     try:
         if ("Annual" in y["praxis"]):
-            y["praxis"] = changeWord.insertChange(y["praxis"], y["verb"])
+            y["praxis"] = changeWord.insertChange(y["praxis"], verb)
 
         if ("Annual" in y["hymnofIntercessions"]):
             y["hymnofIntercessions"] = changeWord.insertChange(
-                y["hymnofIntercessions"], y["verb"])
+                y["hymnofIntercessions"], verb)
     except:
         pass
     
     try:
-        y["gospels"] = changeWord.insertChange(y["gospels"], y["verb"])
+        y["gospels"] = changeWord.insertChange(y["gospels"], verb)
     except:
         pass
     answer = []
+
     for i in y:
         if (i != "Ocassion" and i != "Season" and i != "Sunday" and i != "verb"):
             if (type(y[i]) is list):
@@ -130,7 +133,41 @@ def makeIntoList(y):
                 
                 if(i == "prefaceToTheFraction" and y[i] == "gregory"):
                     y[i] = "PowerPoints/Liturgy/Preface - Gregorian.pptx"  
+                
+                try:
+                    y["anaphora"] = changeWord.insertChange(y["anaphora"], verb)
+               
+                except:
+                    pass
+                try:
+                    if ("Annual" in y["matinsVerseofTheCymbals"]):
+                        y["matinsVerseofTheCymbals"] = changeWord.insertChange(
+                            y["matinsVerseofTheCymbals"], verb)
+                        
+                except:
+                    pass
+                
+                try:
+                    if ("Annual" in y["vespersVerseofTheCymbals"]):
+                        y["vespersVerseofTheCymbals"] = changeWord.insertChange(
+                            y["vespersVerseofTheCymbals"], verb)
+                except:
+                    pass
 
+                try:
+                    if ("Annual" in y["praxis"]):
+                        y["praxis"] = changeWord.insertChange(y["praxis"], verb)
+
+                    if ("Annual" in y["hymnofIntercessions"]):
+                        y["hymnofIntercessions"] = changeWord.insertChange(
+                            y["hymnofIntercessions"], verb)
+                except:
+                    pass
+                
+                try:
+                    y["gospels"] = changeWord.insertChange(y["gospels"], verb)
+                except:
+                    pass
 
                 if (y[i] != ""):
                     answer.append(y[i])

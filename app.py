@@ -165,10 +165,16 @@ def makePptx():
 
         finalList = []
 
+        response = requests.get('https://stmarkapi.com:8080/verb/?date=' + date)
+            
+        print(response.text)
+        verb = response.text
+
+
         paths = ["vespers","matins","offering","liturgyOfWord","liturgyOfFaithful","communion"]
         import mergepptxaspose
         for i in paths:
-            finalList = finalList +  mergepptxaspose.makeIntoList(database[date][i])  
+            finalList = finalList +  mergepptxaspose.makeIntoList(database[date][i], verb)  
 
         for i in finalList:
             print (i)  
