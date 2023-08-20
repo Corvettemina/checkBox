@@ -17,7 +17,7 @@ from wtforms.widgets import CheckboxInput
 from threading import Thread
 from collections import OrderedDict
 import json
-import uuid
+import certifi
 import mergepptxaspose
 
 app = Flask(__name__)
@@ -165,7 +165,7 @@ def makePptx():
 
         finalList = []
 
-        response = requests.get('https://localhost:8080/verb/?date=' + date)
+        response = requests.get('https://localhost:8080/verb/?date=' , verify=certifi.where())
             
         print(response.text)
         verb = response.text
