@@ -139,10 +139,11 @@ def makeIntoList(y ,verb):
                
                 except:
                     pass
+                
                 try:
-                    if ("Annual" in y["matinsVerseofTheCymbals"]):
-                        y["matinsVerseofTheCymbals"] = changeWord.insertChange(
-                            y["matinsVerseofTheCymbals"], verb)
+                    if ("Annual" in y[i] and y[i] == "matinsVerseofTheCymbals"):
+                        y[i] = changeWord.insertChange(
+                            y[i], verb)
                         
                 except:
                     pass
