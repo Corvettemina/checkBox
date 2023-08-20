@@ -40,7 +40,7 @@ class Springapi:
         
         print(path)
         response = requests.get(
-                'http://stmarkapi.com:8080/greeting/?date=' + newDate)
+                'https://stmarkapi.com:8080/greeting/?date=' + newDate)
             
         print(response.text)
     

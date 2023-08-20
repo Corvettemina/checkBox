@@ -54,7 +54,7 @@ def index():
 
     runDropbox()
 
-    response = requests.get('http://stmarkapi.com:8080/home')
+    response = requests.get('https://stmarkapi.com:8080/home')
     y = json.loads(response.text)
 
     form = InfoForm()
@@ -62,7 +62,7 @@ def index():
         session['startdate'] = form.startdate.data
         print(session['startdate'])
 
-        postResponse = requests.post('http://stmarkapi.com:8080/date?date=' + str(session['startdate']))
+        postResponse = requests.post('https://stmarkapi.com:8080/date?date=' + str(session['startdate']))
         print(postResponse.text)
         return redirect('select')
     return render_template('index.html', form=form, y=y)
