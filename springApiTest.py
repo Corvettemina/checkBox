@@ -42,7 +42,7 @@ class Springapi:
         response = requests.get(
                 'https://stmarkapi.com:8080/greeting/?date=' + newDate , verify=False)
             
-        print(response.text)
+        #print(response.text)
     
         
         y = json.loads(response.text)
