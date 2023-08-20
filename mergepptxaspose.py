@@ -134,41 +134,7 @@ def makeIntoList(y ,verb):
                 if(i == "prefaceToTheFraction" and y[i] == "gregory"):
                     y[i] = "PowerPoints/Liturgy/Preface - Gregorian.pptx"  
                 
-                try:
-                    y["anaphora"] = changeWord.insertChange(y["anaphora"], verb)
-               
-                except:
-                    pass
-                
-                try:
-                    if ("Annual" in y[i] and y[i] == "matinsVerseofTheCymbals"):
-                        y[i] = changeWord.insertChange(
-                            y[i], verb)
-                        
-                except:
-                    pass
-                
-                try:
-                    if ("Annual" in y["vespersVerseofTheCymbals"]):
-                        y["vespersVerseofTheCymbals"] = changeWord.insertChange(
-                            y["vespersVerseofTheCymbals"], verb)
-                except:
-                    pass
-
-                try:
-                    if ("Annual" in y["praxis"]):
-                        y["praxis"] = changeWord.insertChange(y["praxis"], verb)
-
-                    if ("Annual" in y["hymnofIntercessions"]):
-                        y["hymnofIntercessions"] = changeWord.insertChange(
-                            y["hymnofIntercessions"], verb)
-                except:
-                    pass
-                
-                try:
-                    y["gospels"] = changeWord.insertChange(y["gospels"], verb)
-                except:
-                    pass
+                print(y[i])
 
                 if (y[i] != ""):
                     answer.append(y[i])
