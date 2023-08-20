@@ -174,7 +174,6 @@ def makePptx():
         paths = ["vespers","matins","offering","liturgyOfWord","liturgyOfFaithful","communion"]
         import mergepptxaspose
         for i in paths:
-            print(i)
             finalList = finalList +  mergepptxaspose.makeIntoList(database[date][i], verb)  
 
         for i in finalList:

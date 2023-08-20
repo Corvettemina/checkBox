@@ -134,8 +134,6 @@ def makeIntoList(y ,verb):
                 if(i == "prefaceToTheFraction" and y[i] == "gregory"):
                     y[i] = "PowerPoints/Liturgy/Preface - Gregorian.pptx"  
                 
-                print(y[i])
-
                 if (y[i] != ""):
                     answer.append(y[i])
 
