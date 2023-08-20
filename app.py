@@ -165,7 +165,7 @@ def makePptx():
 
         finalList = []
 
-        response = requests.get('localhost:8080/verb/?date=' + date)
+        response = requests.get('https://localhost:8080/verb/?date=' + date)
             
         print(response.text)
         verb = response.text
