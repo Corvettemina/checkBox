@@ -35,7 +35,20 @@ class InfoForm(FlaskForm):
     submit = SubmitField('Submit')
 
 
-def merge(temp):
+def merge(temp, database, date):
+    response = requests.get('https://stmarkapi.com:8080/verb/?date='+date , verify=False)
+            
+    print(response.text)
+    verb = response.text
+
+
+    paths = ["vespers","matins","offering","liturgyOfWord","liturgyOfFaithful","communion"]
+        
+    for i in paths:
+        finalList = finalList +  mergepptxaspose.makeIntoList(database[date][i], verb)  
+
+    for i in finalList:
+        print (i)  
     import mergepptxaspose
     mergepptxaspose.merge(temp)
 
@@ -165,21 +178,9 @@ def makePptx():
 
         finalList = []
 
-        response = requests.get('https://stmarkapi.com:8080/verb/?date='+date , verify=False)
-            
-        print(response.text)
-        verb = response.text
 
-
-        paths = ["vespers","matins","offering","liturgyOfWord","liturgyOfFaithful","communion"]
-        import mergepptxaspose
-        for i in paths:
-            finalList = finalList +  mergepptxaspose.makeIntoList(database[date][i], verb)  
-
-        for i in finalList:
-            print (i)  
         #mergepptxaspose.merge(finalList)
-        t = Thread(target=merge, args=(finalList,))
+        t = Thread(target=merge, args=(finalList,database, date))
         t.start()
 
     result = {'status': 'Powerpoint OTW'}
