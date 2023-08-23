@@ -21,10 +21,7 @@ def getfile_insensitive(paths):
 
 def makeIntoList(y ,verb):
 
-    try:
-        y["anaphora"] = changeWord.insertChange(y["anaphora"], verb)
-    except:
-        pass
+
     try:
         if ("Annual" in y["matinsVerseofTheCymbals"]):
             y["matinsVerseofTheCymbals"] = changeWord.insertChange(
@@ -90,11 +87,18 @@ def makeIntoList(y ,verb):
                     y[i] = "PowerPoints/Liturgy/O Lord of Hosts.pptx"
 
                 if(i == "anaphora" and y[i] == "basil"):
-                    y[i] = "PowerPoints/Liturgy/Anaphora - Basiltoday.pptx"
+                    y[i] = "PowerPoints/Liturgy/Anaphora - Basil.pptx"
+                    try:
+                        y["anaphora"] = changeWord.insertChange(y["anaphora"], verb)
+                    except:
+                        pass
                 
                 if(i == "anaphora" and y[i] == "gregory"):
-                    y[i] = "PowerPoints/Liturgy/Anaphora - Gregoriantoday.pptx"
-
+                    y[i] = "PowerPoints/Liturgy/Anaphora - Gregorian.pptx"
+                    try:
+                        y["anaphora"] = changeWord.insertChange(y["anaphora"], verb)
+                    except:
+                        pass
                 if(i == "agiosLiturgy" and y[i] == "basil"):
                     y[i] = "PowerPoints/Liturgy/Agios - Basil.pptx"
                 
