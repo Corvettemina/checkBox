@@ -40,7 +40,7 @@ def merge(temp, database, date):
             
     print(response.text)
     verb = response.text
-
+    import mergepptxaspose
 
     paths = ["vespers","matins","offering","liturgyOfWord","liturgyOfFaithful","communion"]
     finalList = []
@@ -49,7 +49,7 @@ def merge(temp, database, date):
 
     for i in finalList:
         print (i)  
-    import mergepptxaspose
+   
     mergepptxaspose.merge(temp)
 
 def runDropbox():
