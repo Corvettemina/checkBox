@@ -35,7 +35,7 @@ class InfoForm(FlaskForm):
     submit = SubmitField('Submit')
 
 
-def merge(temp, database, date):
+def merge(database, date):
     response = requests.get('https://stmarkapi.com:8080/verb/?date='+date , verify=False)
             
     print(response.text)
@@ -50,7 +50,7 @@ def merge(temp, database, date):
     for i in finalList:
         print (i)  
    
-    mergepptxaspose.merge(temp)
+    mergepptxaspose.merge(finalList)
 
 def runDropbox():
     if (("Linux" in platform.platform())):
@@ -176,11 +176,11 @@ def makePptx():
         except:
             database = {}
 
-        finalList = []
+        
 
 
         #mergepptxaspose.merge(finalList)
-        t = Thread(target=merge, args=(finalList,database, date))
+        t = Thread(target=merge, args=(database, date))
         t.start()
 
     result = {'status': 'Powerpoint OTW'}
