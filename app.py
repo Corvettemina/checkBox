@@ -43,7 +43,7 @@ def merge(temp, database, date):
 
 
     paths = ["vespers","matins","offering","liturgyOfWord","liturgyOfFaithful","communion"]
-        
+    finalList = []
     for i in paths:
         finalList = finalList +  mergepptxaspose.makeIntoList(database[date][i], verb)  
 
