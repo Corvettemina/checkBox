@@ -90,10 +90,10 @@ def makeIntoList(y ,verb):
                     y[i] = "PowerPoints/Liturgy/O Lord of Hosts.pptx"
 
                 if(i == "anaphora" and y[i] == "basil"):
-                    y[i] = "PowerPoints/Liturgy/Anaphora - Basil.pptx"
+                    y[i] = "PowerPoints/Liturgy/Anaphora - Basiltoday.pptx"
                 
                 if(i == "anaphora" and y[i] == "gregory"):
-                    y[i] = "PowerPoints/Liturgy/Anaphora - Gregorian.pptx"
+                    y[i] = "PowerPoints/Liturgy/Anaphora - Gregoriantoday.pptx"
 
                 if(i == "agiosLiturgy" and y[i] == "basil"):
                     y[i] = "PowerPoints/Liturgy/Agios - Basil.pptx"
