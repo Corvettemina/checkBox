@@ -144,7 +144,7 @@ def makeIntoList(y ,verb):
     return (answer)
 
 
-def merge(finishedList):
+def merge(finishedList,date):
     print(len(finishedList))
     platform.platform()
     if ("Windows" in platform.platform()):
@@ -242,7 +242,10 @@ def merge(finishedList):
         print("HEREEEEE")
         from makeCommunionpptx import makePPT
         makePPT(result_path, pptxLengths, totalBeforeCommunion)
+    postResponse = requests.get('https://stmarkapi.com:8080/pptname?date=' + date , verify=False)
+    #print(postResponse.text) 
 
+    shutil.copyfile(result_path, "root/" + postResponse)
     print('complete')
 
 
