@@ -250,6 +250,8 @@ def merge(finishedList,date):
     except:
         os.makedirs("/root/" + "/".join(postResponse.text.split("/")[:-1]))
         shutil.copyfile(result_path, "/root/" + postResponse.text)
+
+    path = postResponse.text.replace("St. Mark PPT's" , "Current Liturgy PPT")
     print('complete')
 
 

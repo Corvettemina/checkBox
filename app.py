@@ -187,6 +187,18 @@ def makePptx():
     
     return jsonify(result)
 
+
+@app.route('/approval', methods=['GET', 'POST'])
+def approval():
+    date = request.args.get('date')
+    if request.method == 'POST':
+        import gmailTest
+        gmailTest.gmail_send_message(date)
+      
+    result = {'status': 'sumbitted for approval'}
+    
+    return jsonify(result)
+
 def post(path):
     dataPosted = request.get_json()  # Get the JSON data from the request
         # Do something with the data...

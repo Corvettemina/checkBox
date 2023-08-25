@@ -13,7 +13,7 @@ from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
-def gmail_send_message():
+def gmail_send_message(date):
     """Create and send an email message
     Print the returned  message id
     Returns: Message object, including message id
@@ -47,11 +47,12 @@ def gmail_send_message():
         service = build('gmail', 'v1', credentials=creds)
         message = EmailMessage()
 
-        message.set_content('This is automated draft mail')
+        message.set_content('Powerpoint selections for this Sunday is ready for review.\n'+
+                            'https://stmark-service.web.app/vespers?date=' + date)
 
-        message['To'] = 'mina.h.hanna@gmail.com'
-        message['From'] = 'mina.h.hanna@gmail.com'
-        message['Subject'] = 'Automated draft'
+        message['To'] = ['mina.h.hanna@gmail.com',"tonyislame67@gmail.com","msorail98@gmail.com"]
+        message['From'] = 'Mina Hanna'
+        message['Subject'] = 'Powerpoint For Sunday '+ str(date)
 
         # encoded message
         encoded_message = base64.urlsafe_b64encode(message.as_bytes()) \
@@ -64,6 +65,7 @@ def gmail_send_message():
         send_message = (service.users().messages().send
                         (userId="me", body=create_message).execute())
         print(F'Message Id: {send_message["id"]}')
+
     except HttpError as error:
         print(F'An error occurred: {error}')
         send_message = None
