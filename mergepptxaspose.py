@@ -245,7 +245,11 @@ def merge(finishedList,date):
     postResponse = requests.get('https://stmarkapi.com:8080/pptname?date=' + date , verify=False)
     #print(postResponse.text) 
 
-    shutil.copyfile(result_path, "/root/" + postResponse.text)
+    try:
+        shutil.copyfile(result_path, "/root/" + postResponse.text)
+    except:
+        os.makedirs("/root/" + "/".join(postResponse.text.split("/")[:-1]))
+        shutil.copyfile(result_path, "/root/" + postResponse.text)
     print('complete')
 
 
