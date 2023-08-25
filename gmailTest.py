@@ -48,7 +48,7 @@ def gmail_send_message(date, database):
 
         message.set_content('Powerpoint selections for this Sunday is ready for review.\n'+
                             'https://stmark-service.web.app/vespers?date=' + date + "\n"+
-                            database[date]['matins']['seasonmatinsDoxologies'])
+                            ", ".join(database[date]['matins']['seasonmatinsDoxologies']))
         with open("/root/Dropbox/PowerPoints/configs/emails.json", "r") as json_file:
             json_data = json.load(json_file)
 
