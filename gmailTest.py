@@ -5,7 +5,7 @@ from email.message import EmailMessage
 import pickle
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-
+import json
 import os.path
 
 from google.auth.transport.requests import Request
@@ -48,8 +48,12 @@ def gmail_send_message(date):
 
         message.set_content('Powerpoint selections for this Sunday is ready for review.\n'+
                             'https://stmark-service.web.app/vespers?date=' + date)
+        with open("/root/Dropbox/PowerPoints/configs/emails.json", "r") as json_file:
+            json_data = json.load(json_file)
 
-        message['To'] = ['mina.h.hanna@gmail.com',"tonyislame67@gmail.com","msorail98@gmail.com"]
+        # Print the contents of the JSON data
+ 
+        message['To'] = json_data
         message['From'] = 'Mina Hanna'
         message['Subject'] = 'Powerpoint For Sunday '+ str(date)
 
