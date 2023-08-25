@@ -192,8 +192,14 @@ def makePptx():
 def approval():
     date = request.args.get('date')
     if request.method == 'POST':
+        try:
+            filename = "data.json"
+            with open(filename, "r") as json_file:
+                database = json.load(json_file)
+        except:
+            database = {}
         import gmailTest
-        gmailTest.gmail_send_message(date)
+        gmailTest.gmail_send_message(date,database)
       
     result = {'status': 'sumbitted for approval'}
     

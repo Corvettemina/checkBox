@@ -12,7 +12,7 @@ from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
-def gmail_send_message(date):
+def gmail_send_message(date, database):
     """Create and send an email message
     Print the returned  message id
     Returns: Message object, including message id
@@ -47,7 +47,8 @@ def gmail_send_message(date):
         message = EmailMessage()
 
         message.set_content('Powerpoint selections for this Sunday is ready for review.\n'+
-                            'https://stmark-service.web.app/vespers?date=' + date)
+                            'https://stmark-service.web.app/vespers?date=' + date + "\n"+
+                            database[date]['matins']['seasonmatinsDoxologies'])
         with open("/root/Dropbox/PowerPoints/configs/emails.json", "r") as json_file:
             json_data = json.load(json_file)
 
