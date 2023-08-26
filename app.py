@@ -303,7 +303,7 @@ def getLocal(path):
             data = json.load(json_file)
     except:
         result = {'status': "Empty Database"}
-        return jsonify(result)
+        return (result)
 
     date = request.args.get('date')
     try:
