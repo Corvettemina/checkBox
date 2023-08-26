@@ -2,6 +2,7 @@ from __future__ import print_function
 
 import base64
 from email.message import EmailMessage
+from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import pickle
 from googleapiclient.discovery import build
@@ -46,8 +47,9 @@ def gmail_send_message(date, database):
     try:
         service = build('gmail', 'v1', credentials=creds)
         #message = EmailMessage()
-        message_text = "<p>hey</p>"
-        message = MIMEText(message_text,'html')
+        message_text = "<html><p>hey</p></html>"
+        message = MIMEMultipart('alternative')
+        message.attach(MIMEText(message_text, 'html'))
         '''
         message.set_content('Powerpoint selections for this Sunday is ready for review.\n'+
                             'https://stmark-service.web.app/vespers?date=' + date + "\n"+
