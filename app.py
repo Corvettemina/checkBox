@@ -170,7 +170,6 @@ def getAll():
 
     if request.method =='GET':
         responsetoSend = {}
-        print(getLocal(vespers))
         try:
             (getLocal('vespers')["status"] ==  "No PPT For this date")
             responsetoSend["vespers"] = False
@@ -223,8 +222,6 @@ def makePptx():
             database = {}
 
         
-
-
         #mergepptxaspose.merge(finalList)
         t = Thread(target=merge, args=(database, date))
         t.start()
@@ -319,10 +316,9 @@ def getLocal(path):
         return (result)
         
     try:
-        print(data[date][path])
         return data[date][path]
     except Exception as e:
-        print(e)
+        
         result = {'status': "No PPT For this date"}
         return (result) 
       
