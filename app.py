@@ -314,7 +314,8 @@ def getLocal(path):
         
     try:
         return json.loads(data[date][path])
-    except:
+    except Exception as e:
+        print(e)
         result = {'status': "No PPT For this date"}
         return (result) 
       
