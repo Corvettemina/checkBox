@@ -313,10 +313,7 @@ def getLocal(path):
         return (result)
         
     try:
-        dataTosend = data[date][path]
-        response_data = json.dumps(dataTosend, ensure_ascii=False, indent=4)
-        response = Response(response_data, content_type='application/json')
-        return response
+        return data[date][path]
     except:
         result = {'status': "No PPT For this date"}
         return (result) 
