@@ -70,16 +70,15 @@ def gmail_send_message(date, database):
         message['Subject'] = 'Powerpoint For Sunday '+ str(date)
 
         # encoded message
-        '''
         encoded_message = base64.urlsafe_b64encode(message.as_bytes()) \
             .decode()
 
         create_message = {
             'raw': encoded_message
-        }'''
+        }
         # pylint: disable=E1101
         send_message = (service.users().messages().send
-                        (userId="me", body=message).execute())
+                        (userId="me", body=create_message).execute())
         print(F'Message Id: {send_message["id"]}')
 
     except HttpError as error:
