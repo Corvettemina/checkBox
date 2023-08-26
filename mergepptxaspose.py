@@ -243,15 +243,15 @@ def merge(finishedList,date):
         from makeCommunionpptx import makePPT
         makePPT(result_path, pptxLengths, totalBeforeCommunion)
     postResponse = requests.get('https://stmarkapi.com:8080/pptname?date=' + date , verify=False)
-    #print(postResponse.text) 
+    pptName = postResponse.text["pptName"]
 
     try:
-        shutil.copyfile(result_path, "/root/" + postResponse.text)
+        shutil.copyfile(result_path, "/root/" + pptName)
     except:
-        os.makedirs("/root/" + "/".join(postResponse.text.split("/")[:-1]))
-        shutil.copyfile(result_path, "/root/" + postResponse.text)
+        os.makedirs("/root/" + "/".join(pptName.split("/")[:-1]))
+        shutil.copyfile(result_path, "/root/" + pptName)
 
-    path = postResponse.text.replace("St. Mark PPT's" , "Current Liturgy PPT")
+    path = pptName.replace("St. Mark PPT's" , "Current Liturgy PPT")
     print('complete')
 
 
