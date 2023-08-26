@@ -33,35 +33,47 @@ def gmail_send_message(date, database):
             pickle.dump(creds, token)
 
     try:
-        service = build('gmail', 'v1', credentials=creds)
-        message = EmailMessage()
-        
-        message.add_header('Content-Type', 'text/html')  # Set the content type to HTML
-        
-        message.set_content(
-            f'<p>Powerpoint selections for this Sunday are ready for review.</p>'
-            f'<p><a href="https://stmark-service.web.app/vespers?date={date}">Vespers Link</a></p>'
-            f'<p>Vespers Doxologies:<br>'
-            f'{",<br>".join(database[date]["vespers"]["seasonVespersDoxologies"])}</p>'
-            f'<p>Matins Doxologies:<br>'
-            f'{",<br>".join(database[date]["matins"]["seasonmatinsDoxologies"])}</p>'
-        )
-        
         with open("/root/Dropbox/PowerPoints/configs/emails.json", "r") as json_file:
             recipients = json.load(json_file)
         
-        message['To'] = ", ".join(recipients)  # Join recipients as a comma-separated string
+        service = build('gmail', 'v1', credentials=creds)
+        message = EmailMessage()
+        message['To'] = ", ".join(recipients)
         message['From'] = 'Mina Hanna'
         message['Subject'] = 'Powerpoint For Sunday ' + str(date)
-        
+
+        # Create the HTML content
+        html_content = f'''
+        <html>
+        <head></head>
+        <body>
+            <p>Powerpoint selections for this Sunday are ready for review.</p>
+            <p><a href="https://stmark-service.web.app/vespers?date={date}">Vespers Link</a></p>
+            <p>Vespers Doxologies:</p>
+            <ul>
+                {"".join([f"<li>{doxology}</li>" for doxology in database[date]['vespers']['seasonVespersDoxologies']])}
+            </ul>
+            <p>Matins Doxologies:</p>
+            <ul>
+                {"".join([f"<li>{doxology}</li>" for doxology in database[date]['matins']['seasonmatinsDoxologies']])}
+            </ul>
+        </body>
+        </html>
+        '''
+
+        message.set_content(html_content, subtype='html')
+
+        # Encode the message as base64
         encoded_message = base64.urlsafe_b64encode(message.as_bytes()).decode()
-        
+
         create_message = {
             'raw': encoded_message
         }
-        
+
+        # Send the message using Gmail API
         send_message = service.users().messages().send(userId="me", body=create_message).execute()
         print(f'Message Id: {send_message["id"]}')
+
     except HttpError as error:
         print(f'An error occurred: {error}')
         send_message = None
