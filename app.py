@@ -172,7 +172,7 @@ def getAll():
         responsetoSend = {}
 
         if(get('vespers')["status"] ==  "No PPT For this date"):
-                responsetoSend["vespers"] = False
+            responsetoSend["vespers"] = False
         else:
             responsetoSend["vespers"] = True
 
@@ -201,6 +201,7 @@ def getAll():
         else:
             responsetoSend["communion"] = True
         
+        return jsonify(responsetoSend)
         
 
 
