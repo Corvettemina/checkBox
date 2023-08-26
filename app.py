@@ -309,6 +309,7 @@ def getLocal(path):
     try:
         data[date]
     except Exception as e:
+        print("FIRST")
         print(e)
         result = {'status': "No PPT For this date"}
         return (result)
