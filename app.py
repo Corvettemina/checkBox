@@ -170,7 +170,7 @@ def getAll():
 
     if request.method =='GET':
         responsetoSend = {}
-
+        print(getLocal(vespers))
         if(getLocal('vespers')["status"] ==  "No PPT For this date"):
             responsetoSend["vespers"] = False
         else:
