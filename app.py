@@ -139,7 +139,7 @@ def liturgyOfWord():
 
 @app.route('/liturgyOfFaithful', methods=['GET', 'POST'])
 def liturgyOfFaithful():
-    form = InfoForm()
+
     if request.method =='GET':
         return get('liturgyOfFaithful')
     
@@ -164,6 +164,45 @@ def communion():
         result = {'status': 'Communion Updated'}
     
     return jsonify(result)
+
+@app.route('/getAll', methods=['GET', 'POST'])
+def getAll():
+
+    if request.method =='GET':
+        responsetoSend = {}
+
+        if(get('vespers')["status"] ==  "No PPT For this date"):
+                responsetoSend["vespers"] = False
+        else:
+            responsetoSend["vespers"] = True
+
+        if(get('matins')["status"] ==  "No PPT For this date"):
+            responsetoSend["matins"] = False
+        else:
+            responsetoSend["matins"] = True
+
+        if(get('offering')["status"] ==  "No PPT For this date"):
+            responsetoSend["offering"] = False
+        else:
+            responsetoSend["offering"] = True
+
+        if(get('liturgyOfWord')["status"] ==  "No PPT For this date"):
+            responsetoSend["liturgyOfWord"] = False
+        else:
+            responsetoSend["liturgyOfWord"] = True
+
+        if(get('liturgyOfFaithful')["status"] ==  "No PPT For this date"):
+            responsetoSend["liturgyOfFaithful"] = False
+        else:
+            responsetoSend["liturgyOfFaithful"] = True
+
+        if(get('communion')["status"] ==  "No PPT For this date"):
+            responsetoSend["communion"] = False
+        else:
+            responsetoSend["communion"] = True
+        
+        
+
 
 @app.route('/makeppt', methods=['GET', 'POST'])
 def makePptx():
