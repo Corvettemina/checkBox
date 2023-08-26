@@ -171,7 +171,7 @@ def getAll():
     if request.method =='GET':
         responsetoSend = {}
         print(getLocal(vespers))
-        if(json.loads(getLocal('vespers')["status"]) ==  "No PPT For this date"):
+        if(getLocal('vespers')["status"] ==  "No PPT For this date"):
             responsetoSend["vespers"] = False
         else:
             responsetoSend["vespers"] = True
@@ -313,7 +313,7 @@ def getLocal(path):
         return (result)
         
     try:
-        return data[date][path]
+        return json.loads(data[date][path])
     except:
         result = {'status': "No PPT For this date"}
         return (result) 
