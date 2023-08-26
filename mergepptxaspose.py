@@ -9,6 +9,7 @@ import collections
 import collections.abc
 from pptx import Presentation
 import requests
+import json
 
 
 def getfile_insensitive(paths):
@@ -243,7 +244,7 @@ def merge(finishedList,date):
         from makeCommunionpptx import makePPT
         makePPT(result_path, pptxLengths, totalBeforeCommunion)
     postResponse = requests.get('https://stmarkapi.com:8080/pptname?date=' + date , verify=False)
-    pptName = postResponse.text["pptName"]
+    pptName = json.loads(postResponse.text)["pptName"]
 
     try:
         shutil.copyfile(result_path, "/root/" + pptName)

@@ -104,12 +104,11 @@ from mergepptxaspose import merge
 test = ["1","2","1","4","5"]
 i = 0
 print((test.index("1",1)))
-import json
-with open("C:/Users/Mina Hanna/Dropbox/PowerPoints/configs/emails.json", "r") as json_file:
-    json_data = json.load(json_file)
 
-# Print the contents of the JSON data
-print(json_data)
+import requests
+import json 
+postResponse = requests.get('https://stmarkapi.com:8080/pptname?date=2023-08-13' , verify=False)
+pptName = json.loads(postResponse.text)["pptName"]
 
 '''
 for path, subdirs, files in os.walk(""PowerPoints/"):
