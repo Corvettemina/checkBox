@@ -45,14 +45,15 @@ def gmail_send_message(date, database):
     try:
         service = build('gmail', 'v1', credentials=creds)
         message = EmailMessage()
-        '''
-        message.set_content('Powerpoint selections for this Sunday is ready for review.\n'+
-                            'https://stmark-service.web.app/vespers?date=' + date + "\n"+
-                            'Vespers Doxolgies:\n\t' + 
-                            ",\n\t".join(database[date]['vespers']['seasonVespersDoxologies']) 
-                            + '\n\nMatins Doxolgies:\n\t' + 
-                            ",\n\t".join(database[date]['matins']['seasonmatinsDoxologies']))
-        '''
+        message.add_header('Content-Type', 'text/html')
+        message.set_content(
+            f'<p>Powerpoint selections for this Sunday are ready for review.</p>'
+            f'<p><a href="https://stmark-service.web.app/vespers?date={date}">Vespers Link</a></p>'
+            f'<p>Vespers Doxolgies:<br>'
+            f'{",<br>".join(database[date]["vespers"]["seasonVespersDoxologies"])}</p>'
+            f'<p>Matins Doxolgies:<br>'
+            f'{",<br>".join(database[date]["matins"]["seasonmatinsDoxologies"])}</p>'
+        )
 
         message.set_content("<p>hey<\>")
         with open("/root/Dropbox/PowerPoints/configs/emails.json", "r") as json_file:
