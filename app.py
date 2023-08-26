@@ -171,34 +171,40 @@ def getAll():
     if request.method =='GET':
         responsetoSend = {}
         print(getLocal(vespers))
-        if(getLocal('vespers')["status"] ==  "No PPT For this date"):
+        try:
+            (getLocal('vespers')["status"] ==  "No PPT For this date"):
             responsetoSend["vespers"] = False
-        else:
+        except:
             responsetoSend["vespers"] = True
 
-        if(getLocal('matins')["status"] ==  "No PPT For this date"):
+        try:
+            (getLocal('matins')["status"] ==  "No PPT For this date"):
             responsetoSend["matins"] = False
-        else:
+        except:
             responsetoSend["matins"] = True
 
-        if(getLocal('offering')["status"] ==  "No PPT For this date"):
+        try:
+            (getLocal('offering')["status"] ==  "No PPT For this date"):
             responsetoSend["offering"] = False
-        else:
+        except:
             responsetoSend["offering"] = True
 
-        if(getLocal('liturgyOfWord')["status"] ==  "No PPT For this date"):
+        try:
+            (getLocal('liturgyOfWord')["status"] ==  "No PPT For this date"):
             responsetoSend["liturgyOfWord"] = False
-        else:
+        except:
             responsetoSend["liturgyOfWord"] = True
 
-        if(getLocal('liturgyOfFaithful')["status"] ==  "No PPT For this date"):
+        try:
+            (getLocal('liturgyOfFaithful')["status"] ==  "No PPT For this date"):
             responsetoSend["liturgyOfFaithful"] = False
-        else:
+        except:
             responsetoSend["liturgyOfFaithful"] = True
 
-        if(getLocal('communion')["status"] ==  "No PPT For this date"):
+        try:
+            (getLocal('communion')["status"] ==  "No PPT For this date"):
             responsetoSend["communion"] = False
-        else:
+        except:
             responsetoSend["communion"] = True
         
         return jsonify(responsetoSend)
