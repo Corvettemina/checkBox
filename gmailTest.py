@@ -2,7 +2,6 @@ from __future__ import print_function
 
 import base64
 from email.message import EmailMessage
-from email.mime.text import MIMEText
 import pickle
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
@@ -45,9 +44,7 @@ def gmail_send_message(date, database):
 
     try:
         service = build('gmail', 'v1', credentials=creds)
-        #message = EmailMessage()
-        message_text = "<p>hey</p>"
-        message = MIMEText(message_text,'html')
+        message = EmailMessage()
         '''
         message.set_content('Powerpoint selections for this Sunday is ready for review.\n'+
                             'https://stmark-service.web.app/vespers?date=' + date + "\n"+
@@ -57,7 +54,7 @@ def gmail_send_message(date, database):
                             ",\n\t".join(database[date]['matins']['seasonmatinsDoxologies']))
         '''
 
-
+        message.set_content("<p>hey<\>")
         with open("/root/Dropbox/PowerPoints/configs/emails.json", "r") as json_file:
             json_data = json.load(json_file)
 
