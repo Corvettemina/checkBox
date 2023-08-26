@@ -171,32 +171,32 @@ def getAll():
     if request.method =='GET':
         responsetoSend = {}
 
-        if(get('vespers')["status"] ==  "No PPT For this date"):
+        if(getLocal('vespers')["status"] ==  "No PPT For this date"):
             responsetoSend["vespers"] = False
         else:
             responsetoSend["vespers"] = True
 
-        if(get('matins')["status"] ==  "No PPT For this date"):
+        if(getLocal('matins')["status"] ==  "No PPT For this date"):
             responsetoSend["matins"] = False
         else:
             responsetoSend["matins"] = True
 
-        if(get('offering')["status"] ==  "No PPT For this date"):
+        if(getLocal('offering')["status"] ==  "No PPT For this date"):
             responsetoSend["offering"] = False
         else:
             responsetoSend["offering"] = True
 
-        if(get('liturgyOfWord')["status"] ==  "No PPT For this date"):
+        if(getLocal('liturgyOfWord')["status"] ==  "No PPT For this date"):
             responsetoSend["liturgyOfWord"] = False
         else:
             responsetoSend["liturgyOfWord"] = True
 
-        if(get('liturgyOfFaithful')["status"] ==  "No PPT For this date"):
+        if(getLocal('liturgyOfFaithful')["status"] ==  "No PPT For this date"):
             responsetoSend["liturgyOfFaithful"] = False
         else:
             responsetoSend["liturgyOfFaithful"] = True
 
-        if(get('communion')["status"] ==  "No PPT For this date"):
+        if(getLocal('communion')["status"] ==  "No PPT For this date"):
             responsetoSend["communion"] = False
         else:
             responsetoSend["communion"] = True
@@ -296,7 +296,31 @@ def get(path):
         result = {'status': "No PPT For this date"}
         return jsonify(result)   
 
+def getLocal(path):
+    try:
+        filename = "data.json"
+        with open(filename, "r") as json_file:
+            data = json.load(json_file)
+    except:
+        result = {'status': "Empty Database"}
+        return jsonify(result)
 
+    date = request.args.get('date')
+    try:
+        data[date]
+    except:
+        result = {'status': "No PPT For this date"}
+        return (result)
+        
+    try:
+        dataTosend = data[date][path]
+        response_data = json.dumps(dataTosend, ensure_ascii=False, indent=4)
+        response = Response(response_data, content_type='application/json')
+        return response
+    except:
+        result = {'status': "No PPT For this date"}
+        return (result) 
+      
 def convert_date_format(date_str):
     # Parse the input date string into a datetime object
     dt = datetime.strptime(date_str, '%Y-%b-%d')
