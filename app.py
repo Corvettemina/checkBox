@@ -172,37 +172,37 @@ def getAll():
         responsetoSend = {}
         print(getLocal(vespers))
         try:
-            (getLocal('vespers')["status"] ==  "No PPT For this date"):
+            (getLocal('vespers')["status"] ==  "No PPT For this date")
             responsetoSend["vespers"] = False
         except:
             responsetoSend["vespers"] = True
 
         try:
-            (getLocal('matins')["status"] ==  "No PPT For this date"):
+            (getLocal('matins')["status"] ==  "No PPT For this date")
             responsetoSend["matins"] = False
         except:
             responsetoSend["matins"] = True
 
         try:
-            (getLocal('offering')["status"] ==  "No PPT For this date"):
+            (getLocal('offering')["status"] ==  "No PPT For this date")
             responsetoSend["offering"] = False
         except:
             responsetoSend["offering"] = True
 
         try:
-            (getLocal('liturgyOfWord')["status"] ==  "No PPT For this date"):
+            (getLocal('liturgyOfWord')["status"] ==  "No PPT For this date")
             responsetoSend["liturgyOfWord"] = False
         except:
             responsetoSend["liturgyOfWord"] = True
 
         try:
-            (getLocal('liturgyOfFaithful')["status"] ==  "No PPT For this date"):
+            (getLocal('liturgyOfFaithful')["status"] ==  "No PPT For this date")
             responsetoSend["liturgyOfFaithful"] = False
         except:
             responsetoSend["liturgyOfFaithful"] = True
 
         try:
-            (getLocal('communion')["status"] ==  "No PPT For this date"):
+            (getLocal('communion')["status"] ==  "No PPT For this date")
             responsetoSend["communion"] = False
         except:
             responsetoSend["communion"] = True
