@@ -13,72 +13,57 @@ from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 def gmail_send_message(date, database):
-    """Create and send an email message
-    Print the returned  message id
-    Returns: Message object, including message id
-
-    Load pre-authorized user credentials from the environment.
-    TODO(developer) - See https://developers.google.com/identity
-    for guides on implementing OAuth2 for the application.
-    """
     SCOPES = ['https://www.googleapis.com/auth/gmail.send']
-
-    USETOKEN= 'tokenMina.pickle'
+    
+    USETOKEN = 'tokenMina.pickle'
     USECRED = 'credentials.json'
     creds = None
+    
     if os.path.exists(USETOKEN):
         with open(USETOKEN, 'rb') as token:
             creds = pickle.load(token)
-    # If there are no (valid) credentials available, let the user log in.
+            
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
-            flow = InstalledAppFlow.from_client_secrets_file(
-                USECRED, SCOPES)
+            flow = InstalledAppFlow.from_client_secrets_file(USECRED, SCOPES)
             creds = flow.run_local_server(port=0)
-        # Save the credentials for the next run
         with open(USETOKEN, 'wb') as token:
             pickle.dump(creds, token)
-
 
     try:
         service = build('gmail', 'v1', credentials=creds)
         message = EmailMessage()
-        message.add_header('Content-Type', 'text/html')
+        
+        message.add_header('Content-Type', 'text/html')  # Set the content type to HTML
+        
         message.set_content(
             f'<p>Powerpoint selections for this Sunday are ready for review.</p>'
             f'<p><a href="https://stmark-service.web.app/vespers?date={date}">Vespers Link</a></p>'
-            f'<p>Vespers Doxolgies:<br>'
+            f'<p>Vespers Doxologies:<br>'
             f'{",<br>".join(database[date]["vespers"]["seasonVespersDoxologies"])}</p>'
-            f'<p>Matins Doxolgies:<br>'
+            f'<p>Matins Doxologies:<br>'
             f'{",<br>".join(database[date]["matins"]["seasonmatinsDoxologies"])}</p>'
         )
-
-
+        
         with open("/root/Dropbox/PowerPoints/configs/emails.json", "r") as json_file:
-            json_data = json.load(json_file)
-
-        # Print the contents of the JSON data
- 
-        message['To'] = json_data
+            recipients = json.load(json_file)
+        
+        message['To'] = ", ".join(recipients)  # Join recipients as a comma-separated string
         message['From'] = 'Mina Hanna'
-        message['Subject'] = 'Powerpoint For Sunday '+ str(date)
-
-        # encoded message
-        encoded_message = base64.urlsafe_b64encode(message.as_bytes()) \
-            .decode()
-
+        message['Subject'] = 'Powerpoint For Sunday ' + str(date)
+        
+        encoded_message = base64.urlsafe_b64encode(message.as_bytes()).decode()
+        
         create_message = {
             'raw': encoded_message
         }
-        # pylint: disable=E1101
-        send_message = (service.users().messages().send
-                        (userId="me", body=create_message).execute())
-        print(F'Message Id: {send_message["id"]}')
-
+        
+        send_message = service.users().messages().send(userId="me", body=create_message).execute()
+        print(f'Message Id: {send_message["id"]}')
     except HttpError as error:
-        print(F'An error occurred: {error}')
+        print(f'An error occurred: {error}')
         send_message = None
     return send_message
 
