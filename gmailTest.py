@@ -46,6 +46,8 @@ def gmail_send_message(date, database):
 
     try:
         service = build('gmail', 'v1', credentials=creds)
+        with open("/root/Dropbox/PowerPoints/configs/emails.json", "r") as json_file:
+            recipients = json.load(json_file)
         message = MIMEMultipart()
         message['To'] = ", ".join(recipients)
         message['From'] = 'Mina Hanna'
