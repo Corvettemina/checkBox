@@ -21,36 +21,6 @@ def getfile_insensitive(paths):
 
 
 def makeIntoList(y ,verb):
-
-
-    try:
-        if ("Annual" in y["matinsVerseofTheCymbals"]):
-            y["matinsVerseofTheCymbals"] = changeWord.insertChange(
-                y["matinsVerseofTheCymbals"], verb)
-    except:
-        pass
-    
-    try:
-        if ("Annual" in y["vespersVerseofTheCymbals"]):
-            y["vespersVerseofTheCymbals"] = changeWord.insertChange(
-                y["vespersVerseofTheCymbals"], verb)
-    except:
-        pass
-
-    try:
-        if ("Annual" in y["praxis"]):
-            y["praxis"] = changeWord.insertChange(y["praxis"], verb)
-
-        if ("Annual" in y["hymnofIntercessions"]):
-            y["hymnofIntercessions"] = changeWord.insertChange(
-                y["hymnofIntercessions"], verb)
-    except:
-        pass
-    
-    try:
-        y["gospels"] = changeWord.insertChange(y["gospels"], verb)
-    except:
-        pass
     answer = []
 
     for i in y:
@@ -216,7 +186,10 @@ def merge(finishedList,date):
         presentaionsArray.append(presentation)
 
         for i in filesToremove: 
-            os.remove(i)
+            try:
+                os.remove(i)
+            except:
+                pass
 
         count += 1
         if x == 11:
@@ -243,8 +216,15 @@ def merge(finishedList,date):
         print("HEREEEEE")
         from makeCommunionpptx import makePPT
         makePPT(result_path, pptxLengths, totalBeforeCommunion)
+
+    response = requests.get('https://stmarkapi.com:8080/verb/?date='+date , verify=False)
+            
+    verb = response.text
+    changeWord.insertChange(result_path,verb)
+
     postResponse = requests.get('https://stmarkapi.com:8080/pptname?date=' + date , verify=False)
     pptName = json.loads(postResponse.text)["pptName"]
+    
 
     try:
         shutil.copyfile(result_path, "/root/" + pptName)

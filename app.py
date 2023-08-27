@@ -36,10 +36,7 @@ class InfoForm(FlaskForm):
 
 
 def merge(database, date):
-    response = requests.get('https://stmarkapi.com:8080/verb/?date='+date , verify=False)
-            
-    print(response.text)
-    verb = response.text
+
     import mergepptxaspose
 
     paths = ["vespers","matins","offering","liturgyOfWord","liturgyOfFaithful","communion"]
@@ -460,7 +457,7 @@ def myroute():
     return jsonify(result)
 
 if __name__ == "__main__":
-    #app.run(debug=True)
+    app.run(debug=True)
     #app.run(host='0.0.0.0')
     
-    app.run(host='0.0.0.0',ssl_context=('/etc/letsencrypt/archive/stmarkapi.com/cert1.pem', '/etc/letsencrypt/archive/stmarkapi.com/privkey1.pem'))
+    #app.run(host='0.0.0.0',ssl_context=('/etc/letsencrypt/archive/stmarkapi.com/cert1.pem', '/etc/letsencrypt/archive/stmarkapi.com/privkey1.pem'))

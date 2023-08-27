@@ -48,7 +48,7 @@ def create_html_email(date, database):
                 {"  ,<br>     ".join(database[date]['vespers']['seasonVespersDoxologies'])}</p>
                 <h2>Vespers Litany of the Gospel:<br></h2>
                 <p>{database[date]['vespers']['vespersLitanyofTheGospel']}</p>
-                <h2>Vespers 2 Short Litanies:<br></h2>
+                <h2>Vespers 5 Short Litanies:<br></h2>
                 <p>{database[date]['vespers']['vespers5ShortLitanies']}</p>
 
                 <h1><a href="https://stmark-service.web.app/matins?date={date}">Matins</a></h1>
@@ -56,7 +56,7 @@ def create_html_email(date, database):
                 {"  ,<br>     ".join(database[date]['matins']['seasonmatinsDoxologies'])}</p>
                 <h2>Matins Litany of the Gospel:<br></h2>
                 <p>{database[date]['matins']['matinsLitanyofTheGospel']}</p>
-                <h2>Matins 2 Short Litanies:<br></h2>
+                <h2>Matins 5 Short Litanies:<br></h2>
                 <p>{database[date]['matins']['matins5ShortLitanies']}</p>
             </div>
         </body>
@@ -85,11 +85,11 @@ def gmail_send_message(date, database):
 
     try:
         service = build('gmail', 'v1', credentials=creds)
-        with open("/root/Dropbox/PowerPoints/configs/emails.json", "r") as json_file:
-            recipients = json.load(json_file)
+        #with open("/root/Dropbox/PowerPoints/configs/emails.json", "r") as json_file:
+            #recipients = json.load(json_file)
             
         message = MIMEMultipart()
-        message['To'] = (",").join(recipients)
+        message['To'] = "mina.h.hanna@gmail.com"
         message['From'] = 'Mina Hanna'
         message['Subject'] = 'Powerpoint For Sunday ' + str(date)
         
