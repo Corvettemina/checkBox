@@ -21,13 +21,16 @@ def create_html_email(date, database):
                     margin: 0;
                     padding: 0;
                 }}
-                .container {{
-                    max-width: 600px;
-                    margin: 0 auto;
-                    padding: 20px;
-                    background-color: #f5f5f5;
-                    border: 1px solid #e0e0e0;
-                }}
+           .container {{
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #f5f5f5;
+                border: 1px solid #e0e0e0;
+                background-image: url('background.jpg');
+                background-size: cover; /* Adjust as needed */
+                background-position: center center; /* Adjust as needed */
+            }}
                 /* Bold titles and increase text size */
                 .container h1 {{
                     font-weight: bold;
