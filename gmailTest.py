@@ -47,7 +47,7 @@ def create_html_email(date, database):
             <div class="container">
                 <h1>Powerpoint selections for this Sunday are ready for review.</h1>
                 <h1><a href="https://stmark-service.web.app/vespers?date={date}">Vespers</a></h1>
-                <h2>Vespers Doxologies:<br></h2><p>
+                <h2>Vespers Doxologies:<br></h2>
                 '''
     for i in database[date]['vespers']['seasonVespersDoxologies']:
         doxo = i.split("/")[-1]
@@ -78,7 +78,7 @@ def create_html_email(date, database):
     for i in database[date]['matins']['seasonmatinsDoxologies']:
         doxo = i.split("/")[-1]
         html_content += f'''
-        <p>{doxo}</p>
+        <br>{doxo}</br>
         '''
                
     if database[date]['matins']['matinsLitanyofTheGospel'] == "alternate":
@@ -104,7 +104,7 @@ def create_html_email(date, database):
         for i in database[date]['liturgyOfWord']['paralexHymns']:
             doxo = i.split("/")[-1]
             html_content += f'''
-            <p>{doxo}</p>
+            <br>{doxo}</br>
             '''
 
     toRender = database[date]['liturgyOfFaithful']['prayerOfReconcilation'][0].split("/")[-1]
@@ -215,12 +215,12 @@ def create_html_email(date, database):
     for i in database[date]['communion']['communionHymns']:
         doxo = i.split("/")[-1]
         html_content += f'''
-        <p>{doxo}</p>
+        <br>{doxo}</br>
         '''
     for i in database[date]['communion']['AllCommunionHymns']:
         doxo = i.split("/")[-1]
         html_content += f'''
-        <p>{doxo}</p>
+        <br>{doxo}</br>
         '''
 
     html_content += f'''
