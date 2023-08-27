@@ -240,6 +240,7 @@ def approval():
             with open(filename, "r") as json_file:
                 database = json.load(json_file)
         except:
+            print("HERE")
             database = {}
         import gmailTest
         gmailTest.gmail_send_message(date,database)
