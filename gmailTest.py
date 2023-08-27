@@ -70,10 +70,14 @@ def create_html_email(date, database):
     html_content += f'''    
                 
                 <h1><a href="https://stmark-service.web.app/matins?date={date}">Matins</a></h1>
-                <h2>Matins Doxologies:<br></h2><p>
-                {"  ,<br>     ".join(database[date]['matins']['seasonmatinsDoxologies'])}</p>
+                <h2>Matins Doxologies:<br></h2>
                 '''
-
+    for i in database[date]['matins']['seasonmatinsDoxologies']:
+        doxo = i.split("/")[-1]
+        html_content += f'''
+        <p>{doxo}</p>
+        '''
+               
     if database[date]['matins']['matinsLitanyofTheGospel'] == "alternate":
         alternate_content = f'''
                 <h2>Matins Litany of the Gospel:<br></h2>
@@ -92,9 +96,13 @@ def create_html_email(date, database):
         alternate_content = f'''
         <h1><a href="https://stmark-service.web.app/liturgyOfWord?date={date}">Liturgy Of the Word</a></h1>
         <h2>Paralex Hymns:<br></h2><p>
-        {"  ,<br>     ".join(database[date]['liturgyOfWord']['paralexHymns'])}</p>
         '''
         html_content += alternate_content
+        for i in database[date]['liturgyOfWord']['paralexHymns']:
+            doxo = i.split("/")[-1]
+            html_content += f'''
+            <p>{doxo}</p>
+            '''
 
     toRender = database[date]['liturgyOfFaithful']['prayerOfReconcilation'][0].split("/")[-1]
     html_content += f'''
@@ -199,9 +207,18 @@ def create_html_email(date, database):
     html_content += f'''
     <h1><a href="https://stmark-service.web.app/communion?date={date}">Communion</a></h1>
     <h2>Communion Hymns:<br></h2>
-    <p>{"  ,<br>     ".join(database[date]['communion']['communionHymns'])}</p>
-    <p>{"  ,<br>     ".join(database[date]['communion']['AllCommunionHymns'])}</p>
     '''
+
+    for i in database[date]['communion']['communionHymns']:
+        doxo = i.split("/")[-1]
+        html_content += f'''
+        <p>{doxo}</p>
+        '''
+    for i in database[date]['communion']['AllCommunionHymns']:
+        doxo = i.split("/")[-1]
+        html_content += f'''
+        <p>{doxo}</p>
+        '''
 
     html_content += f'''
             </div>
