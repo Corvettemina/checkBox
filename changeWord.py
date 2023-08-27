@@ -12,7 +12,7 @@ def insertChange(input_pptx, replaceString):
     if (("Linux" in platform.platform())):
         path = "/root/Dropbox/"
 
-    prs = Presentation(path + input_pptx)
+    prs = Presentation(input_pptx)
     #slide = prs.slides[242]
 
     testString = "#SEASON#"
@@ -49,8 +49,8 @@ def insertChange(input_pptx, replaceString):
     tempArray = input_pptx.split(".pptx")
     #newPath = tempArray[0] + "today.pptx"
 
-    prs.save(path + input_pptx)
-    return path + input_pptx
+    prs.save(input_pptx)
+    return input_pptx
 def main():
     insertChange("PowerPoints/result1.pptx","have come")
 

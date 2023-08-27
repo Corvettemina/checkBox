@@ -59,17 +59,10 @@ def makeIntoList(y):
 
                 if(i == "anaphora" and y[i] == "basil"):
                     y[i] = "PowerPoints/Liturgy/Anaphora - Basil.pptx"
-                    try:
-                        y["anaphora"] = changeWord.insertChange(y["anaphora"], verb)
-                    except:
-                        pass
-                
+    
                 if(i == "anaphora" and y[i] == "gregory"):
                     y[i] = "PowerPoints/Liturgy/Anaphora - Gregorian.pptx"
-                    try:
-                        y["anaphora"] = changeWord.insertChange(y["anaphora"], verb)
-                    except:
-                        pass
+  
                 if(i == "agiosLiturgy" and y[i] == "basil"):
                     y[i] = "PowerPoints/Liturgy/Agios - Basil.pptx"
                 
@@ -213,7 +206,6 @@ def merge(finishedList,date):
     print(pptxLengths)
 
     if(len(pptxLengths.keys()) > 0):
-        print("HEREEEEE")
         from makeCommunionpptx import makePPT
         makePPT(result_path, pptxLengths, totalBeforeCommunion)
 
