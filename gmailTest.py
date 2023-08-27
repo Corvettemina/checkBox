@@ -62,24 +62,6 @@ def create_html_email(date, database):
         </body>
         </html>
     '''
-    doxologies = database[date]['vespers']['seasonVespersDoxologies']
-    doxologies_formatted = [item.split("/")[-1] for item in doxologies]
-
-    # Join the formatted items with the HTML line break tag
-    doxologies_html = "<br>".join(doxologies_formatted)
-
-    # Replace the placeholder in the HTML content with the formatted doxologies
-    html_content = html_content.replace("{\"  ,<br>     \"join(database[date]['vespers']['seasonVespersDoxologies'])}", doxologies_html)
-    
-    doxologies = database[date]['matins']['seasonmatinsDoxologies']
-    doxologies_formatted = [item.split("/")[-1] for item in doxologies]
-
-    # Join the formatted items with the HTML line break tag
-    doxologies_html = "<br>".join(doxologies_formatted)
-
-    # Replace the placeholder in the HTML content with the formatted doxologies
-    html_content = html_content.replace("{\"  ,<br>     \"join(database[date]['matins']['seasonmatinsDoxologies'])}", doxologies_html)
-
     return html_content
 
 def gmail_send_message(date, database):
