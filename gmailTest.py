@@ -47,12 +47,12 @@ def create_html_email(date, database):
             <div class="container">
                 <h1>Powerpoint selections for this Sunday are ready for review.</h1>
                 <h1><a href="https://stmark-service.web.app/vespers?date={date}">Vespers</a></h1>
-                <h2>Vespers Doxologies:<br></h2>
+                <h2>Vespers Doxologies:<br></h2><p>
                 '''
     for i in database[date]['vespers']['seasonVespersDoxologies']:
         doxo = i.split("/")[-1]
         html_content += f'''
-        <p>{doxo}</p>
+        <br>{doxo}</br>
         '''
                
     
