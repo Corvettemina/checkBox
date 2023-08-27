@@ -83,7 +83,7 @@ def create_html_email(date, database):
         '''
         html_content += alternate_content
 
-    if len(database[date]['liturgyOfWord']['paralexHymns']) > 0:
+    if ("paralexHymns" in database[date]['liturgyOfWord']):
         alternate_content = f'''
         <h1><a href="https://stmark-service.web.app/liturgyOfWord?date={date}">Liturgy Of the Word</a></h1>
         <h2>Paralex Hymns:<br></h2><p>
