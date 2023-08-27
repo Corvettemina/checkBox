@@ -90,12 +90,14 @@ def create_html_email(date, database):
         {"  ,<br>     ".join(database[date]['liturgyOfWord']['paralexHymns'])}</p>
         '''
         html_content += alternate_content
-
+        
+    toRender = database[date]['liturgyOfFaithful']['prayerOfReconcilation'][0].split("/")[-1]
     html_content += f'''
     <h1><a href="https://stmark-service.web.app/liturgyOfWord?date={date}">Liturgy Of the Faithful</a></h1>
     <h2>Reconcilation Prayer:<br></h2>
-    <p>{database[date]['liturgyOfFaithful']['prayerOfReconcilation'][0]}</p>
+    <p>{toRender}</p>
     '''
+
     if database[date]['liturgyOfFaithful']['rejoiceOMary'] == "yes":
         alternate_content = f'''
             <h2>Rejoice O Mary:<br></h2>
@@ -174,16 +176,18 @@ def create_html_email(date, database):
         html_content += alternate_content
 
     if database[date]['liturgyOfFaithful']['seasonalFraction'][0] != "":
+        toRender = database[date]['liturgyOfFaithful']['seasonalFraction'][0].split("/")[-1]
         alternate_content = f'''
         <h2>Fraction:<br></h2>
-        <p>{database[date]['liturgyOfFaithful']['seasonalFraction'][0]}</p>
+        <p>{toRender}</p>
         '''
         html_content += alternate_content
 
     if database[date]['liturgyOfFaithful']['fractionIndex'][0] != "":
+        toRender = database[date]['liturgyOfFaithful']['fractionIndex'][0].split("/")[-1]
         alternate_content = f'''
         <h2>Fraction:<br></h2>
-        <p>{database[date]['liturgyOfFaithful']['fractionIndex'][0]}</p>
+        <p>{toRender}</p>
         '''
         html_content += alternate_content
 
