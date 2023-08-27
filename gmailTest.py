@@ -29,21 +29,35 @@ def create_html_email(date, database):
                     border: 1px solid #e0e0e0;
                 }}
                 /* Bold titles and increase text size */
-                .container p {{
+                .container h1 {{
                     font-weight: bold;
-                    font-size: 18px;
+                    font-size: 16px;
+                }}
+                .container h2 {{
+                    font-weight: bold;
+                    font-size: 14px;
                 }}
                 /* Add more styles as needed */
             </style>
         </head>
         <body>
             <div class="container">
-                <p>Powerpoint selections for this Sunday are ready for review.</p>
-                <p><a href="https://stmark-service.web.app/vespers?date={date}">St. Mark PowerPoint Editor</a></p>
-                <p>Vespers Doxologies:<br>
-                {",<br>     ".join(database[date]['vespers']['seasonVespersDoxologies'])}</p>
-                <p>Matins Doxologies:<br>
-                {",<br>     ".join(database[date]['matins']['seasonmatinsDoxologies'])}</p>
+                <h1>Powerpoint selections for this Sunday are ready for review.</h1>
+                <h1><a href="https://stmark-service.web.app/vespers?date={date}">Vespers</a></h1>
+                <h2>Vespers Doxologies:<br></h2><p>
+                {"  ,<br>     ".join(database[date]['vespers']['seasonVespersDoxologies'])}</p>
+                <h2>Vespers Litany of the Gospel:<br></h2>
+                <p>{database[date]['vespers']['vespersLitanyofTheGospel']}</p>
+                <h2>Vespers 2 Short Litanies:<br></h2>
+                <p>{database[date]['vespers']['vespers5ShortLitanies']}</p>
+
+                <h1><a href="https://stmark-service.web.app/matins?date={date}">Matins</a></h1>
+                <h2>Matins Doxologies:<br></h2><p>
+                {"  ,<br>     ".join(database[date]['matins']['seasonmatinsDoxologies'])}</p>
+                <h2>Matins Litany of the Gospel:<br></h2>
+                <p>{database[date]['matins']['matinsLitanyofTheGospel']}</p>
+                <h2>Matins 2 Short Litanies:<br></h2>
+                <p>{database[date]['matins']['matins5ShortLitanies']}</p>
             </div>
         </body>
         </html>
@@ -72,11 +86,11 @@ def gmail_send_message(date, database):
 
     try:
         service = build('gmail', 'v1', credentials=creds)
-        with open("/root/Dropbox/PowerPoints/configs/emails.json", "r") as json_file:
-            recipients = json.load(json_file)
+        #with open("/root/Dropbox/PowerPoints/configs/emails.json", "r") as json_file:
+            #recipients = json.load(json_file)
             
         message = MIMEMultipart()
-        message['To'] = ", ".join(recipients)
+        message['To'] = "mina.h.hanna@gmail.com"
         message['From'] = 'Mina Hanna'
         message['Subject'] = 'Powerpoint For Sunday ' + str(date)
         
