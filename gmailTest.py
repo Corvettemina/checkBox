@@ -45,9 +45,14 @@ def create_html_email(date, database):
                 <h1>Powerpoint selections for this Sunday are ready for review.</h1>
                 <h1><a href="https://stmark-service.web.app/vespers?date={date}">Vespers</a></h1>
                 <h2>Vespers Doxologies:<br></h2><p>
-                {"  ,<br>     ".join(database[date]['vespers']['seasonVespersDoxologies'])}</p>
-               
+                '''
+    for i in database[date]['vespers']['seasonVespersDoxologies']:
+        doxo = i.split("/")[-1]
+        html_content += f'''
+        <p>{doxo}</p>
         '''
+               
+    
     if database[date]['vespers']['vespersLitanyofTheGospel'] == "alternate":
         alternate_content = f'''
          <h2>Vespers Litany of the Gospel:<br></h2>
@@ -90,7 +95,7 @@ def create_html_email(date, database):
         {"  ,<br>     ".join(database[date]['liturgyOfWord']['paralexHymns'])}</p>
         '''
         html_content += alternate_content
-        
+
     toRender = database[date]['liturgyOfFaithful']['prayerOfReconcilation'][0].split("/")[-1]
     html_content += f'''
     <h1><a href="https://stmark-service.web.app/liturgyOfWord?date={date}">Liturgy Of the Faithful</a></h1>
