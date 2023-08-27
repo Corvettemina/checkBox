@@ -20,7 +20,7 @@ def getfile_insensitive(paths):
                 return (os.path.join(path, name))
 
 
-def makeIntoList(y ,verb):
+def makeIntoList(y):
     answer = []
 
     for i in y:

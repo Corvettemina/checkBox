@@ -42,7 +42,7 @@ def merge(database, date):
     paths = ["vespers","matins","offering","liturgyOfWord","liturgyOfFaithful","communion"]
     finalList = []
     for i in paths:
-        finalList = finalList +  mergepptxaspose.makeIntoList(database[date][i], verb)  
+        finalList = finalList +  mergepptxaspose.makeIntoList(database[date][i])  
 
     for i in finalList:
         print (i)  
@@ -457,7 +457,7 @@ def myroute():
     return jsonify(result)
 
 if __name__ == "__main__":
-    #app.run(debug=True)
+    app.run(debug=True)
     #app.run(host='0.0.0.0')
     
-    app.run(host='0.0.0.0',ssl_context=('/etc/letsencrypt/archive/stmarkapi.com/cert1.pem', '/etc/letsencrypt/archive/stmarkapi.com/privkey1.pem'))
+    #app.run(host='0.0.0.0',ssl_context=('/etc/letsencrypt/archive/stmarkapi.com/cert1.pem', '/etc/letsencrypt/archive/stmarkapi.com/privkey1.pem'))
