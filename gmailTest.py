@@ -190,8 +190,8 @@ def create_html_email(date, database):
     html_content += f'''
     <h1><a href="https://stmark-service.web.app/communion?date={date}">Communion</a></h1>
     <h2>Communion Hymns:<br></h2>
-    {"  ,<br>     ".join(database[date]['communion']['communionHymns'])}</p>
-    {"  ,<br>     ".join(database[date]['communion']['AllCommunionHymns'])}</p>
+    <p>{"  ,<br>     ".join(database[date]['communion']['communionHymns'])}</p>
+    <p>{"  ,<br>     ".join(database[date]['communion']['AllCommunionHymns'])}</p>
     '''
 
     html_content += f'''
