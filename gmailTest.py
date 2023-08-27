@@ -47,7 +47,7 @@ def create_html_email(date, database):
             <div class="container">
                 <h1>Powerpoint selections for this Sunday are ready for review.</h1>
                 <h1><a href="https://stmark-service.web.app/vespers?date={date}">Vespers</a></h1>
-                <h2>Vespers Doxologies:<br></h2>
+                <h2>Vespers Doxologies:</h2>
                 '''
     for i in database[date]['vespers']['seasonVespersDoxologies']:
         doxo = i.split("/")[-1]
@@ -58,14 +58,14 @@ def create_html_email(date, database):
     
     if database[date]['vespers']['vespersLitanyofTheGospel'] == "alternate":
         alternate_content = f'''
-         <h2>Vespers Litany of the Gospel:<br></h2>
+         <h2>Vespers Litany of the Gospel:</h2>
         <p>{database[date]['vespers']['vespersLitanyofTheGospel']}</p>
         '''
         html_content += alternate_content
     
     if database[date]['vespers']['vespers5ShortLitanies'] == "yes":
         alternate_content = f'''
-        <h2>Vespers 5 Short Litanies:<br></h2>
+        <h2>Vespers 5 Short Litanies:</h2>
         <p>{database[date]['vespers']['vespers5ShortLitanies']}</p>
         '''
         html_content += alternate_content
@@ -73,7 +73,7 @@ def create_html_email(date, database):
     html_content += f'''    
                 
                 <h1><a href="https://stmark-service.web.app/matins?date={date}">Matins</a></h1>
-                <h2>Matins Doxologies:<br></h2>
+                <h2>Matins Doxologies:</h2>
                 '''
     for i in database[date]['matins']['seasonmatinsDoxologies']:
         doxo = i.split("/")[-1]
@@ -83,14 +83,14 @@ def create_html_email(date, database):
                
     if database[date]['matins']['matinsLitanyofTheGospel'] == "alternate":
         alternate_content = f'''
-                <h2>Matins Litany of the Gospel:<br></h2>
+                <h2>Matins Litany of the Gospel:</h2>
                 <p>{database[date]['matins']['matinsLitanyofTheGospel']}</p>
         '''
         html_content += alternate_content
     
     if database[date]['matins']['matins5ShortLitanies'] == "yes":
         alternate_content = f'''
-            <h2>Matins 5 Short Litanies:<br></h2>
+            <h2>Matins 5 Short Litanies:</h2>
             <p>{database[date]['matins']['matins5ShortLitanies']}</p>
         '''
         html_content += alternate_content
@@ -98,7 +98,7 @@ def create_html_email(date, database):
     if ("paralexHymns" in database[date]['liturgyOfWord']):
         alternate_content = f'''
         <h1><a href="https://stmark-service.web.app/liturgyOfWord?date={date}">Liturgy Of the Word</a></h1>
-        <h2>Paralex Hymns:<br></h2><p>
+        <h2>Paralex Hymns:<br><p>
         '''
         html_content += alternate_content
         for i in database[date]['liturgyOfWord']['paralexHymns']:
@@ -110,83 +110,83 @@ def create_html_email(date, database):
     toRender = database[date]['liturgyOfFaithful']['prayerOfReconcilation'][0].split("/")[-1]
     html_content += f'''
     <h1><a href="https://stmark-service.web.app/liturgyOfWord?date={date}">Liturgy Of the Faithful</a></h1>
-    <h2>Reconcilation Prayer:<br></h2>
+    <h2>Reconcilation Prayer:</h2>
     <p>{toRender}</p>
     '''
 
     if database[date]['liturgyOfFaithful']['rejoiceOMary'] == "yes":
         alternate_content = f'''
-            <h2>Rejoice O Mary:<br></h2>
+            <h2>Rejoice O Mary:</h2>
             <p>{database[date]['liturgyOfFaithful']['rejoiceOMary']}</p>
         '''
         html_content += alternate_content
 
     if database[date]['liturgyOfFaithful']['anaphora'] == "gregory":
         alternate_content = f'''
-            <h2>Anaphora:<br></h2>
+            <h2>Anaphora:</h2>
             <p>{database[date]['liturgyOfFaithful']['anaphora']}</p>
         '''
         html_content += alternate_content
         
     if database[date]['liturgyOfFaithful']['OLordofHosts'] == "yes":
         alternate_content = f'''
-            <h2>O Lord of Hosts:<br></h2>
+            <h2>O Lord of Hosts:</h2>
             <p>{database[date]['liturgyOfFaithful']['OLordofHosts']}</p>
         '''
         html_content += alternate_content
 
     if database[date]['liturgyOfFaithful']['agiosLiturgy'] == "gregory":
         alternate_content = f'''
-        <h2>Agios:<br></h2>
+        <h2>Agios:</h2>
         <p>{database[date]['liturgyOfFaithful']['agiosLiturgy']}</p>
         '''
         html_content += alternate_content
 
     if database[date]['liturgyOfFaithful']['instiution'] == "gregory":
         alternate_content = f'''
-        <h2>Instiution Narrative:<br></h2>
+        <h2>Instiution Narrative:</h2>
         <p>{database[date]['liturgyOfFaithful']['instiution']}</p>
         '''
         html_content += alternate_content
 
     if database[date]['liturgyOfFaithful']['yeahWeAskYou'] == "yes":
         alternate_content = f'''
-        <h2>Yes We Ask You...:<br></h2>
+        <h2>Yes We Ask You...:</h2>
         <p>{database[date]['liturgyOfFaithful']['yeahWeAskYou']}</p>
         '''
         html_content += alternate_content
 
     if database[date]['liturgyOfFaithful']['jeNaiNan'] == "yes":
         alternate_content = f'''
-        <h2>Je Nai Nan:<br></h2>
+        <h2>Je Nai Nan:</h2>
         <p>{database[date]['liturgyOfFaithful']['jeNaiNan']}</p>
         '''
         html_content += alternate_content
 
     if database[date]['liturgyOfFaithful']['healingToThesick'] == "yes":
         alternate_content = f'''
-        <h2>Healing To The Sick...:<br></h2>
+        <h2>Healing To The Sick...:</h2>
         <p>{database[date]['liturgyOfFaithful']['healingToThesick']}</p>
         '''
         html_content += alternate_content
 
     if database[date]['liturgyOfFaithful']['Commemoration'] == "gregory":
         alternate_content = f'''
-        <h2>Commemoration:<br></h2>
+        <h2>Commemoration:</h2>
         <p>{database[date]['liturgyOfFaithful']['Commemoration']}</p>
         '''
         html_content += alternate_content
 
     if database[date]['liturgyOfFaithful']['postCommemoration'] == "gregory":
         alternate_content = f'''
-        <h2>Post Commemoration:<br></h2>
+        <h2>Post Commemoration:</h2>
         <p>{database[date]['liturgyOfFaithful']['postCommemoration']}</p>
         '''
         html_content += alternate_content
 
     if database[date]['liturgyOfFaithful']['prefaceToTheFraction'] == "gregory":
         alternate_content = f'''
-        <h2>Preface to The Fraction:<br></h2>
+        <h2>Preface to The Fraction:</h2>
         <p>{database[date]['liturgyOfFaithful']['prefaceToTheFraction']}</p>
         '''
         html_content += alternate_content
@@ -194,7 +194,7 @@ def create_html_email(date, database):
     if database[date]['liturgyOfFaithful']['seasonalFraction'][0] != "":
         toRender = database[date]['liturgyOfFaithful']['seasonalFraction'][0].split("/")[-1]
         alternate_content = f'''
-        <h2>Fraction:<br></h2>
+        <h2>Fraction:</h2>
         <p>{toRender}</p>
         '''
         html_content += alternate_content
@@ -202,14 +202,14 @@ def create_html_email(date, database):
     if database[date]['liturgyOfFaithful']['fractionIndex'][0] != "":
         toRender = database[date]['liturgyOfFaithful']['fractionIndex'][0].split("/")[-1]
         alternate_content = f'''
-        <h2>Fraction:<br></h2>
+        <h2>Fraction:</h2>
         <p>{toRender}</p>
         '''
         html_content += alternate_content
 
     html_content += f'''
     <h1><a href="https://stmark-service.web.app/communion?date={date}">Communion</a></h1>
-    <h2>Communion Hymns:<br></h2>
+    <h2>Communion Hymns:</h2>
     '''
 
     for i in database[date]['communion']['communionHymns']:
