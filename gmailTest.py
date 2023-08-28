@@ -25,7 +25,7 @@ def create_html_email(date, database):
                 max-width: 600px;
                 margin: 0 auto;
                 padding: 20px;
-                background-color: #5e7b9e;
+                background-color: #d3d3d3;
                 border: 1px solid #e0e0e0;
                 background-image: url('background.jpg');
                 background-size: cover; /* Adjust as needed */
