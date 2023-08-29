@@ -16,7 +16,7 @@ def create_html_email(date, database):
                 'https://stmarkapi.com:8080/greeting/?date=' + date , verify=False)
             
     y = json.loads(response.text)
-
+    print(y)
     html_content = f'''
         <html>
         <head>
