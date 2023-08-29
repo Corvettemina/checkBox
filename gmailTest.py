@@ -33,15 +33,9 @@ def create_html_email(date, database):
                 padding: 20px;
                 background-color: #f5f5f5;
                 border: 1px solid #e0e0e0;
-                background-image: url('path/to/your/image.jpg');
+                background-image: url('background.jpg');
                 background-size: cover; /* Adjust as needed */
                 background-position: center center; /* Adjust as needed */
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                height: 100vh; /* Make the container at least the height of the viewport */
-            
             }}
                 /* Bold titles and increase text size */
             .container h1 {{
@@ -54,10 +48,10 @@ def create_html_email(date, database):
             }}
             .grid-container {{
                 display: flex;
-                flex-wrap: wrap;
+                flex-direction: column;
+                align-items: center; /* Center horizontally */
                 gap: 20px;
-                align-items: center;
-                justify-content: center;
+                margin-top: 20px;
             }}
             .grid-item {{
                 flex: 0 0 calc(50% - 20px); /* Two items per row, accounting for gap */
