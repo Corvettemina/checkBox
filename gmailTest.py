@@ -46,17 +46,17 @@ def create_html_email(date, database):
                 font-weight: bold;
                 font-size: 14px;
             }}
-            .grid-container {
+            .grid-container {{
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 20px;
                 margin-top: 20px;
-            }
-            .grid-item {
+            }}
+            .grid-item {{
                 background-color: #ffffff;
                 padding: 10px;
                 border: 1px solid #e0e0e0;
-            }
+            }}
 
                 /* Add more styles as needed */
             </style>
