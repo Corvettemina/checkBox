@@ -13,10 +13,10 @@ import requests
 
 def create_html_email(date, database):
     response = requests.get(
-                'https://stmarkapi.com:8080/greeting/?date=' + date , verify=False)
+                'https://stmarkapi.com:8080/home/?date=' + date , verify=False)
             
     y = json.loads(response.text)
-    print(y)
+
     html_content = f'''
         <html>
         <head>
