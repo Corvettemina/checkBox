@@ -9,8 +9,14 @@ from googleapiclient.errors import HttpError
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
+import requests
 
 def create_html_email(date, database):
+    response = requests.get(
+                'https://stmarkapi.com:8080/greeting/?date=' + date , verify=False)
+            
+    y = json.loads(response.text)
+
     html_content = f'''
         <html>
         <head>
@@ -32,21 +38,41 @@ def create_html_email(date, database):
                 background-position: center center; /* Adjust as needed */
             }}
                 /* Bold titles and increase text size */
-                .container h1 {{
-                    font-weight: bold;
-                    font-size: 16px;
-                }}
-                .container h2 {{
-                    font-weight: bold;
-                    font-size: 14px;
-                }}
+            .container h1 {{
+                font-weight: bold;
+                font-size: 16px;
+            }}
+            .container h2 {{
+                font-weight: bold;
+                font-size: 14px;
+            }}
+            .grid-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+                margin-top: 20px;
+            }
+            .grid-item {
+                background-color: #ffffff;
+                padding: 10px;
+                border: 1px solid #e0e0e0;
+            }
+
                 /* Add more styles as needed */
             </style>
         </head>
         <body>
             <div class="container">
-                <h1>Powerpoint selections for this Sunday are ready for review.</h1>
+                <h1>Powerpoint selections for this Sunday, {date} are ready for review.</h1>
                 <h1><a href="https://stmark-service.web.app/vespers?date={date}">Vespers</a></h1>
+                
+                <div class="grid-container">
+                    <div class="grid-item">{y["copticDate"]}</div>
+                    <div class="grid-item">{y["sunday"]}</div>
+                    <div class="grid-item">{y["ocassion"]}</div>
+                    <div class="grid-item">{y["season"]}</div>
+                </div>
+                
                 <h2>Vespers Doxologies:</h2>
                 '''
     for i in database[date]['vespers']['seasonVespersDoxologies']:
