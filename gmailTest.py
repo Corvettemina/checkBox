@@ -48,11 +48,13 @@ def create_html_email(date, database):
             }}
             .grid-container {{
                 display: flex;
-                flex-wrap: wrap;
+                flex-direction: column;
+                align-items: center; /* Center horizontally */
                 gap: 20px;
                 margin-top: 20px;
             }}
             .grid-item {{
+                flex: 0 0 calc(50% - 20px); /* Two items per row, accounting for gap */
                 background-color: #ffffff;
                 padding: 10px;
                 border: 1px solid #e0e0e0;
