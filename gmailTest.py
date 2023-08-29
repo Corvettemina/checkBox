@@ -13,7 +13,7 @@ import requests
 
 def create_html_email(date, database):
     response = requests.get(
-                'https://stmarkapi.com:8080/home/?date=' + date , verify=False)
+                'http://localhost:8080/home/?date=' + date , verify=False)
             
     y = json.loads(response.text)
 
@@ -48,7 +48,7 @@ def create_html_email(date, database):
             }}
             .grid-container {{
                 display: grid;
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: repeat(2, 1fr); /* Display two columns */
                 gap: 20px;
                 margin-top: 20px;
             }}
@@ -64,15 +64,13 @@ def create_html_email(date, database):
         <body>
             <div class="container">
                 <h1>Powerpoint selections for this Sunday, {date} are ready for review.</h1>
-                <h1><a href="https://stmark-service.web.app/vespers?date={date}">Vespers</a></h1>
-                
                 <div class="grid-container">
-                    <div class="grid-item">{y["copticDate"]}</div>
-                    <div class="grid-item">{y["sunday"]}</div>
-                    <div class="grid-item">{y["ocassion"]}</div>
-                    <div class="grid-item">{y["season"]}</div>
+                    <div class="grid-item"><h2>{y["copticDate"]}</h2></div>
+                    <div class="grid-item"><h2>{y["sunday"]}</h2></div>
+                    <div class="grid-item"><h2>{y["ocassion"]}</h2></div>
+                    <div class="grid-item"><h2>{y["season"]}</h2></div>
                 </div>
-                
+                <h1><a href="https://stmark-service.web.app/vespers?date={date}">Vespers</a></h1>
                 <h2>Vespers Doxologies:</h2>
                 '''
     for i in database[date]['vespers']['seasonVespersDoxologies']:
