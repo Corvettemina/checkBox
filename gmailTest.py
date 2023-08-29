@@ -51,6 +51,7 @@ def create_html_email(date, database):
                 flex-direction: column;
                 align-items: center; /* Center horizontally */
                 gap: 20px;
+                margin:0 auto;
                 margin-top: 20px;
             }}
             .grid-item {{
