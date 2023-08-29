@@ -47,8 +47,8 @@ def create_html_email(date, database):
                 font-size: 14px;
             }}
             .grid-container {{
-                display: grid;
-                grid-template-columns: repeat(2, 1fr); /* Display two columns */
+                display: flex;
+                flex-wrap: wrap;
                 gap: 20px;
                 margin-top: 20px;
             }}
