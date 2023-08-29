@@ -47,7 +47,7 @@ def create_html_email(date, database):
                 font-size: 14px;
             }}
             .grid-container {{
-                display: inline-block;
+                display: flex;
                 flex-direction: column;
                 align-items: center; /* Center horizontally */
                 gap: 20px;
