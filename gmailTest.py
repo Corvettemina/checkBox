@@ -132,9 +132,20 @@ def create_html_email(date, database):
                 <br>{doxo}</br>
                 '''
 
-    toRender = database[date]['liturgyOfFaithful']['prayerOfReconcilation'][0].split("/")[-1]
+    
     html_content += f'''
     <h1><a href="https://stmark-service.web.app/liturgyOfFaithful?date={date}">Liturgy Of the Faithful</a></h1>
+    '''
+
+    if database[date]['liturgyOfFaithful']['Liturgy3GreatLitanies'] == "yes":
+        alternate_content = f'''
+            <h2>Three Great Litanies:</h2>
+            <p>{database[date]['liturgyOfFaithful']['Liturgy3GreatLitanies']}</p>
+        '''
+        html_content += alternate_content
+
+    toRender = database[date]['liturgyOfFaithful']['prayerOfReconcilation'][0].split("/")[-1]
+    html_content+=f'''
     <h2>Reconcilation Prayer:</h2>
     <p>{toRender}</p>
     '''
