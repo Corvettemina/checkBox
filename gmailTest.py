@@ -16,7 +16,15 @@ def create_html_email(date, database):
                 'https://stmarkapi.com:8080/home/?date=' + date , verify=False)
             
     y = json.loads(response.text)
-
+    
+    response = requests.get(
+                'https://stmarkapi.com:8080/pptname/?date=' + date , verify=False)
+            
+    pptName = json.loads(response.text)
+    try:
+        newName = pptName["pptName"].replace("St. Mark PPT's","Curent Liturgy Powerpoints")
+    except:
+        pass
     html_content = f'''
         <html>
         <head>
@@ -70,6 +78,7 @@ def create_html_email(date, database):
                     <div class="grid-item"><h2>{y["copticDate"]}</h2><h2>{y["sunday"]}</h2></div>
                     <div class="grid-item"><h2>{y["ocassion"]}</h2><h2>{y["season"]}</h2></div>
                 </div>
+                <h1>{pptName["pptName"]}</h1>
                 <h1><a href="https://stmark-service.web.app/vespers?date={date}">Vespers</a></h1>
                 <h2>Vespers Doxologies:</h2>
                 '''
