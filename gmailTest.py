@@ -23,7 +23,7 @@ def create_html_email(date, database):
     pptName = json.loads(response.text)
     
     try:
-        newName = pptName["pptName"].replace("St. Mark PPT's","Curent Liturgy Powerpoints")
+        newName = pptName["pptName"].replace("St. Mark PPT's","Current Liturgy Powerpoints")
     except:
         pass
     html_content = f'''
