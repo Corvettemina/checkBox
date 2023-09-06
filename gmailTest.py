@@ -91,6 +91,7 @@ def create_html_email(date, database):
                 '''
     for i in database[date]['vespers']['seasonVespersDoxologies']:
         doxo = i.split("/")[-1]
+        doxo = doxo.split(".pptx")[0]
         html_content += f'''
         <p>{doxo}</p>
         '''
@@ -117,6 +118,7 @@ def create_html_email(date, database):
                 '''
     for i in database[date]['matins']['seasonmatinsDoxologies']:
         doxo = i.split("/")[-1]
+        doxo = doxo.split(".pptx")[0]
         html_content += f'''
         <p>{doxo}</p>
         '''
@@ -144,6 +146,7 @@ def create_html_email(date, database):
             html_content += alternate_content
             for i in database[date]['liturgyOfWord']['paralexHymns']:
                 doxo = i.split("/")[-1]
+                doxo = doxo.split(".pptx")[0]
                 html_content += f'''
                 <p>{doxo}</p>
                 '''
@@ -161,6 +164,7 @@ def create_html_email(date, database):
         html_content += alternate_content
 
     toRender = database[date]['liturgyOfFaithful']['prayerOfReconcilation'][0].split("/")[-1]
+    toRender = toRender.split(".pptx")[0]
     html_content+=f'''
     <h2>Reconcilation Prayer:</h2>
     <p>{toRender}</p>
@@ -245,6 +249,7 @@ def create_html_email(date, database):
 
     if database[date]['liturgyOfFaithful']['seasonalFraction'][0] != "":
         toRender = database[date]['liturgyOfFaithful']['seasonalFraction'][0].split("/")[-1]
+        toRender = toRender.split(".pptx")[0]
         alternate_content = f'''
         <h2>Fraction:</h2>
         <p>{toRender}</p>
@@ -253,6 +258,7 @@ def create_html_email(date, database):
 
     if database[date]['liturgyOfFaithful']['fractionIndex'][0] != "":
         toRender = database[date]['liturgyOfFaithful']['fractionIndex'][0].split("/")[-1]
+        toRender = toRender.split(".pptx")[0]
         alternate_content = f'''
         <h2>Fraction:</h2>
         <p>{toRender}</p>
@@ -266,11 +272,13 @@ def create_html_email(date, database):
 
     for i in database[date]['communion']['communionHymns']:
         doxo = i.split("/")[-1]
+        doxo = doxo.split(".pptx")[0]
         html_content += f'''
         <p>{doxo}</p>
         '''
     for i in database[date]['communion']['AllCommunionHymns']:
         doxo = i.split("/")[-1]
+        doxo = doxo.split(".pptx")[0]
         html_content += f'''
         <p>{doxo}</p>
         '''
