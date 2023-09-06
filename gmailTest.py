@@ -54,6 +54,12 @@ def create_html_email(date, database):
             .container h2 {{
                 font-weight: bold;
                 font-size: 14px;
+                margin-bottom: 5px;
+            }}
+            .container p {{
+                margin-top: 0;
+                margin-bottom: 0;
+                font-size: 14px;
             }}
             .grid-container {{
                 display: flex;
@@ -86,7 +92,7 @@ def create_html_email(date, database):
     for i in database[date]['vespers']['seasonVespersDoxologies']:
         doxo = i.split("/")[-1]
         html_content += f'''
-        <br>{doxo}</br>
+        <p>{doxo}</p>
         '''
                
     
@@ -112,7 +118,7 @@ def create_html_email(date, database):
     for i in database[date]['matins']['seasonmatinsDoxologies']:
         doxo = i.split("/")[-1]
         html_content += f'''
-        <br>{doxo}</br>
+        <p>{doxo}</p>
         '''
                
     if database[date]['matins']['matinsLitanyofTheGospel'] == "alternate":
@@ -139,7 +145,7 @@ def create_html_email(date, database):
             for i in database[date]['liturgyOfWord']['paralexHymns']:
                 doxo = i.split("/")[-1]
                 html_content += f'''
-                <br>{doxo}</br>
+                <p>{doxo}</p>
                 '''
 
     
@@ -261,12 +267,12 @@ def create_html_email(date, database):
     for i in database[date]['communion']['communionHymns']:
         doxo = i.split("/")[-1]
         html_content += f'''
-        <br>{doxo}</br>
+        <p>{doxo}</p>
         '''
     for i in database[date]['communion']['AllCommunionHymns']:
         doxo = i.split("/")[-1]
         html_content += f'''
-        <br>{doxo}</br>
+        <p>{doxo}</p>
         '''
 
     html_content += f'''
