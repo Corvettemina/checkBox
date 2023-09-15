@@ -121,7 +121,6 @@ def offering():
         result = {'status': 'Offering Updated'}
     
     return jsonify(result)
-    #return render_template('offering.html', spapi=spapi)
 
 @app.route('/liturgyOfWord', methods=['GET', 'POST'])
 def liturgyOfWord():
@@ -227,7 +226,7 @@ def makePptx():
 
             database[date]["liturgyOfWord"]["synxar"] = synxar[1]["synxar"]
         }
-        #mergepptxaspose.merge(finalList)
+        
         t = Thread(target=merge, args=(database, date))
         t.start()
 
@@ -255,8 +254,7 @@ def approval():
     return jsonify(result)
 
 def post(path):
-    dataPosted = request.get_json()  # Get the JSON data from the request
-        # Do something with the data...
+    dataPosted = request.get_json()  
 
     my_global_list = app.config['GLOBAL_LIST']
     my_global_list[path] = dataPosted
@@ -277,7 +275,6 @@ def post(path):
         data[request.args.get('date')][path] = dataPosted   
 
     with open(filename, "w") as json_file:
-            # Step 4: Write the dictionary data to the .json file
         json.dump( data , json_file)
     
 def get(path):
@@ -329,10 +326,8 @@ def getLocal(path):
         return (result) 
       
 def convert_date_format(date_str):
-    # Parse the input date string into a datetime object
     dt = datetime.strptime(date_str, '%Y-%b-%d')
 
-    # Convert the datetime object back to a string with the desired format
     new_date_str = dt.strftime('%Y-%m-%d')
 
     return new_date_str
