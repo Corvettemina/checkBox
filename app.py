@@ -220,12 +220,12 @@ def makePptx():
         except:
             database = {}
 
-        if(database[date]["liturgyOfWord"]["synxar"] == "" ){
-            postResponse = requests.get("https://stmarkapi.com:8080/liturgyOfWord?date" + str(date) , verify=False)
+        if(database[date]["liturgyOfWord"]["synxar"] == "" ):
+            postResponse = requests.get("https://stmarkapi.com:8080/liturgyOfWord?date=" + str(date) , verify=False)
             synxar = json.loads(postResponse.text)
 
             database[date]["liturgyOfWord"]["synxar"] = synxar[1]["synxar"]
-        }
+        
         
         t = Thread(target=merge, args=(database, date))
         t.start()
