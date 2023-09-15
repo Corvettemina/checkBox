@@ -221,7 +221,8 @@ def makePptx():
             database = {}
 
         if(database[date]["liturgyOfWord"]["synxar"] == "" ){
-            postResponse = requests.get('https://stmarkapi.com:8080/liturgyOfWord?date=' + str(date) , verify=False)
+            getPath = 'https://stmarkapi.com:8080/liturgyOfWord?date=' + str(date)
+            postResponse = requests.get(getPath , verify=False)
             synxar = json.loads(postResponse.text)
 
             database[date]["liturgyOfWord"]["synxar"] = synxar[1]["synxar"]
