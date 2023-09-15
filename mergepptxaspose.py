@@ -56,6 +56,7 @@ def makeIntoList(y):
                     
                 if(i == "OLordofHosts" and y[i] == "yes"):
                     y[i] = "PowerPoints/Liturgy/O Lord of Hosts.pptx"
+                    y["theCherubim"] = ""
 
                 if(i == "anaphora" and y[i] == "basil"):
                     y[i] = "PowerPoints/Liturgy/Anaphora - Basil.pptx"
