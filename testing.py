@@ -98,17 +98,18 @@ finishedList = ["PowerPoints/BackBone/Vespers.pptx",
 "PowerPoints/BackBone/Conclusion.pptx",
 "PowerPoints/Agpeya/AnnualTransition.pptx"]
 
-from mergepptxaspose import merge
+#from mergepptxaspose import merge
 #merge(finishedList)
-
+import json
 test = ["1","2","1","4","5"]
 i = 0
 print((test.index("1",1)))
-
+from urllib3.exceptions import InsecureRequestWarning
 import requests
-import json 
-postResponse = requests.get('https://stmarkapi.com:8080/pptname?date=2023-08-13' , verify=False)
-pptName = json.loads(postResponse.text)["pptName"]
+# Suppress only the single warning from urllib3 needed.
+requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
+postResponse = requests.get('https://stmarkapi.com:8080/liturgyOfWord?date=2023-08-27' , verify=False)
+synxar = json.loads(postResponse.text)
 
 '''
 for path, subdirs, files in os.walk(""PowerPoints/"):
