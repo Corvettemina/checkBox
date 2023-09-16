@@ -10,6 +10,10 @@ from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 import requests
+from urllib3.exceptions import InsecureRequestWarning
+# Suppress only the single warning from urllib3 needed.
+requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
+
 
 def create_html_email(date, database):
     response = requests.get(
