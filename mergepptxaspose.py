@@ -95,7 +95,7 @@ def makeIntoList(y):
                     y[i] = "PowerPoints/Liturgy/Post Commemoration - Basil.pptx"
                 
                 if(i == "postCommemoration" and y[i] == "gregory"):
-                    y[i] = "PowerPoints/Liturgy/Commemoration - Gregorian.pptx"  
+                    y[i] = "PowerPoints/Liturgy/Post Commemoration - Gregorian.pptx"  
 
                 if(i == "prefaceToTheFraction" and y[i] == "basil"):
                     y[i] = "PowerPoints/Liturgy/Preface - Basil.pptx"
