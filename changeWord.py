@@ -22,14 +22,15 @@ def insertChange(input_pptx, replaceString):
     slides = [slide for slide in prs.slides]
     shapes = []
     counttt = 1
-    for slide in slides:
-        
+    
+    for slide in slides:    
         try:
             for shape in slide.shapes:
                 shapes.append(shape)
         except:
-            print(counttt + "EXCEPTION")
+            print(str(counttt) + " EXCEPTION")
         counttt += 1
+
     replaces = {
         testString: replaceString
     }
@@ -57,7 +58,7 @@ def insertChange(input_pptx, replaceString):
     prs.save(input_pptx)
     return input_pptx
 def main():
-    insertChange("PowerPoints/result1.pptx","have come")
+    insertChange("C:/Users/Mina Hanna/DropBox/PowerPoints/result1.pptx","have come")
 
 if __name__ == "__main__":
     main()
