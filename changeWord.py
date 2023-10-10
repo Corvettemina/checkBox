@@ -21,13 +21,15 @@ def insertChange(input_pptx, replaceString):
     # To get shapes in your slides
     slides = [slide for slide in prs.slides]
     shapes = []
+    counttt = 1
     for slide in slides:
+        
         try:
             for shape in slide.shapes:
                 shapes.append(shape)
         except:
-            print("EXCEPTION")
-
+            print(counttt + "EXCEPTION")
+        counttt += 1
     replaces = {
         testString: replaceString
     }
