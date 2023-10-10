@@ -28,23 +28,25 @@ def insertChange(input_pptx, replaceString):
     replaces = {
         testString: replaceString
     }
-
-    for shape in shapes:
-        for match, replacement in replaces.items():
-            if shape.has_text_frame:
-                if (shape.text.find(match)) != -1:
-                    text_frame = shape.text_frame
-                    for paragraph in text_frame.paragraphs:
-                        whole_text = "".join(
-                            run.text for run in paragraph.runs)
-                        whole_text = whole_text.replace(
-                            str(match), str(replacement))
-                        for idx, run in enumerate(paragraph.runs):
-                            if idx != 0:
-                                p = paragraph._p
-                                p.remove(run._r)
-                        if bool(paragraph.runs):
-                            paragraph.runs[0].text = whole_text
+    try:
+        for shape in shapes:
+            for match, replacement in replaces.items():
+                if shape.has_text_frame:
+                    if (shape.text.find(match)) != -1:
+                        text_frame = shape.text_frame
+                        for paragraph in text_frame.paragraphs:
+                            whole_text = "".join(
+                                run.text for run in paragraph.runs)
+                            whole_text = whole_text.replace(
+                                str(match), str(replacement))
+                            for idx, run in enumerate(paragraph.runs):
+                                if idx != 0:
+                                    p = paragraph._p
+                                    p.remove(run._r)
+                            if bool(paragraph.runs):
+                                paragraph.runs[0].text = whole_text
+    except:
+        print("change word error")
 
     tempArray = input_pptx.split(".pptx")
     #newPath = tempArray[0] + "today.pptx"
