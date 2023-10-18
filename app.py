@@ -253,12 +253,29 @@ def approval():
     
     return jsonify(result)
 
+@app.route('/bishop', methods=['GET', 'POST'])
+def bishop():
+    bishopResponse = request.args.get('bihsop')
+    if request.method == 'POST':
+        try:
+            filename = "data.json"
+            with open(filename, "r") as json_file:
+                data = json.load(json_file)
+        except:
+            data = {}
+
+        if request.args.get('date') in data:
+            data[request.args.get('date')]["bishop"] = bishopResponse
+        else:
+            data[request.args.get('date')] = {}
+            data[request.args.get('date')]["bishop"] = bishopResponse
+            
+        if request.method == 'GET': 
+            get('bishop')
+    
+
 def post(path):
     dataPosted = request.get_json()  
-
-    my_global_list = app.config['GLOBAL_LIST']
-    my_global_list[path] = dataPosted
-
 
     try:
         filename = "data.json"
