@@ -272,7 +272,7 @@ def bishop():
 
         return(jsonify({"BISHOP SET TO" : bishopResponse}))
     if request.method == 'GET': 
-        get('bishop')
+        return get('bishop')
     
 
 def post(path):
