@@ -255,7 +255,7 @@ def approval():
 
 @app.route('/bishop', methods=['GET', 'POST'])
 def bishop():
-    bishopResponse = request.args.get('bihsop')
+    bishopResponse = request.args.get('bishop')
     if request.method == 'POST':
         try:
             filename = "data.json"
@@ -269,6 +269,9 @@ def bishop():
         else:
             data[request.args.get('date')] = {}
             data[request.args.get('date')]["bishop"] = bishopResponse
+        
+        with open(filename, "w") as json_file:
+            json.dump( data , json_file)
 
         return(jsonify({"BISHOP SET TO" : bishopResponse}))
     if request.method == 'GET': 
