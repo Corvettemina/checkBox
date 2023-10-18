@@ -269,9 +269,10 @@ def bishop():
         else:
             data[request.args.get('date')] = {}
             data[request.args.get('date')]["bishop"] = bishopResponse
-            
-        if request.method == 'GET': 
-            get('bishop')
+
+        return(jsonify({"BISHOP SET TO" : bishopResponse}))
+    if request.method == 'GET': 
+        get('bishop')
     
 
 def post(path):
