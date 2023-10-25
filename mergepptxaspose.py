@@ -10,6 +10,9 @@ import collections.abc
 from pptx import Presentation
 import requests
 import json
+from urllib3.exceptions import InsecureRequestWarning
+# Suppress only the single warning from urllib3 needed.
+requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
 
 
 def getfile_insensitive(paths):
@@ -20,18 +23,18 @@ def getfile_insensitive(paths):
                 return (os.path.join(path, name))
 
 
-def makeIntoList(y):
+def makeIntoList(y, date):
     answer = []
+    response = requests.get('https://stmarkapi.com:5000/bishop?date=' + str(date), verify=False)
+    bishop = json.loads(response.text)
+    bishop = bishop["bishop"]
 
     for i in y:
         if (i != "Ocassion" and i != "Season" and i != "Sunday" and i != "verb"):
             if (type(y[i]) is list):
                 for l in y[i]:
-                    # print(l)
-                    #print(getfile_insensitive(path + l))
                     l = l.replace('powerpoints', 'PowerPoints')
                     answer.append(l)
-                    pass
             else:
                 if(y[i] == "alternate"):
                     y[i] = "PowerPoints/BackBone/AnotherLitanyOftheGospel.pptx"
@@ -102,7 +105,21 @@ def makeIntoList(y):
                 
                 if(i == "prefaceToTheFraction" and y[i] == "gregory"):
                     y[i] = "PowerPoints/Liturgy/Preface - Gregorian.pptx"  
-                
+
+                if(bishop == "yes"):
+                    if(i == "vespersPrayerofThanksgiving"):
+                        y[i] = "PowerPoints/BackBone/PrayerOfThanksgivingBishopVespers.pptx"
+
+                    if(i == "vespers5ShortLitanies"):
+                        y[i] = "PowerPoints/BackBone/5ShortLitanies.pptx"
+
+                    if(i == "OfferingThanksgiving"):
+                        y[i] = "PowerPoints/BackBone/OfferingPrayerOfThanksgivingBishop.pptx"
+
+                    if(i == "Liturgy3GreatLitanies"):
+                        y[i] = "PowerPoints/BackBone/threeGreatLitanies.pptx" 
+
+
                 if (y[i] != ""):
                     answer.append(y[i])
 

@@ -45,12 +45,12 @@ def merge(database, date):
     paths = ["vespers","matins","offering","liturgyOfWord","liturgyOfFaithful","communion"]
     finalList = []
     for i in paths:
-        finalList = finalList +  mergepptxaspose.makeIntoList(database[date][i])  
+        finalList = finalList +  mergepptxaspose.makeIntoList(database[date][i], date)  
 
     for i in finalList:
         print (i)  
    
-    mergepptxaspose.merge(finalList, date)
+    #mergepptxaspose.merge(finalList, date)
 
 def runDropbox():
     if (("Linux" in platform.platform())):
@@ -276,7 +276,7 @@ def bishop():
             dataTosend = data[date]['vespers']['bishop']
             response_data = json.dumps(dataTosend, ensure_ascii=False, indent=4)
             response = Response(response_data, content_type='application/json')
-            return response
+            return jsonify({"bishop":response})
         except:
             result = {'status': "No PPT For this date"}
             return jsonify(result)  
