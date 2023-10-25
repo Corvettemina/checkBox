@@ -113,12 +113,22 @@ def makeIntoList(y, date):
                     if(i == "vespers5ShortLitanies"):
                         y[i] = "PowerPoints/BackBone/5ShortLitanies.pptx"
 
+                    if(i == "vespersConclusion"):
+                        y[i] = "PowerPoints/BackBone/bishopConcludingHymn.pptx"
+
                     if(i == "OfferingThanksgiving"):
                         y[i] = "PowerPoints/BackBone/OfferingPrayerOfThanksgivingBishop.pptx"
+                   
+                    if(i == "hymnofIntercessions"):
+                        answer.append[y[i]]
+                        answer.append("PowerPoints/BackBone/ResponseTothePaulineBishop.pptx")
+                        y[i] = ""
 
                     if(i == "Liturgy3GreatLitanies"):
                         y[i] = "PowerPoints/BackBone/threeGreatLitanies.pptx" 
-
+                    
+                    if(i == "finalConclusion2"):
+                        y[i] = "PowerPoints/BackBone/bishopConcludingHymn.pptx"
 
                 if (y[i] != ""):
                     answer.append(y[i])

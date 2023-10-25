@@ -274,8 +274,6 @@ def bishop():
                 
         try:
             dataTosend = data[date]['vespers']['bishop']
-            response_data = json.dumps(dataTosend, ensure_ascii=False, indent=4)
-            response = Response(response_data, content_type='application/json')
             return jsonify({"bishop":dataTosend})
         
         except:
