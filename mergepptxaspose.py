@@ -120,7 +120,7 @@ def makeIntoList(y, date):
                         y[i] = "PowerPoints/BackBone/OfferingPrayerOfThanksgivingBishop.pptx"
                    
                     if(i == "hymnofIntercessions"):
-                        answer.append[y[i]]
+                        answer.append(y[i])
                         answer.append("PowerPoints/BackBone/ResponseTothePaulineBishop.pptx")
                         y[i] = ""
 
