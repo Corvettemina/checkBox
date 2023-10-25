@@ -255,27 +255,31 @@ def approval():
 
 @app.route('/bishop', methods=['GET', 'POST'])
 def bishop():
-    bishopResponse = request.args.get('bishop')
-    if request.method == 'POST':
+    date = request.args.get('date')
+    if request.method == 'GET': 
         try:
             filename = "data.json"
             with open(filename, "r") as json_file:
                 data = json.load(json_file)
         except:
-            data = {}
+            result = {'status': "Empty Database"}
+            return jsonify(result)
 
-        if request.args.get('date') in data:
-            data[request.args.get('date')]["bishop"] = bishopResponse
-        else:
-            data[request.args.get('date')] = {}
-            data[request.args.get('date')]["bishop"] = bishopResponse
-        
-        with open(filename, "w") as json_file:
-            json.dump( data , json_file)
-
-        return(jsonify({"BISHOP SET TO" : bishopResponse}))
-    if request.method == 'GET': 
-        return get('bishop')
+        date = request.args.get('date')
+        try:
+            data[date]
+        except:
+            result = {'status': "No PPT For this date"}
+            return jsonify(result)
+                
+        try:
+            dataTosend = data[date]['vespers']['bishop']
+            response_data = json.dumps(dataTosend, ensure_ascii=False, indent=4)
+            response = Response(response_data, content_type='application/json')
+            return response
+        except:
+            result = {'status': "No PPT For this date"}
+            return jsonify(result)  
     
 
 def post(path):
@@ -466,19 +470,6 @@ def select():
 
     return render_template('select.html', spapi=spapi, start_date=start_date, form=form)
 
-@app.route('/finalScreen', methods=['GET', 'POST'])
-def test():
-
-    return render_template('finalScreen.html')
-
-
-@app.route('/myroute', methods=['POST'])
-def myroute():
-    data = request.get_json()  # Get the JSON data from the request
-    # Do something with the data...
-    print(data)
-    result = {'status': 'success'}
-    return jsonify(result)
 
 if __name__ == "__main__":
     #app.run(debug=True)
