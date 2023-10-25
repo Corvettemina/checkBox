@@ -277,8 +277,9 @@ def bishop():
             response_data = json.dumps(dataTosend, ensure_ascii=False, indent=4)
             response = Response(response_data, content_type='application/json')
             return jsonify({"bishop":response})
+        
         except:
-            result = {'status': "No PPT For this date"}
+            result = {'status': "No Bishop option selected for this date"}
             return jsonify(result)  
     
 
