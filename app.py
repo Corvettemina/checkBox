@@ -50,7 +50,7 @@ def merge(database, date):
     for i in finalList:
         print (i)  
    
-    #mergepptxaspose.merge(finalList, date)
+    mergepptxaspose.merge(finalList, date)
 
 def runDropbox():
     if (("Linux" in platform.platform())):
