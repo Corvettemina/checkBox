@@ -25,9 +25,12 @@ def getfile_insensitive(paths):
 
 def makeIntoList(y, date):
     answer = []
-    response = requests.get('https://stmarkapi.com:5000/bishop?date=' + str(date), verify=False)
-    bishop = json.loads(response.text)
-    bishop = bishop["bishop"]
+    try:
+        response = requests.get('https://stmarkapi.com:5000/bishop?date=' + str(date), verify=False)
+        bishop = json.loads(response.text)
+        bishop = bishop["bishop"]
+    except:
+        bishop =""
 
     for i in y:
         if (i != "Ocassion" and i != "Season" and i != "Sunday" and i != "verb"):
