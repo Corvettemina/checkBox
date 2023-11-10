@@ -140,12 +140,22 @@ def makeIntoList(y, date):
 
 
 def merge(finishedList,date):
-    print(len(finishedList))
-    platform.platform()
+    import datetime
+    today = datetime.date.today()
+    currentDate = today.strftime("%Y-%m-%d")
+
     if ("Windows" in platform.platform()):
-        path = "C:/Users/minah/DropBox/"
+        path = "C:/Users/Mina Hanna/DropBox/"
     if (("Linux" in platform.platform())):
         path = "/root/Dropbox/"
+
+    try:
+        log = open(path + 'PowerPoints/configs/Logs/log ' + currentDate + '.txt', 'a')
+    except:
+        log = open(path + 'PowerPoints/configs/Logs/log ' + currentDate + '.txt', 'w')
+    
+    print(len(finishedList))
+
 
     presentaionsArray = []
     #finishedList.append("PowerPoints/communion.pptx")
@@ -169,7 +179,13 @@ def merge(finishedList,date):
             try:
                 with open(path + k, "rb") as file_stream:
                     files.append(file_stream.read())
+
+                    now = datetime.datetime.now()
+                    timestamp = now.strftime("%Y-%m-%d_%H-%M-%S")
+                    log.write(timestamp + " " + path + k + "\n")
+
                     print(path + k)
+
                     if(finishedList.index(k,index) > finishedList.index("PowerPoints/BackBone/communionMenuTemplate.pptx") and finishedList.index(k,index) < finishedList.index("PowerPoints/BackBone/finalConclusion1.pptx")):
                         pptxLengths[str(k.split("/")[-1].split(".")[0])] = (len(Presentation(path + k).slides))
 
@@ -184,7 +200,13 @@ def merge(finishedList,date):
                 try:
                     with open(getfile_insensitive(path + k), "rb") as file_stream:
                         files.append(file_stream.read())
+
+                        now = datetime.datetime.now()
+                        timestamp = now.strftime("%Y-%m-%d_%H-%M-%S")
+                        log.write(timestamp + " " + path + k + "\n")
+
                         print(path + k)
+
                         if(finishedList.index(k,index) > finishedList.index("PowerPoints/BackBone/communionMenuTemplate.pptx") and finishedList.index(k,index) < finishedList.index("PowerPoints/BackBone/finalConclusion1.pptx")):
                             pptxLengths[str(k.split("/")[-1].split(".")[0])] = (len(Presentation(getfile_insensitive(path + k)).slides))
                    
@@ -257,6 +279,9 @@ def merge(finishedList,date):
 
     path = pptName.replace("St. Mark PPT's" , "Current Liturgy PPT")
     print('complete')
+    now = datetime.datetime.now()
+    timestamp = now.strftime("%Y-%m-%d_%H-%M-%S")
+    log.write(timestamp + " Complete\n")
 
 
 def mergeCommunion(finishedList):
