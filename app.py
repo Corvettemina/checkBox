@@ -29,7 +29,8 @@ bootstrap = Bootstrap(app)
 
 app.config['SECRET_KEY'] = '#$%^&*'
 app.config['GLOBAL_LIST'] = {}
- 
+
+app.logger.setLevel(logging.DEBUG)
 
 class InfoForm(FlaskForm):
     toggle = BooleanField('Toggle')
