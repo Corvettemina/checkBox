@@ -10,6 +10,7 @@ import platform
 import subprocess
 import requests
 import json
+import logging
 from datetime import datetime
 from flask_bootstrap import Bootstrap
 from wtforms import BooleanField
@@ -20,6 +21,7 @@ import json
 import certifi
 import mergepptxaspose
 from urllib3.exceptions import InsecureRequestWarning
+
 # Suppress only the single warning from urllib3 needed.
 requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
 
