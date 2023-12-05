@@ -251,9 +251,11 @@ def merge(finishedList,date):
     request.presentations = presentaionsArray
     response = slides_api.merge_and_save_online(
         "MyPresentation.pptx", None,  request, "internal")
-
+    
+    slides_api.delete_unused_master_slides("MyPresentation.pptx", True)
+    
     result_path = path + "PowerPoints/result1.pptx"
-    temp_path = slides_api.download_file("MyPresentation.pptx", "internal")
+    temp_path = slides_api.download_file()
     shutil.copyfile(temp_path, result_path)
 
     print(pptxLengths)
