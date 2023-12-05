@@ -255,7 +255,7 @@ def merge(finishedList,date):
     slides_api.delete_unused_master_slides("MyPresentation.pptx", True)
     
     result_path = path + "PowerPoints/result1.pptx"
-    temp_path = slides_api.download_file()
+    temp_path = slides_api.download_file("MyPresentation.pptx")
     shutil.copyfile(temp_path, result_path)
 
     print(pptxLengths)
