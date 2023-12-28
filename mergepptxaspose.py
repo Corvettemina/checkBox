@@ -132,6 +132,12 @@ def makeIntoList(y, date):
                     
                     if(i == "finalConclusion2"):
                         y[i] = "PowerPoints/BackBone/bishopConcludingHymn.pptx"
+                    
+                    if(i == "vespersDoxolgiesConcl"):
+                        answer.append("PowerPoints/BackBone/BishopDoxology.pptx")
+                        
+                    if(i == "LiturgyPsalmResonse"):
+                        answer.append("PowerPoints/BackBone/Psalm Trailer for Bishop.pptx")
 
                 if (y[i] != ""):
                     answer.append(y[i])
