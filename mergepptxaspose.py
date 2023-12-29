@@ -139,6 +139,9 @@ def makeIntoList(y, date):
                     if(i == "LiturgyPsalmResonse"):
                         answer.append("PowerPoints/BackBone/Psalm Trailer for Bishop.pptx")
 
+                    if(i == "transitionSlide"):
+                        answer.append("PowerPoints/BackBone/BishopEntryHymn.pptx")
+
                 if (y[i] != ""):
                     answer.append(y[i])
 
