@@ -84,130 +84,33 @@ def index():
     return render_template('index.html', form=form, y=y)
 
 
-@app.route('/vespers', methods=['GET', 'POST'])
-def vespers():
+@app.route('/<section>', methods=['GET', 'POST'])
+def getSection(section):
 
     if request.method =='GET':
-        return get('vespers')
+        return get(section)
     
     if request.method == 'POST':
-        post('vespers')
+        post(section)
 
-        result = {'status': 'Vespers Updated'}
+        result = {'status': f'{section} Updated'}
     
     return jsonify(result)
  
-@app.route('/matins', methods=['GET', 'POST'])
-def matins():
-    if request.method =='GET':
-    
-        return get('matins')
-    
-    if request.method == 'POST':
-        post('matins')
-
-        result = {'status': 'Matins Updated'}
-    
-    return jsonify(result)
-    
-   
-
-@app.route('/offering', methods=['GET', 'POST'])
-def offering():
-
-    if request.method =='GET':
-        return get("offering")
-
-    if request.method == 'POST':
-        post('offering')
-
-        result = {'status': 'Offering Updated'}
-    
-    return jsonify(result)
-
-@app.route('/liturgyOfWord', methods=['GET', 'POST'])
-def liturgyOfWord():
-    if request.method =='GET':
-        return get('liturgyOfWord')
-    
-    if request.method == 'POST':
-        
-        post('liturgyOfWord')
-
-        result = {'status': 'Liturgy of the Word Updated'}
-    
-    return jsonify(result)
-
-
-@app.route('/liturgyOfFaithful', methods=['GET', 'POST'])
-def liturgyOfFaithful():
-
-    if request.method =='GET':
-        return get('liturgyOfFaithful')
-    
-    if request.method == 'POST':
-        
-        post('liturgyOfFaithful')
-
-        result = {'status': 'Liturgy of the Faithful Updated'}
-    
-    return jsonify(result)
-
-
-@app.route('/communion', methods=['GET', 'POST'])
-def communion():
-
-    if request.method =='GET':
-        return get('communion')
-        
-    
-    if request.method == 'POST':
-        post('communion')
-        result = {'status': 'Communion Updated'}
-    
-    return jsonify(result)
 
 @app.route('/getAll', methods=['GET', 'POST'])
 def getAll():
 
+    listOfSections = ['vespers','matins','offering','liturgyOfWord','liturgyOfFaithful','communion']
     if request.method =='GET':
         responsetoSend = {}
-        try:
-            (getLocal('vespers')["status"] ==  "No PPT For this date")
-            responsetoSend["vespers"] = False
-        except:
-            responsetoSend["vespers"] = True
+        for i in listOfSections:
+            try:
+                (getLocal(i)["status"] ==  "No PPT For this date")
+                responsetoSend[i] = False
+            except:
+                responsetoSend[i] = True
 
-        try:
-            (getLocal('matins')["status"] ==  "No PPT For this date")
-            responsetoSend["matins"] = False
-        except:
-            responsetoSend["matins"] = True
-
-        try:
-            (getLocal('offering')["status"] ==  "No PPT For this date")
-            responsetoSend["offering"] = False
-        except:
-            responsetoSend["offering"] = True
-
-        try:
-            (getLocal('liturgyOfWord')["status"] ==  "No PPT For this date")
-            responsetoSend["liturgyOfWord"] = False
-        except:
-            responsetoSend["liturgyOfWord"] = True
-
-        try:
-            (getLocal('liturgyOfFaithful')["status"] ==  "No PPT For this date")
-            responsetoSend["liturgyOfFaithful"] = False
-        except:
-            responsetoSend["liturgyOfFaithful"] = True
-
-        try:
-            (getLocal('communion')["status"] ==  "No PPT For this date")
-            responsetoSend["communion"] = False
-        except:
-            responsetoSend["communion"] = True
-        
         return jsonify(responsetoSend)
         
 
