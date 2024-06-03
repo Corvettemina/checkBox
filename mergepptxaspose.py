@@ -175,7 +175,11 @@ def merge(finishedList,date):
     index = 0
     for i in range(0, len(finishedList), 10):
         
-
+        try:
+            log = open(path + 'PowerPoints/configs/Logs/log ' + currentDate + '.txt', 'a')
+        except:
+            log = open(path + 'PowerPoints/configs/Logs/log ' + currentDate + '.txt', 'w')
+        
         files = []
         filesToremove = []
         x = 10
@@ -227,6 +231,7 @@ def merge(finishedList,date):
                     pass
             #print("Before Communion" ,  totalBeforeCommunion)
             index+=1
+        log.close()
         print("uploading....")
         slides_api = SlidesApi(
             None, "2d3b1ec8-738b-4467-915f-af02913aa7fa", "1047551018f0feaacf4296fa054d7d97")
