@@ -130,7 +130,7 @@ def getAll():
 def makePptx():
     date = request.args.get('date')
 
-    readings = request.args.get('readingsDate')
+    readingsString = request.args.get('readingsDate')
    
     if request.method == 'POST':
         try:
@@ -140,8 +140,8 @@ def makePptx():
         except:
             database = {}
 
-        if readings:
-                readings = readings.split("-")
+        if readingsString:
+                readings = readingsString.split("-")
                 year = readings[0]
                 month = readings[1]
                 day = readings[2]
@@ -166,8 +166,8 @@ def makePptx():
         t = Thread(target=merge, args=(database, date))
         t.start()
 
-        if(readings):
-             result = {'status': 'Powerpoint OTW' , 'Readings date:' : readings}
+        if(readingsString):
+             result = {'status': 'Powerpoint OTW' , 'Readings date:' : readingsString}
         else:
              result = {'status': 'Powerpoint OTW'}
 
