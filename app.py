@@ -132,7 +132,6 @@ def makePptx():
 
     readings = request.args.get('readingsDate')
    
-
     if request.method == 'POST':
         try:
             filename = "data.json"
@@ -167,8 +166,14 @@ def makePptx():
         t = Thread(target=merge, args=(database, date))
         t.start()
 
-    result = {'status': 'Powerpoint OTW'}
-    
+        if(readings):
+             result = {'status': 'Powerpoint OTW' , 'Readings date:' : readings}
+        else:
+             result = {'status': 'Powerpoint OTW'}
+
+    if request.method == 'GET':
+        result = {'status' : 'POST ONLY METHOD'}
+
     return jsonify(result)
 
 
