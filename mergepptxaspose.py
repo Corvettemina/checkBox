@@ -2,6 +2,7 @@ import changeWord
 import asposeslidescloud
 import shutil
 from asposeslidescloud.apis.slides_api import SlidesApi
+from asposeslidescloud.apis.slides_async_api import SlidesAsyncApi
 from asposeslidescloud.models import *
 import platform
 import os
@@ -258,9 +259,36 @@ def merge(finishedList,date):
     '''
     request = OrderedMergeRequest()
     request.presentations = presentaionsArray
-    response = slides_api.merge_and_save_online(
-        "MyPresentation.pptx", None,  request, "internal")
+    # response = slides_api.merge_and_save_online(
+    #     "MyPresentation.pptx", None,  request, "internal")
     
+    slides_asyncapi = SlidesAsyncApi(
+            None, "2d3b1ec8-738b-4467-915f-af02913aa7fa", "1047551018f0feaacf4296fa054d7d97")
+
+    operation_id = slides_asyncapi.start_merge_and_save(out_path="MyPresentation.pptx", files=None,  request=request, storage="internal")
+
+    while True:
+        time.sleep(2)
+        operation = slides_asyncapi.get_operation_status(operation_id)
+        print(f"Current operation status: { operation.status }")
+        if operation.status == 'Started':
+            if operation.progress != None:
+                print(f"Operation is in progress. Merged { operation.progress.step_index } of { operation.progress.step_count }.")
+                log.write(timestamp + " Operation is in progress. Merged " + operation.progress.step_index + " of " + operation.progress.step_count +".\n")
+        elif operation.status == 'Canceled':
+            break
+        elif operation.status == 'Failed':
+            print(operation.error)
+            log.write(timestamp + " " + operation.error)
+            break
+        elif operation.status == 'Finished': 
+            #result_path = slides_asyncapi.get_operation_result(operation_id)
+            print("The merged document was Finished")
+            log.write(timestamp + " The merged document was Finished")
+            break
+
+
+
     slides_api.delete_unused_master_slides("MyPresentation.pptx", True)
     
     result_path = path + "PowerPoints/result1.pptx"
