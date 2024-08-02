@@ -275,17 +275,17 @@ def merge(finishedList,date):
         if operation.status == 'Started':
             if operation.progress != None:
                 print(f"Operation is in progress. Merged { operation.progress.step_index } of { operation.progress.step_count }.")
-                log.write(timestamp + " Operation is in progress. Merged " + operation.progress.step_index + " of " + operation.progress.step_count +".\n")
+                log.write(timestamp + " Operation is in progress. Merged " + str(operation.progress.step_index) + " of " + str(operation.progress.step_count) + ".\n")
         elif operation.status == 'Canceled':
             break
         elif operation.status == 'Failed':
             print(operation.error)
-            log.write(timestamp + " " + operation.error)
+            log.write(timestamp + " " + str(operation.error) + "\n")
             break
         elif operation.status == 'Finished': 
             #result_path = slides_asyncapi.get_operation_result(operation_id)
             print("The merged document was Finished")
-            log.write(timestamp + " The merged document was Finished")
+            log.write(timestamp + " The merged document was Finished\n")
             break
 
 
