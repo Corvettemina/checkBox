@@ -287,7 +287,9 @@ def merge(finishedList,date):
             print("The merged document was Finished")
             log.write(timestamp + " The merged document was Finished\n")
             break
+    
 
+    time.sleep(10)
 
 
     slides_api.delete_unused_master_slides("MyPresentation.pptx", True)
