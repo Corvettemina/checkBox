@@ -275,24 +275,29 @@ def merge(finishedList,date):
         if operation.status == 'Started':
             if operation.progress != None:
                 print(f"Operation is in progress. Merged { operation.progress.step_index } of { operation.progress.step_count }.")
+                timestamp = now.strftime("%Y-%m-%d_%H-%M-%S")
                 log.write(timestamp + " Operation is in progress. Merged " + str(operation.progress.step_index) + " of " + str(operation.progress.step_count) + ".\n")
         elif operation.status == 'Canceled':
             break
         elif operation.status == 'Failed':
             print(operation.error)
+            timestamp = now.strftime("%Y-%m-%d_%H-%M-%S")
             log.write(timestamp + " " + str(operation.error) + "\n")
             break
         elif operation.status == 'Finished': 
             #result_path = slides_asyncapi.get_operation_result(operation_id)
             print("The merged document was Finished")
+            timestamp = now.strftime("%Y-%m-%d_%H-%M-%S")
             log.write(timestamp + " The merged document was Finished\n")
             break
     
 
     time.sleep(10)
 
-
-    slides_api.delete_unused_master_slides("MyPresentation.pptx", True)
+    try:
+        slides_api.delete_unused_master_slides("MyPresentation.pptx", True)
+    except:
+        pass
     
     result_path = path + "PowerPoints/result1.pptx"
     temp_path = slides_api.download_file("MyPresentation.pptx")
