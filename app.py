@@ -33,7 +33,18 @@ app.config['SECRET_KEY'] = '#$%^&*'
 app.config['GLOBAL_LIST'] = {}
 
 app.logger.setLevel(logging.DEBUG)
-
+months ={"01" : "January",
+         "02" : "February",
+         "03" : "March",
+         "04" : "April",
+         "05" : "May",
+         "06" : "June",
+         "07" : "July",
+         "08" : "August",
+         "09" : "September",
+         "10" : "October",
+         "11" : "November",
+         "12" : "December"}
 class InfoForm(FlaskForm):
     toggle = BooleanField('Toggle')
 
@@ -118,6 +129,9 @@ def getAll():
 @app.route('/makeppt', methods=['GET', 'POST'])
 def makePptx():
     date = request.args.get('date')
+
+    readingsString = request.args.get('readingsDate')
+   
     if request.method == 'POST':
         try:
             filename = "data.json"
@@ -126,6 +140,22 @@ def makePptx():
         except:
             database = {}
 
+        if readingsString:
+                readings = readingsString.split("-")
+                year = readings[0]
+                month = readings[1]
+                day = readings[2]
+                
+                newReadingsString = "Readings/" + year + "/" + month + months[month] + "/" + str(int(day) - 1) + "-" + year + "-" + months[month][:3].lower() + "-" + day + "/"
+
+                database[date]["vespers"]["vespersGospel"] = newReadingsString + "Vespers Gospel.pptx"
+                database[date]["matins"]["matinsGospel"] = newReadingsString + "Matins Gospel.pptx"
+                database[date]["liturgyOfWord"]["pauline"][0] = newReadingsString + "Pauline.pptx"
+                database[date]["liturgyOfWord"]["catholic"] = newReadingsString + "Catholic.pptx"
+                database[date]["liturgyOfWord"]["acts"] = newReadingsString + "Acts.pptx"
+                database[date]["liturgyOfWord"]["LiturgyPsalm"] = newReadingsString + "LiturgyPsalm.pptx"
+                database[date]["liturgyOfWord"]["LiturgyGospel"] = newReadingsString + "LiturgyGospel.pptx"
+        
         if(database[date]["liturgyOfWord"]["synxar"] == "" ):
             postResponse = requests.get("https://stmarkapi.com:8080/liturgyOfWord?date=" + str(date) , verify=False)
             synxar = json.loads(postResponse.text)
@@ -136,8 +166,14 @@ def makePptx():
         t = Thread(target=merge, args=(database, date))
         t.start()
 
-    result = {'status': 'Powerpoint OTW'}
-    
+        if(readingsString):
+             result = {'status': 'Powerpoint OTW' , 'Readings date:' : readingsString}
+        else:
+             result = {'status': 'Powerpoint OTW'}
+
+    if request.method == 'GET':
+        result = {'status' : 'POST ONLY METHOD'}
+
     return jsonify(result)
 
 
@@ -377,7 +413,7 @@ def select():
 
 
 if __name__ == "__main__":
-    #app.run(debug=True)
+    app.run(debug=True)
     #app.run(host='0.0.0.0')
     
-    app.run(host='0.0.0.0',ssl_context=('/etc/letsencrypt/archive/stmarkapi.com/cert6.pem', '/etc/letsencrypt/archive/stmarkapi.com/privkey6.pem'))
+    #app.run(host='0.0.0.0',ssl_context=('/etc/letsencrypt/archive/stmarkapi.com/cert6.pem', '/etc/letsencrypt/archive/stmarkapi.com/privkey6.pem'))
