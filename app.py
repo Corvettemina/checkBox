@@ -139,7 +139,7 @@ def makePptx():
                 database = json.load(json_file)
         except:
             database = {}
-        if(database[date]):
+        if(date in database.keys()):
 
             if readingsString:
                     readings = readingsString.split("-")
