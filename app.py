@@ -139,37 +139,40 @@ def makePptx():
                 database = json.load(json_file)
         except:
             database = {}
+        if(database[date]):
 
-        if readingsString:
-                readings = readingsString.split("-")
-                year = readings[0]
-                month = readings[1]
-                day = readings[2]
-                
-                newReadingsString = "Readings/" + year + "/" + month + months[month] + "/" + str(int(day) - 1) + "-" + year + "-" + months[month][:3].lower() + "-" + day + "/"
+            if readingsString:
+                    readings = readingsString.split("-")
+                    year = readings[0]
+                    month = readings[1]
+                    day = readings[2]
+                    
+                    newReadingsString = "Readings/" + year + "/" + month + months[month] + "/" + str(int(day) - 1) + "-" + year + "-" + months[month][:3].lower() + "-" + day + "/"
 
-                database[date]["vespers"]["vespersGospel"] = newReadingsString + "Vespers Gospel.pptx"
-                database[date]["matins"]["matinsGospel"] = newReadingsString + "Matins Gospel.pptx"
-                database[date]["liturgyOfWord"]["pauline"][0] = newReadingsString + "Pauline.pptx"
-                database[date]["liturgyOfWord"]["catholic"] = newReadingsString + "Catholic.pptx"
-                database[date]["liturgyOfWord"]["acts"] = newReadingsString + "Acts.pptx"
-                database[date]["liturgyOfWord"]["LiturgyPsalm"] = newReadingsString + "LiturgyPsalm.pptx"
-                database[date]["liturgyOfWord"]["LiturgyGospel"] = newReadingsString + "LiturgyGospel.pptx"
-        
-        if(database[date]["liturgyOfWord"]["synxar"] == "" ):
-            postResponse = requests.get("https://stmarkapi.com:8080/liturgyOfWord?date=" + str(date) , verify=False)
-            synxar = json.loads(postResponse.text)
+                    database[date]["vespers"]["vespersGospel"] = newReadingsString + "Vespers Gospel.pptx"
+                    database[date]["matins"]["matinsGospel"] = newReadingsString + "Matins Gospel.pptx"
+                    database[date]["liturgyOfWord"]["pauline"][0] = newReadingsString + "Pauline.pptx"
+                    database[date]["liturgyOfWord"]["catholic"] = newReadingsString + "Catholic.pptx"
+                    database[date]["liturgyOfWord"]["acts"] = newReadingsString + "Acts.pptx"
+                    database[date]["liturgyOfWord"]["LiturgyPsalm"] = newReadingsString + "LiturgyPsalm.pptx"
+                    database[date]["liturgyOfWord"]["LiturgyGospel"] = newReadingsString + "LiturgyGospel.pptx"
+            
+            if(database[date]["liturgyOfWord"]["synxar"] == "" ):
+                postResponse = requests.get("https://stmarkapi.com:8080/liturgyOfWord?date=" + str(date) , verify=False)
+                synxar = json.loads(postResponse.text)
 
-            database[date]["liturgyOfWord"]["synxar"] = synxar[1]["synxar"]
-        
-        
-        t = Thread(target=merge, args=(database, date))
-        t.start()
+                database[date]["liturgyOfWord"]["synxar"] = synxar[1]["synxar"]
+            
+            
+            t = Thread(target=merge, args=(database, date))
+            t.start()
 
-        if(readingsString):
-             result = {'status': 'Powerpoint OTW' , 'Readings date:' : readingsString}
+            if(readingsString):
+                result = {'status': 'Powerpoint OTW' , 'Readings date:' : readingsString}
+            else:
+                result = {'status': 'Powerpoint OTW'}
         else:
-             result = {'status': 'Powerpoint OTW'}
+            result = {'status': 'No Powerpoint For that Date'}
 
     if request.method == 'GET':
         result = {'status' : 'POST ONLY METHOD'}
