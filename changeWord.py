@@ -1,64 +1,56 @@
 import collections
 import collections.abc
 from pptx import Presentation
-from pptx.dml.color import RGBColor
 import platform
-
+from pptx.exc import InvalidXmlError
 
 def insertChange(input_pptx, replaceString):
-
-    if ("Windows" in platform.platform()):
-        path = "C:/Users/Mina Hanna/DropBox/"
-    if (("Linux" in platform.platform())):
-        path = "/root/Dropbox/"
+    # Determine the base path based on the operating system
+    if "Windows" in platform.system():
+        base_path = "C:/Users/Mina Hanna/DropBox/"
+    elif "Linux" in platform.system():
+        base_path = "/root/Dropbox/"
+    else:
+        raise OSError("Unsupported operating system")
 
     prs = Presentation(input_pptx)
-    #slide = prs.slides[242]
-
     testString = "#SEASON#"
 
- 
-    # To get shapes in your slides
-    slides = [slide for slide in prs.slides]
-    shapes = []
-    counttt = 1
-    
-    for slide in slides:    
-        try:
-            for shape in slide.shapes:
-                shapes.append(shape)
-        except:
-            print(str(counttt) + " EXCEPTION")
-        counttt += 1
+    # Get all shapes in all slides
+    shapes = [shape for slide in prs.slides for shape in slide.shapes]
 
-    replaces = {
-        testString: replaceString
-    }
-    
+    replaces = {testString: replaceString}
+
     for shape in shapes:
+        if not shape.has_text_frame:
+            continue
+        
+        text_frame = shape.text_frame
+        if text_frame is None:
+            continue
+        
         for match, replacement in replaces.items():
-            if shape.has_text_frame:
-                if (shape.text.find(match)) != -1:
-                    text_frame = shape.text_frame
+            try:
+                if any(match in paragraph.text for paragraph in text_frame.paragraphs):
                     for paragraph in text_frame.paragraphs:
-                        whole_text = "".join(
-                            run.text for run in paragraph.runs)
-                        whole_text = whole_text.replace(
-                            str(match), str(replacement))
+                        whole_text = "".join(run.text for run in paragraph.runs)
+                        whole_text = whole_text.replace(match, replacement)
                         for idx, run in enumerate(paragraph.runs):
                             if idx != 0:
-                                p = paragraph._p
-                                p.remove(run._r)
-                        if bool(paragraph.runs):
+                                paragraph._p.remove(run._r)
+                        if paragraph.runs:
                             paragraph.runs[0].text = whole_text
-
-    tempArray = input_pptx.split(".pptx")
-    #newPath = tempArray[0] + "today.pptx"
+            except InvalidXmlError:
+                print(f"InvalidXmlError encountered in shape. Skipping this shape.")
+                continue
 
     prs.save(input_pptx)
     return input_pptx
+
 def main():
-    insertChange("C:/Users/Mina Hanna/DropBox/PowerPoints/result1.pptx","have come")
+    input_pptx = "C:/Users/Mina Hanna/DropBox/PowerPoints/result1.pptx"
+    replaceString = "have come"
+    insertChange(input_pptx, replaceString)
 
 if __name__ == "__main__":
     main()
