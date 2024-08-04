@@ -1,3 +1,4 @@
+import urllib3
 import changeWord
 import asposeslidescloud
 import shutil
@@ -15,7 +16,7 @@ from urllib3.exceptions import InsecureRequestWarning
 import time
 # Suppress only the single warning from urllib3 needed.
 requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
-
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def getfile_insensitive(paths):
     for path, subdirs, files in os.walk("/root/Dropbox/"):
@@ -175,6 +176,7 @@ def merge(finishedList,date):
     count = 0
     atMenu = False
     index = 0
+    listTosend = []
     for i in range(0, len(finishedList), 10):
         
         try:
@@ -200,6 +202,7 @@ def merge(finishedList,date):
                     log.write(timestamp + " " + path + k + "\n")
 
                     print(path + k)
+                    listTosend.append(path + k)
 
                     if(finishedList.index(k,index) > finishedList.index("PowerPoints/BackBone/communionMenuTemplate.pptx") and finishedList.index(k,index) < finishedList.index("PowerPoints/BackBone/finalConclusion1.pptx")):
                         pptxLengths[str(k.split("/")[-1].split(".")[0])] = (len(Presentation(path + k).slides))
@@ -221,6 +224,7 @@ def merge(finishedList,date):
                         log.write(timestamp + " " + path + k + "\n")
 
                         print(path + k)
+                        listTosend.append(getfile_insensitive(path + k))
 
                         if(finishedList.index(k,index) > finishedList.index("PowerPoints/BackBone/communionMenuTemplate.pptx") and finishedList.index(k,index) < finishedList.index("PowerPoints/BackBone/finalConclusion1.pptx")):
                             pptxLengths[str(k.split("/")[-1].split(".")[0])] = (len(Presentation(getfile_insensitive(path + k)).slides))
@@ -238,8 +242,8 @@ def merge(finishedList,date):
         slides_api = SlidesApi(
             None, "2d3b1ec8-738b-4467-915f-af02913aa7fa", "1047551018f0feaacf4296fa054d7d97")
     
-        slides_api.merge_and_save_online(
-            str(count) + ".pptx", files, None, "internal")
+        # slides_api.merge_and_save_online(
+        #     str(count) + ".pptx", files, None, "internal")
 
         presentation = PresentationToMerge()
         presentation.path = str(count) + ".pptx"
@@ -256,6 +260,9 @@ def merge(finishedList,date):
         count += 1
         if x == 11:
             break
+
+
+    
     '''
     presentation = PresentationToMerge()
     presentation.path = "communion.pptx"
@@ -263,50 +270,52 @@ def merge(finishedList,date):
 
     presentaionsArray.append(presentation)
     '''
-    request = OrderedMergeRequest()
-    request.presentations = presentaionsArray
-    # response = slides_api.merge_and_save_online(
-    #     "MyPresentation.pptx", None,  request, "internal")
+
+    mergeSpringBoot(listTosend)
+    # request = OrderedMergeRequest()
+    # request.presentations = presentaionsArray
+    # # response = slides_api.merge_and_save_online(
+    # #     "MyPresentation.pptx", None,  request, "internal")
     
-    slides_asyncapi = SlidesAsyncApi(
-            None, "2d3b1ec8-738b-4467-915f-af02913aa7fa", "1047551018f0feaacf4296fa054d7d97")
+    # slides_asyncapi = SlidesAsyncApi(
+    #         None, "2d3b1ec8-738b-4467-915f-af02913aa7fa", "1047551018f0feaacf4296fa054d7d97")
 
-    operation_id = slides_asyncapi.start_merge_and_save(out_path="MyPresentation.pptx", files=None,  request=request, storage="internal")
+    # operation_id = slides_asyncapi.start_merge_and_save(out_path="MyPresentation.pptx", files=None,  request=request, storage="internal")
 
-    while True:
-        time.sleep(2)
-        operation = slides_asyncapi.get_operation_status(operation_id)
-        print(f"Current operation status: { operation.status }")
-        if operation.status == 'Started':
-            if operation.progress != None:
-                print(f"Operation is in progress. Merged { operation.progress.step_index } of { operation.progress.step_count }.")
-                timestamp = now.strftime("%Y-%m-%d_%H-%M-%S")
-                log.write(timestamp + " Operation is in progress. Merged " + str(operation.progress.step_index) + " of " + str(operation.progress.step_count) + ".\n")
-        elif operation.status == 'Canceled':
-            break
-        elif operation.status == 'Failed':
-            print(operation.error)
-            timestamp = now.strftime("%Y-%m-%d_%H-%M-%S")
-            log.write(timestamp + " " + str(operation.error) + "\n")
-            break
-        elif operation.status == 'Finished': 
-            #result_path = slides_asyncapi.get_operation_result(operation_id)
-            print("The merged document was Finished")
-            timestamp = now.strftime("%Y-%m-%d_%H-%M-%S")
-            log.write(timestamp + " The merged document was Finished\n")
-            break
+    # while True:
+    #     time.sleep(2)
+    #     operation = slides_asyncapi.get_operation_status(operation_id)
+    #     print(f"Current operation status: { operation.status }")
+    #     if operation.status == 'Started':
+    #         if operation.progress != None:
+    #             print(f"Operation is in progress. Merged { operation.progress.step_index } of { operation.progress.step_count }.")
+    #             timestamp = now.strftime("%Y-%m-%d_%H-%M-%S")
+    #             log.write(timestamp + " Operation is in progress. Merged " + str(operation.progress.step_index) + " of " + str(operation.progress.step_count) + ".\n")
+    #     elif operation.status == 'Canceled':
+    #         break
+    #     elif operation.status == 'Failed':
+    #         print(operation.error)
+    #         timestamp = now.strftime("%Y-%m-%d_%H-%M-%S")
+    #         log.write(timestamp + " " + str(operation.error) + "\n")
+    #         break
+    #     elif operation.status == 'Finished': 
+    #         #result_path = slides_asyncapi.get_operation_result(operation_id)
+    #         print("The merged document was Finished")
+    #         timestamp = now.strftime("%Y-%m-%d_%H-%M-%S")
+    #         log.write(timestamp + " The merged document was Finished\n")
+    #         break
     
 
-    time.sleep(10)
+    # time.sleep(10)
 
-    try:
-        slides_api.delete_unused_master_slides("MyPresentation.pptx", True)
-    except:
-        pass
+    # try:
+    #     slides_api.delete_unused_master_slides("MyPresentation.pptx", True)
+    # except:
+    #     pass
     
     result_path = path + "PowerPoints/result1.pptx"
-    temp_path = slides_api.download_file("MyPresentation.pptx")
-    shutil.copyfile(temp_path, result_path)
+    # temp_path = slides_api.download_file("MyPresentation.pptx")
+    # shutil.copyfile(temp_path, result_path)
 
     print(pptxLengths)
 
@@ -391,25 +400,25 @@ def mergeCommunion(finishedList):
     print('complete')
 
 
+def mergeSpringBoot(file_paths):
     
-'''
-import springApiTest
+# Define the URL of the endpoint
+    url = "https://stmarkapi.com:8080/mergePowerpoints"
 
-request = OrderedMergeRequest()
-lists = []
-for i in springApiTest.getlist():
-    presentation = PresentationToMerge()
-    presentation.path = i
-    presentation.source = "Storage"
-    lists.append(presentation)
+    # Define the list of file paths
 
-request.presentations = lists
+    # Convert the list to a JSON payload
+    payload = json.dumps(file_paths)
 
-slides_api.merge_and_save_online("Powerpoints/blank.pptx", None,request,"Dropbox1")
+    # Set headers to indicate JSON content
+    headers = {
+        "Content-Type": "application/json"
+    }
 
+    # Send the POST request
+    response = requests.post(url, data=payload, headers=headers, verify=False)
 
-# Merge the presentations.
-result_file_path = slides_api.merge_online(files)
+    # Print the response from the server
+    print("Status Code:", response.status_code)
+    print("Response Body:", response.text)
 
-print("The output presentation was saved to ", result_file_path)
-'''
