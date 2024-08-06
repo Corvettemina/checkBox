@@ -327,7 +327,7 @@ def merge(finishedList,date):
             
     verb = response.text
     changeWord.insertChange(result_path,verb,"#SEASON#")
-    changeWord.insertChange(result_path,"","#PLACEHOLDER#")
+    #changeWord.insertChange(result_path,"","#PLACEHOLDER#")
 
     postResponse = requests.get('https://stmarkapi.com:8080/pptname?date=' + date , verify=False)
     pptName = json.loads(postResponse.text)["pptName"]
