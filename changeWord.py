@@ -4,7 +4,7 @@ from pptx import Presentation
 import platform
 from pptx.exc import InvalidXmlError
 
-def insertChange(input_pptx, replaceString):
+def insertChange(input_pptx, replaceString,testString):
     # Determine the base path based on the operating system
     if "Windows" in platform.system():
         base_path = "C:/Users/Mina Hanna/DropBox/"
@@ -14,7 +14,7 @@ def insertChange(input_pptx, replaceString):
         raise OSError("Unsupported operating system")
 
     prs = Presentation(input_pptx)
-    testString = "#SEASON#"
+    
 
     # Get all shapes in all slides
     shapes = [shape for slide in prs.slides for shape in slide.shapes]
