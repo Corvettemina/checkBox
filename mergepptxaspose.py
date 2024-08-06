@@ -237,7 +237,7 @@ def merge(finishedList,date):
                     pass
             #print("Before Communion" ,  totalBeforeCommunion)
             index+=1
-        log.close()
+        
         print("uploading....")
         slides_api = SlidesApi(
             None, "2d3b1ec8-738b-4467-915f-af02913aa7fa", "1047551018f0feaacf4296fa054d7d97")
@@ -327,7 +327,7 @@ def merge(finishedList,date):
             
     verb = response.text
     changeWord.insertChange(result_path,verb,"#SEASON#")
-    #changeWord.insertChange(result_path,"","#PLACEHOLDER#")
+    changeWord.insertChange(result_path,"-","#PLACEHOLDER#")
 
     postResponse = requests.get('https://stmarkapi.com:8080/pptname?date=' + date , verify=False)
     pptName = json.loads(postResponse.text)["pptName"]
@@ -344,7 +344,7 @@ def merge(finishedList,date):
     now = datetime.datetime.now()
     timestamp = now.strftime("%Y-%m-%d_%H-%M-%S")
     log.write(timestamp + " Complete\n")
-
+    log.close()
 
 def mergeCommunion(finishedList):
     
