@@ -196,6 +196,9 @@ def approval():
       
     result = {'status': 'sumbitted for approval'}
     
+    if request.method == 'GET':
+        result = {'status' : 'POST ONLY METHOD'}
+        
     return jsonify(result)
 
 @app.route('/bishop', methods=['GET', 'POST'])
