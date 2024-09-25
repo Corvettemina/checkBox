@@ -57,6 +57,7 @@ def makeIntoList(y, date):
                     answer.append(y[i])
                     answer.append("PowerPoints/Feast of the Cross/Hymn of Constantine.pptx")
                     answer.append("PowerPoints/Feast of the Cross/Expositions.pptx")
+                    y[i] = ""
 
                 if(i == "vespers5ShortLitanies" and y[i] == "yes"):
                    y[i] = "PowerPoints/BackBone/5ShortLitanies.pptx" 
