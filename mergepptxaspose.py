@@ -35,6 +35,8 @@ def makeIntoList(y, date):
     except:
         bishop =""
 
+
+
     for i in y:
         if (i != "Ocassion" and i != "Season" and i != "Sunday" and i != "verb"):
             if (type(y[i]) is list):
@@ -50,6 +52,11 @@ def makeIntoList(y, date):
                 
                 if(y[i] == "no"):
                     y[i] = ""
+
+                if(i == "vespersOGodHaveMercy" and "Feast of the Cross" in y["vespersVerseofTheCymbals"]):
+                    answer.append(y[i])
+                    answer.append("PowerPoints/Feast of the Cross/Hymn of Constantine.pptx")
+                    answer.append("PowerPoints/Feast of the Cross/Expositions.pptx")
 
                 if(i == "vespers5ShortLitanies" and y[i] == "yes"):
                    y[i] = "PowerPoints/BackBone/5ShortLitanies.pptx" 
