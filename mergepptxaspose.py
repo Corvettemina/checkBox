@@ -14,6 +14,7 @@ import requests
 import json
 from urllib3.exceptions import InsecureRequestWarning
 import time
+from datetime import datetime, timedelta
 # Suppress only the single warning from urllib3 needed.
 requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -113,6 +114,9 @@ def makeIntoList(y, date):
                 
                 if(i == "postCommemoration" and y[i] == "gregory"):
                     y[i] = "PowerPoints/Liturgy/Post Commemoration - Gregorian.pptx"  
+
+                if (i == "Oblations" and is_within_four_sundays(str(date))):
+                    answer.append("PowerPoints/Liturgy/Litany of the Leader.pptx")
 
                 if(i == "prefaceToTheFraction" and y[i] == "basil"):
                     y[i] = "PowerPoints/Liturgy/Preface - Basil.pptx"
@@ -431,3 +435,39 @@ def mergeSpringBoot(file_paths):
     print("Status Code:", response.status_code)
     print("Response Body:", response.text)
 
+
+def is_election_year(year):
+    """Check if the given year is a US general election year."""
+    return (year - 2020) % 4 == 0
+
+def get_election_day(year):
+    """Get the date of the general election day in a given year."""
+    if not is_election_year(year):
+        return None
+    
+    # Find the first Monday of November.
+    november_first = datetime(year, 11, 1)
+    first_monday = november_first + timedelta(days=(7 - november_first.weekday()) % 7)
+    # Election Day is the day after the first Monday (i.e., Tuesday).
+    election_day = first_monday + timedelta(days=1)
+    return election_day
+
+def is_within_four_sundays(date_str):
+    """Check if the given date is within the 4 Sundays leading up to Election Day."""
+    try:
+        date = datetime.strptime(date_str, "%Y-%m-%d")
+    except ValueError:
+        raise ValueError("The date format should be YYYY-MM-DD.")
+    
+    year = date.year
+    election_day = get_election_day(year)
+    
+    if election_day is None:
+        return False  # Not an election year
+    
+    # Find the 4 Sundays before the election
+    sunday_before_election = election_day - timedelta(days=(election_day.weekday() + 1))
+    four_sundays_before_election = sunday_before_election - timedelta(weeks=3)
+    
+    # Check if the given date is within this range
+    return four_sundays_before_election <= date <= sunday_before_election
