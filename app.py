@@ -45,6 +45,7 @@ months ={"01" : "January",
          "10" : "October",
          "11" : "November",
          "12" : "December"}
+
 class InfoForm(FlaskForm):
     toggle = BooleanField('Toggle')
 
@@ -147,7 +148,7 @@ def makePptx():
                     month = readings[1]
                     day = readings[2]
                     
-                    newReadingsString = "Readings/" + year + "/" + month + months[month] + "/" + str(int(day) - 1) + "-" + year + "-" + months[month][:3].lower() + "-" + day + "/"
+                    newReadingsString = "Readings/" + year + "/" + month + months[month] + "/" + str(int(day) - 1) + "-" + year + "-" + months[month][:3].lower() + "-" + str(int(day)) + "/"
 
                     database[date]["vespers"]["vespersGospel"] = newReadingsString + "Vespers Gospel.pptx"
                     database[date]["matins"]["matinsGospel"] = newReadingsString + "Matins Gospel.pptx"
